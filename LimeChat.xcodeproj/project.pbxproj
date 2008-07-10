@@ -84,6 +84,7 @@
 		78ADE7BE0E0E74A500991CCF /* textfield.rb in Resources */ = {isa = PBXBuildFile; fileRef = 78ADE7790E0E74A500991CCF /* textfield.rb */; };
 		78ADE7BF0E0E74A500991CCF /* treeview.rb in Resources */ = {isa = PBXBuildFile; fileRef = 78ADE77A0E0E74A500991CCF /* treeview.rb */; };
 		78ADE7C00E0E74A500991CCF /* viewtheme.rb in Resources */ = {isa = PBXBuildFile; fileRef = 78ADE77B0E0E74A500991CCF /* viewtheme.rb */; };
+		78F49C260E25E2010058B812 /* iconcontroller.rb in Resources */ = {isa = PBXBuildFile; fileRef = 78F49C250E25E2010058B812 /* iconcontroller.rb */; };
 		8D11072A0486CEB800E47090 /* MainMenu.nib in Resources */ = {isa = PBXBuildFile; fileRef = 29B97318FDCFA39411CA2CEA /* MainMenu.nib */; };
 		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
@@ -176,6 +177,7 @@
 		78ADE7790E0E74A500991CCF /* textfield.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = textfield.rb; sourceTree = "<group>"; };
 		78ADE77A0E0E74A500991CCF /* treeview.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = treeview.rb; sourceTree = "<group>"; };
 		78ADE77B0E0E74A500991CCF /* viewtheme.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = viewtheme.rb; sourceTree = "<group>"; };
+		78F49C250E25E2010058B812 /* iconcontroller.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = iconcontroller.rb; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* LimeChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LimeChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -302,6 +304,7 @@
 		78ADE7360E0E74A500991CCF /* controller */ = {
 			isa = PBXGroup;
 			children = (
+				78F49C250E25E2010058B812 /* iconcontroller.rb */,
 				78ADE7370E0E74A500991CCF /* appcontroller.rb */,
 				78ADE7380E0E74A500991CCF /* growlcontroller.rb */,
 				78ADE7390E0E74A500991CCF /* menucontroller.rb */,
@@ -533,6 +536,7 @@
 				78ADE7BE0E0E74A500991CCF /* textfield.rb in Resources */,
 				78ADE7BF0E0E74A500991CCF /* treeview.rb in Resources */,
 				78ADE7C00E0E74A500991CCF /* viewtheme.rb in Resources */,
+				78F49C260E25E2010058B812 /* iconcontroller.rb in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
