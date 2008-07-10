@@ -51,6 +51,6 @@ class TreeView < NSOutlineView
         end
       end
     end
-    super_keyDown(e)
+    super(e)
   end
 end

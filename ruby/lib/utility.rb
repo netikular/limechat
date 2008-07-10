@@ -125,7 +125,7 @@ class NSObject
     when NSCFBoolean
       boolValue
     when NSNumber
-      integer? ? to_i : to_f
+      integer? ? intValue : floatValue
     when NSString
       to_s
     when NSAttributedString
@@ -137,7 +137,7 @@ class NSObject
       each do |x, y| 
         x = x.to_ruby if x.is_a?(NSObject)
         y = y.to_ruby if y.is_a?(NSObject)
-        x = x.to_sym if x.is_a?(String)
+        x = x.to_sym if x.is_a?(NSString)
         h[x] = y
       end
       h
@@ -150,34 +150,6 @@ end
 class NSNumber
   def integer?
     !CFNumberIsFloatType(self)
-  end
-  
-  def inspect
-    "NS:#{to_ruby}"
-  end
-end
-
-class NSString
-  def inspect
-    "NS:#{to_s.inspect}"
-  end
-end
-
-class NSArray
-  def inspect
-    "NS:#{to_a.inspect}"
-  end
-end
-
-class NSDictionary
-  def inspect
-    "NS:#{to_hash.inspect}"
-  end
-end
-
-class NSIndexSet
-  def inspect
-    "#<#{self.class.to_s.gsub(/^OSX::/, '')} #{to_a.inspect}>"
   end
 end
 
@@ -228,8 +200,23 @@ class NSSize
 end
 
 class NSRect
+  class << self
+    alias_method :orig_new, :new
+    def new(*args)
+      if args.length == 4
+        orig_new(NSPoint.new(args[0], args[1]), NSSize.new(args[2], args[3]))
+      else
+        orig_new(args)
+      end
+    end
+  end
+  
+  def x; origin.x; end
+  def y; origin.y; end
   def x=(v); origin.x = v; end
   def y=(v); origin.y = v; end
+  def width; size.width; end
+  def height; size.height; end
   def width=(v); size.width = v; end
   def height=(v); size.height = v; end
   def contain?(r)
@@ -255,11 +242,7 @@ class NSRect
   end
 
   def inspect
-    "#<#{self.class.to_s.gsub(/^OSX::/, '')} #{to_inspect}>"
-  end
-  
-  def to_inspect
-    "(#{x}, #{y}, #{width}, #{height})"
+    "#<#{self.class.to_s.gsub(/^OSX::/, '')} ()#{x}, #{y}, #{width}, #{height})>"
   end
 end
 

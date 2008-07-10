@@ -26,7 +26,7 @@ class MemberListView < ListView
         return
       end
     end
-    super_keyDown(e)
+    super(e)
   end
   
   def theme_changed
@@ -163,7 +163,7 @@ class MemberListViewCell < NSCell
   end
   
   def copyWithZone(zone)
-    obj = super_copyWithZone(zone)
+    obj = super(zone)
     obj.singleton = @singleton || self
     obj
   end

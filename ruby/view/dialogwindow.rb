@@ -45,6 +45,6 @@ class DialogWindow < NSWindow
         end
       end
     end
-    super_sendEvent(e)
+    super(e)
   end
 end

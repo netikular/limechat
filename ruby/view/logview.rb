@@ -10,7 +10,7 @@ class LogView < WebView
   
   def setFrame(rect)
     @resize_delegate.logView_willResize(rect) if @resize_delegate
-    super_setFrame(rect)
+    super(rect)
     @resize_delegate.logView_didResize(rect) if @resize_delegate
   end
   

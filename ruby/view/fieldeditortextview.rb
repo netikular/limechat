@@ -12,7 +12,7 @@ class FieldEditorTextView < NSTextView
     if @paste_delegate
       return if @paste_delegate.fieldEditorTextView_paste(self)
     end
-    super_paste(sender)
+    super(sender)
   end
   
   def register_key_handler(*args, &handler)
@@ -21,6 +21,6 @@ class FieldEditorTextView < NSTextView
   
   def keyDown(e)
     return if @key_handler.process_key_event(e)
-    super_keyDown(e)
+    super(e)
   end
 end

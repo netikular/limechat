@@ -31,7 +31,7 @@ class ListView < NSTableView
     else
       #deselectAll(self)
     end
-    super_rightMouseDown(event)
+    super(event)
   end
   
   def setFont(font)
@@ -75,7 +75,7 @@ class ListView < NSTableView
         end
       end
     end
-    super_keyDown(e)
+    super(e)
   end
   
   def textDidEndEditing(note)

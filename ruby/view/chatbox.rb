@@ -26,7 +26,7 @@ class ChatBox < NSBox
       textframe.width = f.width
       text.setFrame(textframe)
     end
-    super_setFrame(rect)
+    super(rect)
   end
   
   def set_input_text_font(font)

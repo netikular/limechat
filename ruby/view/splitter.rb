@@ -4,16 +4,18 @@
 class Splitter < NSSplitView
   attr_reader :fixedViewIndex, :position, :dividerThickness
   
-  def initialize
+  def initWithCoder(coder)
+    obj = super(coder)
     @position = 0
     @fixedViewIndex = 0
     @dividerThickness = 1
     @inverted = false
     @hidden = false
+    @dividerThickness = vertical? ? 1 : 5
+    obj
   end
   
   def awakeFromNib
-    @dividerThickness = isVertical? ? 1 : 5
     updatePosition
   end
   
@@ -51,7 +53,7 @@ class Splitter < NSSplitView
   end
   
   def setVertical(value)
-    super_setVertical(value)
+    super(value)
     adjustSubviews
   end
   
@@ -90,7 +92,7 @@ class Splitter < NSSplitView
   end
   
   def mouseDown(e)
-    super_mouseDown(e)
+    super(e)
     updatePosition
   end
   
@@ -100,9 +102,12 @@ class Splitter < NSSplitView
   
   def adjustSubviews
     if self.subviews.count != 2
-      super_adjustSubviews
+      super
       return
     end
+    return unless @fixedViewIndex
+    return unless @position
+    return unless @dividerThickness
     
     frame = self.frame
     
