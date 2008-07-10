@@ -461,7 +461,7 @@ class FileTransferCell < NSCell
   end
   
   def init
-    super_init
+    super
     @filename_style = NSMutableParagraphStyle.alloc.init
     @filename_style.setAlignment(NSLeftTextAlignment)
     @filename_style.setLineBreakMode(NSLineBreakByTruncatingMiddle)
