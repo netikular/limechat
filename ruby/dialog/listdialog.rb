@@ -3,7 +3,7 @@
 
 require 'dialoghelper'
 
-class ListDialog < NSObject
+class ListDialog < Object
   include DialogHelper
   attr_accessor :delegate, :prefix, :pref
   ib_outlet :window, :table, :updateButton, :closeButton, :searchText

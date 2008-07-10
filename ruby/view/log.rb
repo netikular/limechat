@@ -25,7 +25,7 @@ class LogLine
 end
 
 
-class LogController < NSObject
+class LogController < Object
   attr_accessor :world
   attr_writer :unit, :channel, :menu, :url_menu, :addr_menu, :member_menu, :keyword, :theme, :override_font
   attr_reader :view
@@ -226,13 +226,13 @@ class LogController < NSObject
   
   # delegate
 
-  objc_method :webView_windowScriptObjectAvailable, 'v@:@@'
+  #objc_method :webView_windowScriptObjectAvailable, 'v@:@@'
   def webView_windowScriptObjectAvailable(sender, js)
     @js = js
     @js[:app] = @sink
   end
   
-  objc_method :webView_didFinishLoadForFrame, 'v@:@@'
+  #objc_method :webView_didFinishLoadForFrame, 'v@:@@'
   def webView_didFinishLoadForFrame(sender, frame)
     @loaded = true
     setup_scroller
@@ -600,12 +600,12 @@ class LogController < NSObject
 end
 
 
-class LogScriptEventSink < NSObject
+class LogScriptEventSink < Object
   attr_accessor :owner, :policy
   
   EXPORTED_METHODS = %w|onDblClick: shouldStopDoubleClick: setUrl: setAddr: setNick: print:|
 
-  objc_class_method 'isSelectorExcludedFromWebScript:', 'c@::'
+  #objc_class_method 'isSelectorExcludedFromWebScript:', 'c@::'
   def self.isSelectorExcludedFromWebScript(sel)
     case sel
     when *EXPORTED_METHODS
@@ -615,7 +615,7 @@ class LogScriptEventSink < NSObject
     end
   end
 
-  objc_class_method 'webScriptNameForSelector:', '@@::'
+  #objc_class_method 'webScriptNameForSelector:', '@@::'
   def self.webScriptNameForSelector(sel)
     case sel
     when *EXPORTED_METHODS
@@ -626,12 +626,12 @@ class LogScriptEventSink < NSObject
     end
   end
 
-  objc_class_method :isKeyExcludedFromWebScript, 'c@:*'
+  #objc_class_method :isKeyExcludedFromWebScript, 'c@:*'
   def self.isKeyExcludedFromWebScript(name)
     true
   end
   
-  objc_class_method :webScriptNameForKey, '@@:*'
+  #objc_class_method :webScriptNameForKey, '@@:*'
   def self.webScriptNameForKey(name)
     nil
   end
@@ -642,14 +642,14 @@ class LogScriptEventSink < NSObject
     @y = -100
   end
   
-  objc_method :onDblClick, 'v@:@'
+  #objc_method :onDblClick, 'v@:@'
   def onDblClick(e)
     @owner.logView_onDoubleClick(e.to_s)
   end
   
   DELTA = 3
   
-  objc_method :shouldStopDoubleClick, 'c@:@'
+  #objc_method :shouldStopDoubleClick, 'c@:@'
   def shouldStopDoubleClick(e)
     d = DELTA
     cx = e.valueForKey('clientX').intValue
@@ -666,22 +666,22 @@ class LogScriptEventSink < NSObject
     res
   end
   
-  objc_method :setUrl, 'v@:@'
+  #objc_method :setUrl, 'v@:@'
   def setUrl(s)
     @policy.url = uh(s)
   end
   
-  objc_method :setAddr, 'v@:@'
+  #objc_method :setAddr, 'v@:@'
   def setAddr(s)
     @policy.addr = uh(s)
   end
   
-  objc_method :setNick, 'v@:@'
+  #objc_method :setNick, 'v@:@'
   def setNick(s)
     @policy.nick = uh(s)
   end
   
-  objc_method :print, 'v@:@'
+  #objc_method :print, 'v@:@'
   def print(s)
     NSLog("%@", s)
   end
@@ -694,16 +694,16 @@ class LogScriptEventSink < NSObject
 end
 
 
-class LogPolicy < NSObject
+class LogPolicy < Object
   attr_accessor :owner, :menu, :url_menu, :addr_menu, :member_menu
   attr_accessor :url, :addr, :nick
 
-  objc_method :webView_dragDestinationActionMaskForDraggingInfo, 'I@:@@'
+  #objc_method :webView_dragDestinationActionMaskForDraggingInfo, 'I@:@@'
   def webView_dragDestinationActionMaskForDraggingInfo(sender, info)
     WebDragDestinationActionNone
   end
   
-  objc_method :webView_contextMenuItemsForElement_defaultMenuItems, '@@:@@@'
+  #objc_method :webView_contextMenuItemsForElement_defaultMenuItems, '@@:@@@'
   def webView_contextMenuItemsForElement_defaultMenuItems(sender, element, defaultMenu)
     if @url
       @owner.world.menu_controller.url = @url
@@ -745,7 +745,7 @@ class LogPolicy < NSObject
     end
   end
 
-  objc_method :webView_decidePolicyForNavigationAction_request_frame_decisionListener, 'v@:@@@@@'
+  #objc_method :webView_decidePolicyForNavigationAction_request_frame_decisionListener, 'v@:@@@@@'
   def webView_decidePolicyForNavigationAction_request_frame_decisionListener(sender, action, request, frame, listener)
     case action.objectForKey(WebActionNavigationTypeKey).intValue.to_i
     when WebNavigationTypeLinkClicked

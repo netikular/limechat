@@ -3,7 +3,7 @@
 
 require 'dialoghelper'
 
-class ServerDialog < NSObject
+class ServerDialog < Object
   include DialogHelper  
   attr_accessor :delegate, :prefix, :parent
   attr_reader :uid

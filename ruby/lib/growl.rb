@@ -2,7 +2,7 @@
 # You can redistribute it and/or modify it under the Ruby's license or the GPL2.
 
 module Growl
-  class Notifier < NSObject
+  class Notifier < Object
     include OSX
     attr_accessor :delegate
     

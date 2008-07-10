@@ -3,7 +3,7 @@
 
 require 'dialoghelper'
 
-class WelcomeDialog < NSObject
+class WelcomeDialog < Object
   include DialogHelper
   attr_accessor :delegate, :prefix
   ib_outlet :window, :nickText, :serverCombo, :channelTable, :autoConnectCheck

@@ -4,7 +4,7 @@
 require 'dialoghelper'
 require 'utility'
 
-class CocoaSheet < NSObject
+class CocoaSheet < Object
   include DialogHelper
   attr_accessor :window, :delegate, :prefix
   ib_outlet :sheet

@@ -3,7 +3,7 @@
 
 require 'dialoghelper'
 
-class WhoisDialog < NSObject
+class WhoisDialog < Object
   include DialogHelper
   attr_accessor :delegate, :prefix
   attr_reader :nick

@@ -4,7 +4,7 @@
 require 'utility'
 require 'pathname'
 
-class IRCUnit < NSObject
+class IRCUnit < Object
   attr_accessor :world, :log, :id
   attr_writer :pref
   attr_reader :config, :channels, :mynick, :mymode, :encoding, :myaddress, :isupport, :reconnect

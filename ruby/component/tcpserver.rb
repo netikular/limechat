@@ -1,7 +1,7 @@
 # Created by Satoshi Nakagawa.
 # You can redistribute it and/or modify it under the Ruby's license or the GPL2.
 
-class TcpServer < NSObject
+class TcpServer < Object
   attr_accessor :delegate, :port
   attr_reader :clients
   

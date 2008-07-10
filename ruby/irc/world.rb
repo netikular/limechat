@@ -3,7 +3,7 @@
 
 require 'date'
 
-class IRCWorld < NSObject
+class IRCWorld < Object
   attr_accessor :member_list, :dcc, :view_theme, :window
   attr_writer :app, :tree, :log_base, :console_base, :chat_box, :field_editor, :text, :pref
   attr_accessor :menu_controller

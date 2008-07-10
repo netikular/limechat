@@ -3,7 +3,7 @@
 
 require 'utility'
 
-class DccManager < NSObject
+class DccManager < Object
   attr_accessor :pref, :world
   ib_outlet :window, :splitter, :receiver_table, :sender_table, :clear_button
   

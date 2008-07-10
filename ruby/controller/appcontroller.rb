@@ -4,7 +4,7 @@
 require 'fileutils'
 require 'pathname'
 
-class AppController < NSObject
+class AppController < Object
   ib_outlet :window, :tree, :log_base, :console_base, :member_list, :text, :chat_box
   ib_outlet :tree_scroller, :left_tree_base, :right_tree_base
   ib_outlet :root_split, :log_split, :info_split, :tree_split

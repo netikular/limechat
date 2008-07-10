@@ -26,7 +26,8 @@ module DialogHelper
       args.each do |i|
         @mapped_outlets << { :name => i, :type => type }
       end
-      ib_outlet(*args)
+      #@@@
+      #ib_outlet(*args)
     end
   end
   

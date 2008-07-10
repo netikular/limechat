@@ -6,7 +6,7 @@ require 'pathname'
 require 'viewtheme'
 require 'fileutils'
 
-class PreferenceDialog < NSObject
+class PreferenceDialog < Object
   include DialogHelper
   attr_accessor :delegate
   attr_reader :m

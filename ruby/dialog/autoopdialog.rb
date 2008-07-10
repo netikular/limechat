@@ -4,7 +4,7 @@
 require 'dialoghelper'
 require 'config.rb'
 
-class AutoOpDialog < NSObject
+class AutoOpDialog < Object
   include DialogHelper  
   attr_accessor :delegate, :prefix
   ib_outlet :window, :tree, :list, :edit, :addButton, :overwriteButton, :deleteButton

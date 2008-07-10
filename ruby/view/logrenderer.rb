@@ -1,7 +1,7 @@
 # Created by Satoshi Nakagawa.
 # You can redistribute it and/or modify it under the Ruby's license or the GPL2.
 
-require 'nkf'
+#require 'nkf'
 require 'unicodeutil'
 
 module LogRenderer
@@ -326,6 +326,8 @@ module LogRenderer
   end
   
   def alphabetic?(s)
+    false
+=begin
     case s.size
     when 1
       if s =~ /\A[a-zA-Z]\z/
@@ -349,6 +351,7 @@ module LogRenderer
         false
       end
     end
+=end
   end
 
   def process_keywords(body, urls, words, dislike_words, exact_word_match)

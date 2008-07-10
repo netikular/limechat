@@ -14,7 +14,7 @@ class LogView < WebView
     @resize_delegate.logView_didResize(rect) if @resize_delegate
   end
   
-  objc_method :maintainsInactiveSelection, 'c@:'
+  #objc_method :maintainsInactiveSelection, 'c@:'
   def maintainsInactiveSelection
     true
   end
