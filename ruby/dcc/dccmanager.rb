@@ -455,7 +455,7 @@ class FileTransferCell < NSCell
   ICON_SIZE = NSSize.new(32, 32)
   
   def copyWithZone(zone)
-    obj = super_copyWithZone(zone)
+    obj = super(zone)
     obj.singleton = @singleton || self
     obj
   end

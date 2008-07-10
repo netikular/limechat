@@ -181,7 +181,7 @@ class NSPoint
   end
 
   def inspect
-    "#<#{self.class.to_s.gsub(/^OSX::/, '')} (#{x}, #{y})>"
+    "#<#{self.class} (#{x}, #{y})>"
   end
 end
 
@@ -195,22 +195,11 @@ class NSSize
   def to_dic; { :w => width, :h => height }; end
   
   def inspect
-    "#<#{self.class.to_s.gsub(/^OSX::/, '')} (#{width}, #{height})>"
+    "#<#{self.class} (#{width}, #{height})>"
   end
 end
 
 class NSRect
-  class << self
-    alias_method :orig_new, :new
-    def new(*args)
-      if args.length == 4
-        orig_new(NSPoint.new(args[0], args[1]), NSSize.new(args[2], args[3]))
-      else
-        orig_new(args)
-      end
-    end
-  end
-  
   def x; origin.x; end
   def y; origin.y; end
   def x=(v); origin.x = v; end
@@ -242,7 +231,7 @@ class NSRect
   end
 
   def inspect
-    "#<#{self.class.to_s.gsub(/^OSX::/, '')} ()#{x}, #{y}, #{width}, #{height})>"
+    "#<#{self.class} ()#{x}, #{y}, #{width}, #{height})>"
   end
 end
 
@@ -253,7 +242,7 @@ class NSRange
   def size=(v); length = v; end
   def max; location + length; end
   def inspect
-    "#<#{self.class.to_s.gsub(/^OSX::/, '')} (#{location}, #{length})>"
+    "#<#{self.class} (#{location}, #{length})>"
   end
 end
 
@@ -286,7 +275,7 @@ class NSWindow
   end
   
   def inspect
-    "#<#{self.class.to_s.gsub(/^OSX::/, '')}:#{sprintf("0x%x", object_id)} frame=#{frame.to_inspect}, title='#{title}'>"
+    "#<#{self.class}:#{sprintf("0x%x", object_id)} frame=#{frame.to_inspect}, title='#{title}'>"
   end
 end
 
@@ -349,7 +338,7 @@ class NSColor
   end
   
   def inspect
-    "#<#{self.class.to_s.gsub(/^OSX::/, '')} (#{redComponent*255.0}, #{greenComponent*255.0}, #{blueComponent*255.0}, #{alphaComponent})>"
+    "#<#{self.class} (#{redComponent*255.0}, #{greenComponent*255.0}, #{blueComponent*255.0}, #{alphaComponent})>"
   end
 end
 
@@ -367,7 +356,7 @@ class NSFont
   end
   
   def inspect
-    "#<#{self.class.to_s.gsub(/^OSX::/, '')} name='#{fontName}', pointSize=#{pointSize}#{ bold? ? ', bold' : ''}#{ italic? ? ', italic' : ''}>"
+    "#<#{self.class} name='#{fontName}', pointSize=#{pointSize}#{ bold? ? ', bold' : ''}#{ italic? ? ', italic' : ''}>"
   end
 end
 
@@ -415,7 +404,7 @@ end
 
 class NSEvent
   def inspect
-    "#<#{self.class.to_s.gsub(/^OSX::/, '')}:#{sprintf("0x%x", object_id)} type=#{_type_name}>"
+    "#<#{self.class}:#{sprintf("0x%x", object_id)} type=#{_type_name}>"
   end
   
   private
