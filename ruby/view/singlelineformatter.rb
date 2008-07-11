@@ -9,13 +9,13 @@ class SingleLineFormatter < NSFormatter
     str.to_s.gsub(/\r\n|\r|\n/, ' ')
   end
   
-  def getObjectValue_forString_errorDescription(objp, str, err)
+  def getObjectValue(objp, forString:str, errorDescription:err)
     s = str.to_s.gsub(/\r\n|\r|\n/, ' ')
     objp.assign(s.to_ns)
     true
   end
   
-  def isPartialStringValid_newEditingString_errorDescription(str, strp, err)
+  def isPartialStringValid(str, newEditingString:strp, errorDescription:err)
     s = str.to_s
     return true unless s =~ /\r\n|\r|\n/
     s = s.gsub(/\r\n|\r|\n/, ' ')

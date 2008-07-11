@@ -1,4 +1,6 @@
 framework 'Cocoa'
+framework 'WebKit'
+
 require 'osx/rubycocoa'
 
 # Loading all the Ruby project files.
