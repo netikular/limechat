@@ -1,3 +1,11 @@
+#import <MacRuby/MacRuby.h>
+
+int main(int argc, char *argv[])
+{
+    return macruby_main("rb_main.rb", argc, argv);
+}
+
+/*
 #import <RubyCocoa/RBRuntime.h>
 
 int main(int argc, const char* argv[])
@@ -8,3 +16,4 @@ int main(int argc, const char* argv[])
   [pool release];
   return RBApplicationMain("rb_main.rb", argc, argv);
 }
+*/

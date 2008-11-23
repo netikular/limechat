@@ -3,10 +3,10 @@
 
 require 'dialoghelper'
 
-class ListDialog < NSObject
+class ListDialog
   include DialogHelper
   attr_accessor :delegate, :prefix
-  ib_outlet :window, :table, :updateButton, :closeButton, :searchText
+  attr_writer :window, :table, :updateButton, :closeButton, :searchText
   
   def initialize
     @prefix = 'listDialog'
@@ -40,17 +40,14 @@ class ListDialog < NSObject
     fire_event('onClose')
   end
   
-  ib_action :onClose
   def onClose(sender)
     @window.close
   end
   
-  ib_action :onUpdate
   def onUpdate(sender)
     fire_event('onUpdate')
   end
   
-  ib_action :onJoin
   def onJoin(sender)
     i = @table.selectedRows[0]
     if i
@@ -67,7 +64,6 @@ class ListDialog < NSObject
     end
   end
   
-  ib_action :onSearchTextChanged
   def onSearchTextChanged(sender)
     filter = sender.stringValue.to_s
     @filter = filter.empty? ? nil : Regexp.compile(Regexp.escape(filter), Regexp::IGNORECASE)

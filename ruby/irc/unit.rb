@@ -4,7 +4,7 @@
 require 'utility'
 require 'pathname'
 
-class IRCUnit < NSObject
+class IRCUnit
   attr_accessor :world, :log, :id
   attr_reader :config, :channels, :mynick, :mymode, :encoding, :myaddress, :isupport, :reconnect
   attr_accessor :property_dialog
@@ -1003,14 +1003,19 @@ class IRCUnit < NSObject
   private
   
   def to_common_encoding(s)
+    s.dup
+=begin
     return s.dup if @encoding == NSUTF8StringEncoding
-    data = s.to_ns.dataUsingEncoding_allowLossyConversion(@encoding, true)
+    data = s.to_ns.dataUsingEncoding(@encoding, allowLossyConversion:true)
     s = data ? data.rubyString : ''
     s = KanaSupport::iso2022_to_native(s) if @encoding == NSISO2022JPStringEncoding
     s
+=end
   end
   
   def to_local_encoding(s, use_fallback=false)
+    s.dup
+=begin
     enc = @encoding
     if enc == NSUTF8StringEncoding
       if use_fallback
@@ -1021,6 +1026,7 @@ class IRCUnit < NSObject
     end
     s = KanaSupport::to_iso2022(s) if enc == NSISO2022JPStringEncoding
     NSString.stringWithCString_encoding(s, enc).to_s
+=end
   end
   
   def reload_tree

@@ -3,13 +3,13 @@
 
 require 'dialoghelper'
 
-class WhoisDialog < NSObject
+class WhoisDialog
   include DialogHelper
   attr_accessor :delegate, :prefix
   attr_reader :nick
-  ib_outlet :window, :nickText, :loginText, :realnameText, :addressText
-  ib_outlet :serverText, :serverinfoText, :channelsCombo, :awayText, :idleText, :signonText
-  ib_outlet :joinButton, :closeButton
+  attr_writer :window, :nickText, :loginText, :realnameText, :addressText
+  attr_writer :serverText, :serverinfoText, :channelsCombo, :awayText, :idleText, :signonText
+  attr_writer :joinButton, :closeButton
   
   def initialize
     @prefix = 'whoisDialog'

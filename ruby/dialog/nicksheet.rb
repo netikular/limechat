@@ -5,7 +5,7 @@ require 'cocoasheet'
 
 class NickSheet < CocoaSheet
   attr_accessor :uid
-  ib_outlet :currentNickText, :newNickText
+  attr_writer :currentNickText, :newNickText
   first_responder :newNickText
   buttons :Ok, :Cancel
   

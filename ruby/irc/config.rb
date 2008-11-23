@@ -228,7 +228,7 @@ module ModelTreeItem
   extend self
 end
 
-class ModelTreeItemBase < NSObject
+class ModelTreeItemBase
   attr_accessor :config, :owner
   
   def autoop

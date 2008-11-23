@@ -3,7 +3,7 @@
 
 require 'cgi'
 
-class PasternakClient < NSObject
+class PasternakClient
   attr_accessor :delegate
   
   TIMEOUT = 10

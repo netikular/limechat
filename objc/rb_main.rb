@@ -1,8 +1,15 @@
-require 'osx/cocoa'
-include OSX
-require_framework 'WebKit'
-$KCODE = 'u'
+framework 'Cocoa'
 
+dir_path = NSBundle.mainBundle.resourcePath.fileSystemRepresentation
+Dir.entries(dir_path).each do |path|
+  if path != File.basename(__FILE__) and path[-3..-1] == '.rb'
+    require(path)
+  end
+end
+
+NSApplicationMain(0, nil)
+
+=begin
 require File.expand_path('../SACrashReporter/SACrashReporter.rb', __FILE__)
 
 def _(s)
@@ -26,3 +33,4 @@ end
 rb_main_init
 LimeChatApplication.sharedApplication
 SACrashReporter.run_app
+=end

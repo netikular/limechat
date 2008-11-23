@@ -233,6 +233,9 @@ static NSArray* padKeyArray;
 
 - (NSString*)transformKeyCodeToString:(unsigned int)keyCode
 {
+	return @"x";
+	
+	/*
 	NSString* name = [specialKeyMap objectForKey:NUM(keyCode)];
 	if (name) return name;
 	
@@ -286,6 +289,7 @@ static NSArray* padKeyArray;
 		NSString* keyString = [[NSString stringWithCharacters:chars length:1] uppercaseString];
 		return (isPadKey ? [NSString stringWithFormat:@"#%@", keyString] : keyString);
 	}
+	 */
 }
 
 @end

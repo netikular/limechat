@@ -4,7 +4,7 @@ describe "AppController" do
   tests AppController
   
   def after_setup
-    ib_outlets :member_list => MemberListView.alloc.init,
+    attr_writers :member_list => MemberListView.alloc.init,
                :info_split => Splitter.alloc.init
     
     member_list.addTableColumn(NSTableColumn.alloc.init)

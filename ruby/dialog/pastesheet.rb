@@ -6,7 +6,7 @@ require 'cocoasheet'
 class PasteSheet < CocoaSheet
   attr_accessor :uid, :cid, :nick
   attr_reader :original_text
-  ib_outlet :text, :sendButton, :syntaxPopup, :progressIndicator, :errorLabel
+  attr_writer :text, :sendButton, :syntaxPopup, :progressIndicator, :errorLabel
   first_responder :sendButton
   buttons :Cancel
   

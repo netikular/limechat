@@ -3,9 +3,9 @@
 
 require 'utility'
 
-class DccManager < NSObject
+class DccManager
   attr_accessor :world
-  ib_outlet :window, :splitter, :receiver_table, :sender_table, :clear_button
+  attr_writer :window, :splitter, :receiver_table, :sender_table, :clear_button
   
   def initialize
     @receivers = []

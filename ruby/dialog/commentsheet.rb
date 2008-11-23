@@ -5,7 +5,7 @@ require 'cocoasheet'
 
 class CommentSheet < CocoaSheet
   attr_accessor :uid, :cid
-  ib_outlet :label, :text
+  attr_writer :label, :text
   first_responder :text
   buttons :Ok, :Cancel
   

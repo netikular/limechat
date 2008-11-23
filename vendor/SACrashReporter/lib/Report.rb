@@ -24,7 +24,7 @@ module SAFoundation
   end
 end
 
-class SACrashReporter < OSX::NSWindowController
+class SACrashReporter < NSWindowController
   class Report
     attr_accessor :exception
     
@@ -74,28 +74,28 @@ class SACrashReporter < OSX::NSWindowController
     
     # Returns the RubyCocoa version
     def rubycocoa_version
-      "RubyCocoa version: #{OSX::RUBYCOCOA_VERSION}"
+      "RubyCocoa version: #{RUBYCOCOA_VERSION}"
     end
     
     # Returns the application executable: ["Command:", "MyApp"]
     def command
-      OSX::NSBundle.mainBundle.infoDictionary['CFBundleExecutable'].to_s
+      NSBundle.mainBundle.infoDictionary['CFBundleExecutable'].to_s
     end
     
     # Returns the full path to the executable: ["Path:", "/Applications/Foo.app/Contents/MacOS/Foo"]
     def path
-      OSX::NSBundle.mainBundle.executablePath.fileSystemRepresentation.to_s
+      NSBundle.mainBundle.executablePath.fileSystemRepresentation.to_s
     end
     
     # Returns the application's short version and the version: ["Version:", "1.0 final (1.0)"]
     def version
-      app_info_plist = OSX::NSBundle.mainBundle.infoDictionary
+      app_info_plist = NSBundle.mainBundle.infoDictionary
       "#{app_info_plist['CFBundleShortVersionString']} (#{app_info_plist['CFBundleVersion']})"
     end
     
     # Returns the process id (pid) of the application: ["PID:", "10999"]
     def pid
-      ['PID:', OSX::NSProcessInfo.processInfo.processIdentifier.to_s]
+      ['PID:', NSProcessInfo.processInfo.processIdentifier.to_s]
     end
     
     # Sets the order that the message will be rendered in.

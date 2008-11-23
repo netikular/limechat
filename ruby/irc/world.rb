@@ -3,7 +3,7 @@
 
 require 'date'
 
-class IRCWorld < NSObject
+class IRCWorld
   attr_accessor :member_list, :dcc, :view_theme, :window
   attr_writer :app, :tree, :log_base, :console_base, :chat_box, :field_editor, :text
   attr_accessor :menu_controller
@@ -626,21 +626,21 @@ class IRCWorld < NSObject
 
   # data source
 
-  def outlineView_numberOfChildrenOfItem(sender, item)
+  def outlineView(sender, numberOfChildrenOfItem:item)
     return @units.size unless item
     item.number_of_children
   end
 
-  def outlineView_isItemExpandable(sender, item)
+  def outlineView(sender, isItemExpandable:item)
     item.number_of_children > 0
   end
 
-  def outlineView_child_ofItem(sender, index, item)
+  def outlineView(sender, child:index, ofItem:item)
     return @units[index] unless item
     item.child_at(index)
   end
 
-  def outlineView_objectValueForTableColumn_byItem(sender, column, item)
+  def outlineView(sender, objectValueForTableColumn:column, byItem:item)
     item.label
   end
 
@@ -650,7 +650,7 @@ class IRCWorld < NSObject
     select_text
   end
 
-  def outlineView_willDisplayCell_forTableColumn_item(sender, cell, col, item)
+  def outlineView(sender, willDisplayCell:cell, forTableColumn:col, item:item)
     theme = @view_theme.other
 
     if item.keyword
@@ -680,7 +680,7 @@ class IRCWorld < NSObject
   TREE_DRAG_ITEM_TYPE = 'treeitem'
   TREE_DRAG_ITEM_TYPES = [TREE_DRAG_ITEM_TYPE]
 
-  def outlineView_writeItems_toPasteboard(sender, items, pboard)
+  def outlineView(sender, writeItems:items, toPasteboard:pboard)
     i = items.to_a[0]
     if i.is_a?(IRCUnit)
       s = "#{i.id}"
@@ -704,7 +704,7 @@ class IRCWorld < NSObject
     end
   end
 
-  def outlineView_validateDrop_proposedItem_proposedChildIndex(sender, info, item, index)
+  def outlineView(sender, validateDrop:info, proposedItem:item, proposedChildIndex:index)
     return NSDragOperationNone if index < 0
   	pboard = info.draggingPasteboard
   	return NSDragOperationNone unless pboard.availableTypeFromArray(TREE_DRAG_ITEM_TYPES)
@@ -733,7 +733,7 @@ class IRCWorld < NSObject
     NSDragOperationGeneric
   end
 
-  def outlineView_acceptDrop_item_childIndex(sender, info, item, index)
+  def outlineView(sender, acceptDrop:info, item:item, childIndex:index)
     return false if index < 0
   	pboard = info.draggingPasteboard
   	return false unless pboard.availableTypeFromArray(TREE_DRAG_ITEM_TYPES)

@@ -10,7 +10,7 @@ class MainWindow < NSWindow
     if e.oc_type == NSKeyDown
       return if @key_handler.process_key_event(e)
     end
-    super_sendEvent(e)
+    super(e)
   end
   
   def register_key_handler(*args, &handler)

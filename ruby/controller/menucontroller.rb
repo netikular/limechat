@@ -4,10 +4,10 @@
 require 'uri'
 require 'cgi'
 
-class MenuController < NSObject
+class MenuController
   attr_writer :app, :world, :window, :text, :tree, :member_list
   attr_accessor :url, :addr, :nick, :chan
-  ib_outlet :closeWindowItem, :closeCurrentPanelItem
+  attr_writer :closeWindowItem, :closeCurrentPanelItem
 
   def initialize
     @server_dialogs = []
@@ -81,7 +81,7 @@ class MenuController < NSObject
       t = win.firstResponder
       return false unless t
       case t
-      when OSX::WebHTMLView
+      when WebHTMLView
         return true
       else
         return true if t.respondsToSelector('writeSelectionToPasteboard:type:')
@@ -455,7 +455,7 @@ class MenuController < NSObject
     return unless t
 
     case t
-    when OSX::WebHTMLView
+    when WebHTMLView
       while t = t.superview
         if t.is_a?(LogView)
           pb = NSPasteboard.pasteboardWithName(NSFindPboard)

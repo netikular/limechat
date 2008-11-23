@@ -94,8 +94,9 @@ class Preferences
       end
     end
     
-    class SoundWrapper < OSX::NSObject
-      kvc_accessor :display_name, :sound
+    class SoundWrapper
+      #kvc_accessor :display_name, :sound
+      attr_accessor :display_name, :sound
       
       def initWithName_displayName_sound(name, display_name, sound)
         if init

@@ -5,7 +5,7 @@ class MarkedScroller < NSScroller
   attr_accessor :dataSource
   
   def drawRect(frame)
-    super_drawRect(frame)
+    super(frame)
     return unless @dataSource
     ary = @dataSource.scroller_markedPosition(self)
     return if ary.empty?

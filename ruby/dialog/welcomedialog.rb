@@ -3,11 +3,11 @@
 
 require 'dialoghelper'
 
-class WelcomeDialog < NSObject
+class WelcomeDialog
   include DialogHelper
   attr_accessor :delegate, :prefix
-  ib_outlet :window, :nickText, :serverCombo, :channelTable, :autoConnectCheck
-  ib_outlet :okButton, :addChannelButton, :deleteChannelButton
+  attr_writer :window, :nickText, :serverCombo, :channelTable, :autoConnectCheck
+  attr_writer :okButton, :addChannelButton, :deleteChannelButton
   
   def initialize
     @prefix = 'welcomeDialog'
@@ -40,7 +40,6 @@ class WelcomeDialog < NSObject
     fire_event('onClose')
   end
   
-  ib_action :onOk
   def onOk(sender)
     @channels.uniq!
     @channels.delete('')
@@ -57,12 +56,10 @@ class WelcomeDialog < NSObject
     @window.close
   end
   
-  ib_action :onCancel
   def onCancel(sender)
     @window.close
   end
   
-  ib_action :onAddChannel
   def onAddChannel(sender)
     @channels << ''
     @channelTable.reloadData
@@ -71,7 +68,6 @@ class WelcomeDialog < NSObject
     @channelTable.editColumn_row_withEvent_select(0, row, nil, true)
   end
 
-  ib_action :onDeleteChannel
   def onDeleteChannel(sender)
     n = @channelTable.selectedRows[0]
     if n
@@ -105,7 +101,6 @@ class WelcomeDialog < NSObject
     update_ok_button
   end
   
-  ib_action :onServerComboChanged
   def onServerComboChanged(sender)
     update_ok_button
   end
@@ -113,7 +108,7 @@ class WelcomeDialog < NSObject
   private
   
   def load
-    nick = OSX::NSUserName().gsub(/\s/, '')
+    nick = NSUserName().gsub(/\s/, '')
     if /\A[a-z][-_a-z\d]*\z/i =~ nick
       @nickText.setStringValue(nick)
     end

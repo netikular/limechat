@@ -2,7 +2,6 @@
 # You can redistribute it and/or modify it under the Ruby's license or the GPL2.
 
 module DialogHelper
-  include OSX
   
   module DialogHelperClassMethods
     attr_reader :mapped_outlets
@@ -26,7 +25,7 @@ module DialogHelper
       args.each do |i|
         @mapped_outlets << { :name => i, :type => type }
       end
-      ib_outlet(*args)
+      attr_writer(*args)
     end
   end
   

@@ -26,7 +26,7 @@ class MemberListView < ListView
         return
       end
     end
-    super_keyDown(e)
+    super(e)
   end
   
   def theme_changed
@@ -36,7 +36,7 @@ class MemberListView < ListView
     from = @theme.member_list_sel_top_color
     to = @theme.member_list_sel_bottom_color
     if from && to
-      @gradient = GradientFill.gradientWithBeginColor_endColor(from, to)
+      @gradient = GradientFill.gradientWithBeginColor(from, endColor:to)
     else
       @gradient = nil
     end

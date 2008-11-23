@@ -1,10 +1,8 @@
 # Copyright (c) 2007-2008 Satoshi Nakagawa <psychs@limechat.net>, Eloy Duran <e.duran@superalloy.nl>
 # You can redistribute it and/or modify it under the same terms as Ruby.
 
-require 'osx/cocoa'
-
 module Growl
-  class Notifier < OSX::NSObject
+  class Notifier
     GROWL_IS_READY = "Lend Me Some Sugar; I Am Your Neighbor!"
     GROWL_NOTIFICATION_CLICKED = "GrowlClicked!"
     GROWL_NOTIFICATION_TIMED_OUT = "GrowlTimedOut!"
@@ -32,16 +30,16 @@ module Growl
     #
     # Register the applications name and the notifications that will be used.
     # * +default_notifications+ defaults to the regular +notifications+.
-    # * +application_icon+ defaults to OSX::NSApplication.sharedApplication.applicationIconImage.
+    # * +application_icon+ defaults to NSApplication.sharedApplication.applicationIconImage.
     #
     #   Growl::Notifier.sharedInstance.register 'FoodApp', ['YourHamburgerIsReady', 'OhSomeoneElseAteIt']
     #
     # Register the applications name, the notifications plus the default notifications that will be used and the icon that's to be used in the Growl notifications.
     #
-    #   Growl::Notifier.sharedInstance.register 'FoodApp', ['YourHamburgerIsReady', 'OhSomeoneElseAteIt'], ['DefaultNotification], OSX::NSImage.imageNamed('GreasyHamburger')
+    #   Growl::Notifier.sharedInstance.register 'FoodApp', ['YourHamburgerIsReady', 'OhSomeoneElseAteIt'], ['DefaultNotification], NSImage.imageNamed('GreasyHamburger')
     def register(application_name, notifications, default_notifications = nil, application_icon = nil)
       # TODO: What is actually the purpose of default_notifications vs regular notifications?
-      @application_name, @application_icon = application_name, (application_icon || OSX::NSApplication.sharedApplication.applicationIconImage)
+      @application_name, @application_icon = application_name, (application_icon || NSApplication.sharedApplication.applicationIconImage)
       @notifications, @default_notifications = notifications, (default_notifications || notifications)
       @callbacks = {}
       send_registration!
@@ -67,7 +65,7 @@ module Growl
     #
     # Example with optional options:
     #
-    #   Growl::Notifier.sharedInstance.notify(name, title, description, :sticky => true, :priority => 1, :icon => OSX::NSImage.imageNamed('SuperBigHamburger'))
+    #   Growl::Notifier.sharedInstance.notify(name, title, description, :sticky => true, :priority => 1, :icon => NSImage.imageNamed('SuperBigHamburger'))
     #
     # When you pass notify a block, that block will be used as the callback handler if the Growl notification was clicked. Eg:
     #
@@ -105,7 +103,7 @@ module Growl
     def onClicked(notification)
       context = notification.userInfo[GROWL_KEY_CLICKED_CONTEXT]
 
-      if context && context.is_a?(OSX::NSDictionary)
+      if context && context.is_a?(NSDictionary)
         user_context = context[:user_click_context]
         callback_object_id = context[:callback_object_id]
         if callback_object_id && (callback = @callbacks.delete(callback_object_id.to_i))
@@ -121,7 +119,7 @@ module Growl
     def onTimeout(notification)
       context = notification.userInfo[GROWL_KEY_CLICKED_CONTEXT]
       
-      if context && context.is_a?(OSX::NSDictionary)
+      if context && context.is_a?(NSDictionary)
         callback_object_id = context[:callback_object_id]
         @callbacks.delete(callback_object_id.to_i) if callback_object_id
         user_context = context[:user_click_context]
@@ -135,11 +133,11 @@ module Growl
     private
     
     def pid
-      OSX::NSProcessInfo.processInfo.processIdentifier.to_i
+      NSProcessInfo.processInfo.processIdentifier.to_i
     end
     
     def notification_center
-      OSX::NSDistributedNotificationCenter.defaultCenter
+      NSDistributedNotificationCenter.defaultCenter
     end
     
     def send_registration!

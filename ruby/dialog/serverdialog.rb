@@ -3,19 +3,19 @@
 
 require 'dialoghelper'
 
-class ServerDialog < NSObject
+class ServerDialog
   include DialogHelper  
   attr_accessor :delegate, :prefix, :parent
   attr_reader :uid
-  ib_outlet :window
+  attr_writer :window
   ib_mapped_outlet :nameText, :hostCombo, :passwordText, :nickText, :usernameText, :realnameText, :auto_connectCheck, :sslCheck
   ib_mapped_outlet :nickPasswordText
   ib_mapped_int_outlet :portText, :encodingCombo, :fallback_encodingCombo
   ib_mapped_outlet :leaving_commentText, :userinfoText, :invisibleCheck
   ib_mapped_outlet :login_commandsText
-  ib_outlet :alt_nicksText
-  ib_outlet :channelsTable, :addButton, :editButton, :deleteButton
-  ib_outlet :okButton
+  attr_writer :alt_nicksText
+  attr_writer :channelsTable, :addButton, :editButton, :deleteButton
+  attr_writer :okButton
   
   TABLE_ROW_TYPE = 'row'
   TABLE_ROW_TYPES = [TABLE_ROW_TYPE]

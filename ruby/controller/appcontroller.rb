@@ -5,11 +5,11 @@ require 'fileutils'
 require 'pathname'
 require 'preferences'
 
-class AppController < NSObject
-  ib_outlet :window, :tree, :log_base, :console_base, :member_list, :text, :chat_box
-  ib_outlet :tree_scroller, :left_tree_base, :right_tree_base
-  ib_outlet :root_split, :log_split, :info_split, :tree_split
-  ib_outlet :menu, :server_menu, :channel_menu, :member_menu, :tree_menu, :log_menu, :console_menu, :url_menu, :addr_menu, :chan_menu
+class AppController
+  attr_writer :window, :tree, :log_base, :console_base, :member_list, :text, :chat_box
+  attr_writer :tree_scroller, :left_tree_base, :right_tree_base
+  attr_writer :root_split, :log_split, :info_split, :tree_split
+  attr_writer :menu, :server_menu, :channel_menu, :member_menu, :tree_menu, :log_menu, :console_menu, :url_menu, :addr_menu, :chan_menu
 
   def awakeFromNib
     prelude
@@ -294,7 +294,7 @@ class AppController < NSObject
       @tree_split.setHidden(false)
       @tree_split.setPosition(120.0) if @tree_split.position < 1.0
       f = @left_tree_base.frame
-      @tree_scroller.setFrame(NSRect.new(0,0,f.width,f.height))
+      @tree_scroller.setFrame(NSRect.new([0,0],[f.width,f.height]))
     else
       @tree_split.setHidden(true)
       @right_tree_base.addSubview(@tree_scroller)
@@ -302,7 +302,7 @@ class AppController < NSObject
       @info_split.setHidden(false)
       @info_split.setPosition(100.0) if @info_split.position < 1.0
       f = @right_tree_base.frame
-      @tree_scroller.setFrame(NSRect.new(0,0,f.width,f.height))
+      @tree_scroller.setFrame(NSRect.new([0,0],[f.width,f.height]))
     end
   end
 
@@ -577,7 +577,7 @@ class AppController < NSObject
     if win = preferences.load_window('main_window')
       f = NSRect.from_dic(win)
       
-      @window.setFrame_display(f, true)
+      @window.setFrame(f, display:true)
       @root_split.setPosition(win[:root])
       @log_split.setPosition(win[:log])
       @info_split.setPosition(win[:info])

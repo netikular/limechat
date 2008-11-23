@@ -3,7 +3,7 @@
 
 require 'cgi'
 
-class PastieClient < NSObject
+class PastieClient
   attr_accessor :delegate
   
   TIMEOUT = 10

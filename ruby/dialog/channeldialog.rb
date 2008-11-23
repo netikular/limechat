@@ -3,14 +3,14 @@
 
 require 'dialoghelper'
 
-class ChannelDialog < NSObject
+class ChannelDialog
   include DialogHelper
   
   attr_accessor :delegate, :prefix, :parent
   attr_reader :uid, :cid, :modal
-  ib_outlet :window
+  attr_writer :window
   ib_mapped_outlet :nameText, :passwordText, :modeText, :topicText, :auto_joinCheck, :keywordCheck, :unreadCheck, :consoleCheck
-  ib_outlet :okButton
+  attr_writer :okButton
   
   def initialize
     @prefix = 'channelDialog'

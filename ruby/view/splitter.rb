@@ -4,12 +4,14 @@
 class Splitter < NSSplitView
   attr_reader :fixedViewIndex, :position, :dividerThickness
   
-  def initialize
+  def init
+    super
     @position = 0
     @fixedViewIndex = 0
     @dividerThickness = 1
     @inverted = false
     @hidden = false
+    @fixedViewIndex = 0
   end
   
   def awakeFromNib
@@ -51,7 +53,7 @@ class Splitter < NSSplitView
   end
   
   def setVertical(value)
-    super_setVertical(value)
+    super(value)
     adjustSubviews
   end
   
@@ -90,7 +92,7 @@ class Splitter < NSSplitView
   end
   
   def mouseDown(e)
-    super_mouseDown(e)
+    super(e)
     updatePosition
   end
   
@@ -100,11 +102,15 @@ class Splitter < NSSplitView
   
   def adjustSubviews
     if self.subviews.count != 2
-      super_adjustSubviews
+      super
       return
     end
     
     frame = self.frame
+    
+    @dividerThickness ||= 1
+    @fixedViewIndex ||= 0
+    @position ||= 0
     
     w = @dividerThickness
     fixedView = self.subviews.objectAtIndex(@fixedViewIndex)
@@ -114,13 +120,13 @@ class Splitter < NSSplitView
     
     if hidden?
       if vertical?
-        fixedFrame = NSRect.new(0,0,0,frame.height)
+        fixedFrame = NSRect.new([0,0],[0,frame.height])
         flyingFrame.x = 0
         flyingFrame.y = 0
         flyingFrame.width = frame.width
         flyingFrame.height = frame.height
       else
-        fixedFrame = NSRect.new(0,0,frame.width,0)
+        fixedFrame = NSRect.new([0,0],[frame.width,0])
         flyingFrame.x = 0
         flyingFrame.y = 0
         flyingFrame.width = frame.width

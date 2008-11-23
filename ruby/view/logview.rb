@@ -10,23 +10,23 @@ class LogView < WebView
   
   def setFrame(rect)
     @resize_delegate.logView_willResize(rect) if @resize_delegate
-    super_setFrame(rect)
+    super(rect)
     @resize_delegate.logView_didResize(rect) if @resize_delegate
   end
   
-  objc_method :maintainsInactiveSelection, 'c@:'
+  #objc_method :maintainsInactiveSelection, 'c@:'
   def maintainsInactiveSelection
     true
   end
   
   def clearSel
-    setSelectedDOMRange_affinity(nil, OSX::NSSelectionAffinityDownstream)
+    setSelectedDOMRange_affinity(nil, NSSelectionAffinityDownstream)
   end
   
   def selection
     sel = selectedDOMRange.cloneContents
     return nil unless sel
-    iter = selectedFrame.DOMDocument.createNodeIterator_whatToShow_filter_expandEntityReferences(sel, OSX::DOM_SHOW_TEXT, nil, true)
+    iter = selectedFrame.DOMDocument.createNodeIterator_whatToShow_filter_expandEntityReferences(sel, DOM_SHOW_TEXT, nil, true)
     s = ''
     while node = iter.nextNode
       s << node.nodeValue

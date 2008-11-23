@@ -25,7 +25,7 @@ class LogLine
 end
 
 
-class LogController < NSObject
+class LogController
   attr_accessor :world
   attr_writer :unit, :channel, :menu, :url_menu, :addr_menu, :chan_menu, :member_menu, :keyword, :theme, :override_font
   attr_reader :view
@@ -63,7 +63,7 @@ class LogController < NSObject
     @view.key_delegate = self
     @view.resize_delegate = self
     @view.setAutoresizingMask(NSViewWidthSizable | NSViewHeightSizable)
-    @view.mainFrame.loadHTMLString_baseURL(initial_document, @theme.log.baseurl)
+    @view.mainFrame.loadHTMLString(initial_document, baseURL:@theme.log.baseurl)
   end
 
   def max_lines=(n)
@@ -200,7 +200,7 @@ class LogController < NSObject
     @scroll_bottom = viewing_bottom?
     @scroll_top = body[:scrollTop]
     #setup(@console, style)
-    @view.mainFrame.loadHTMLString_baseURL(initial_document, @theme.log.baseurl)
+    @view.mainFrame.loadHTMLString(initial_document, baseURL:@theme.log.baseurl)
     @scroller.setNeedsDisplay(true)
   end
 
@@ -210,7 +210,7 @@ class LogController < NSObject
     return unless doc
     body = doc.body
     @html = nil
-    @view.mainFrame.loadHTMLString_baseURL(initial_document, @theme.log.baseurl)
+    @view.mainFrame.loadHTMLString(initial_document, baseURL:@theme.log.baseurl)
     @scroller.setNeedsDisplay(true)
 	end
 
@@ -227,13 +227,13 @@ class LogController < NSObject
 
   # delegate
 
-  objc_method :webView_windowScriptObjectAvailable, 'v@:@@'
+  #objc_method :webView_windowScriptObjectAvailable, 'v@:@@'
   def webView_windowScriptObjectAvailable(sender, js)
     @js = js
     @js[:app] = @sink
   end
 
-  objc_method :webView_didFinishLoadForFrame, 'v@:@@'
+  #objc_method :webView_didFinishLoadForFrame, 'v@:@@'
   def webView_didFinishLoadForFrame(sender, frame)
     @loaded = true
     setup_scroller
@@ -365,7 +365,7 @@ class LogController < NSObject
       old = view.verticalScroller
       if old && !old.is_a?(MarkedScroller)
         # new scroller needs to be initialized with enough frame
-        @scroller = MarkedScroller.alloc.initWithFrame(NSRect.new(-16,-64,16,64))
+        @scroller = MarkedScroller.alloc.initWithFrame(NSRect.new([-16,-64],[16,64]))
         @scroller.dataSource = self
         @scroller.setFloatValue_knobProportion(old.floatValue, old.knobProportion)
         view.setVerticalScroller(@scroller)
@@ -609,12 +609,12 @@ class LogController < NSObject
 end
 
 
-class LogScriptEventSink < NSObject
+class LogScriptEventSink
   attr_accessor :owner, :policy
 
   EXPORTED_METHODS = %w|onDblClick: shouldStopDoubleClick: setUrl: setAddr: setNick: setChan: print:|
 
-  objc_class_method 'isSelectorExcludedFromWebScript:', 'c@::'
+  #objc_class_method 'isSelectorExcludedFromWebScript:', 'c@::'
   def self.isSelectorExcludedFromWebScript(sel)
     case sel
     when *EXPORTED_METHODS
@@ -624,7 +624,7 @@ class LogScriptEventSink < NSObject
     end
   end
 
-  objc_class_method 'webScriptNameForSelector:', '@@::'
+  #objc_class_method 'webScriptNameForSelector:', '@@::'
   def self.webScriptNameForSelector(sel)
     case sel
     when *EXPORTED_METHODS
@@ -635,12 +635,12 @@ class LogScriptEventSink < NSObject
     end
   end
 
-  objc_class_method :isKeyExcludedFromWebScript, 'c@:*'
+  #objc_class_method :isKeyExcludedFromWebScript, 'c@:*'
   def self.isKeyExcludedFromWebScript(name)
     true
   end
 
-  objc_class_method :webScriptNameForKey, '@@:*'
+  #objc_class_method :webScriptNameForKey, '@@:*'
   def self.webScriptNameForKey(name)
     nil
   end
@@ -651,14 +651,14 @@ class LogScriptEventSink < NSObject
     @y = -100
   end
 
-  objc_method :onDblClick, 'v@:@'
+  #objc_method :onDblClick, 'v@:@'
   def onDblClick(e)
     @owner.logView_onDoubleClick(e.to_s)
   end
 
   DELTA = 3
 
-  objc_method :shouldStopDoubleClick, 'c@:@'
+  #objc_method :shouldStopDoubleClick, 'c@:@'
   def shouldStopDoubleClick(e)
     d = DELTA
     cx = e.valueForKey('clientX').intValue
@@ -675,27 +675,27 @@ class LogScriptEventSink < NSObject
     res
   end
 
-  objc_method :setUrl, 'v@:@'
+  #objc_method :setUrl, 'v@:@'
   def setUrl(s)
     @policy.url = uh(s)
   end
 
-  objc_method :setAddr, 'v@:@'
+  #objc_method :setAddr, 'v@:@'
   def setAddr(s)
     @policy.addr = uh(s)
   end
 
-  objc_method :setNick, 'v@:@'
+  #objc_method :setNick, 'v@:@'
   def setNick(s)
     @policy.nick = uh(s)
   end
 
-  objc_method :setChan, 'v@:@'
+  #objc_method :setChan, 'v@:@'
   def setChan(s)
     @policy.chan = uh(s)
   end
 
-  objc_method :print, 'v@:@'
+  #objc_method :print, 'v@:@'
   def print(s)
     NSLog("%@", s)
   end
@@ -708,16 +708,16 @@ class LogScriptEventSink < NSObject
 end
 
 
-class LogPolicy < NSObject
+class LogPolicy
   attr_accessor :owner, :menu, :url_menu, :addr_menu, :member_menu, :chan_menu
   attr_accessor :url, :addr, :nick, :chan
 
-  objc_method :webView_dragDestinationActionMaskForDraggingInfo, 'I@:@@'
+  #objc_method :webView_dragDestinationActionMaskForDraggingInfo, 'I@:@@'
   def webView_dragDestinationActionMaskForDraggingInfo(sender, info)
     WebDragDestinationActionNone
   end
 
-  objc_method :webView_contextMenuItemsForElement_defaultMenuItems, '@@:@@@'
+  #objc_method :webView_contextMenuItemsForElement_defaultMenuItems, '@@:@@@'
   def webView_contextMenuItemsForElement_defaultMenuItems(sender, element, defaultMenu)
     if @url
       @owner.world.menu_controller.url = @url
@@ -764,7 +764,7 @@ class LogPolicy < NSObject
     end
   end
 
-  objc_method :webView_decidePolicyForNavigationAction_request_frame_decisionListener, 'v@:@@@@@'
+  #objc_method :webView_decidePolicyForNavigationAction_request_frame_decisionListener, 'v@:@@@@@'
   def webView_decidePolicyForNavigationAction_request_frame_decisionListener(sender, action, request, frame, listener)
     case action.objectForKey(WebActionNavigationTypeKey).intValue.to_i
     when WebNavigationTypeLinkClicked

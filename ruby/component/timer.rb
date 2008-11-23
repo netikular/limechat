@@ -1,7 +1,7 @@
 # Created by Satoshi Nakagawa.
 # You can redistribute it and/or modify it under the Ruby's license or the GPL2.
 
-class Timer < NSObject
+class Timer
   attr_accessor :delegate
   
   def active?

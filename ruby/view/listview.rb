@@ -13,12 +13,12 @@ class ListView < NSTableView
   end
   
   def select(index, scroll=true)
-    selectRowIndexes_byExtendingSelection([index].to_indexset, false)
+    selectRowIndexes([index].to_indexset, byExtendingSelection:false)
     scrollRowToVisible(index)
   end
   
   def selectRows(indices, extendSelection=false)
-    selectRowIndexes_byExtendingSelection(indices.to_indexset, extendSelection)
+    selectRowIndexes(indices.to_indexset, byExtendingSelection:extendSelection)
   end
   
   def rightMouseDown(event)
@@ -31,7 +31,7 @@ class ListView < NSTableView
     else
       #deselectAll(self)
     end
-    super_rightMouseDown(event)
+    super(event)
   end
   
   def setFont(font)
@@ -75,7 +75,7 @@ class ListView < NSTableView
         end
       end
     end
-    super_keyDown(e)
+    super(e)
   end
   
   def textDidEndEditing(note)

@@ -2,6 +2,7 @@
 // You can redistribute it and/or modify it under the Ruby's license or the GPL2.
 
 #import "HotKeyManager.h"
+#import <Cocoa/Cocoa.h>
 
 @implementation HotKeyManager
 

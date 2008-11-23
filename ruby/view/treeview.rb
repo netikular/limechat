@@ -13,7 +13,7 @@ class TreeView < NSOutlineView
   end
   
   def select(index, scroll=true)
-    selectRowIndexes_byExtendingSelection([index].to_indexset, false)
+    selectRowIndexes([index].to_indexset, byExtendingSelection:false)
     scrollRowToVisible(index) if scroll
   end
   
@@ -51,6 +51,6 @@ class TreeView < NSOutlineView
         end
       end
     end
-    super_keyDown(e)
+    super(e)
   end
 end

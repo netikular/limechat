@@ -8,11 +8,11 @@ module UserDefaultsAccess
   private
   
   def read_defaults(key)
-    convert_to_ruby_obj(OSX::NSUserDefaults.standardUserDefaults.objectForKey(key))
+    convert_to_ruby_obj(NSUserDefaults.standardUserDefaults.objectForKey(key))
   end
 
   def write_defaults(key, value)
-    OSX::NSUserDefaults.standardUserDefaults.setObject_forKey(value, key)
+    NSUserDefaults.standardUserDefaults.setObject_forKey(value, key)
   end
   
   def convert_to_ruby_obj(v)

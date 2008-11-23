@@ -6,9 +6,13 @@ require 'textfield'
 class InputTextField < TextField
   
   def drawRect(rect)
-    super_drawRect(rect)
+    super(rect)
     backgroundColor.set
     NSFrameRectWithWidth(bounds, 3)
+  end
+  
+  def stringValue
+    super
   end
   
 end
