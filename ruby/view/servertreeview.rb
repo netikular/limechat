@@ -38,7 +38,7 @@ class ServerTreeView < TreeView
     nil
   end
   
-  def _highlightRow_clipRect(row, rect)
+  def _highlightRow(row, clipRect:rect)
     return unless NSApp.isActive
     frame = self.rectOfRow(row)
     rect = frame.dup

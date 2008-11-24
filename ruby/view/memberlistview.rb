@@ -46,7 +46,7 @@ class MemberListView < ListView
     nil
   end
   
-  def _highlightRow_clipRect(row, rect)
+  def _highlightRow(row, clipRect:rect)
     frame = self.rectOfRow(row)
     if @top_line_color && @bottom_line_color && @gradient
       rect = frame.dup
