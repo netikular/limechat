@@ -11,8 +11,4 @@ class InputTextField < TextField
     NSFrameRectWithWidth(bounds, 3)
   end
   
-  def stringValue
-    super
-  end
-  
 end

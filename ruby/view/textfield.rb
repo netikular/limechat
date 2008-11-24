@@ -10,8 +10,4 @@ class TextField < NSTextField
     e.scrollRangeToVisible(e.selectedRange)
   end
   
-  def stringValue
-    super
-  end
-  
 end
