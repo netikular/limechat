@@ -169,7 +169,7 @@ class AutoOpDialog
   
   # tree
   
-  def outlineView_numberOfChildrenOfItem(sender, item)
+  def outlineView(sender, numberOfChildrenOfItem:item)
     case item
       when nil; 1
       when WorldTreeItem; item.units.size
@@ -178,7 +178,7 @@ class AutoOpDialog
     end
   end
   
-  def outlineView_isItemExpandable(sender, item)
+  def outlineView(sender, isItemExpandable:item)
     case item
       when WorldTreeItem; item.units.size > 0
       when UnitTreeItem; item.channels.size > 0
@@ -186,7 +186,7 @@ class AutoOpDialog
     end
   end
   
-  def outlineView_child_ofItem(sender, index, item)
+  def outlineView(sender, child:index, ofItem:item)
     case item
       when nil; @w
       when WorldTreeItem; item.units[index]
@@ -195,7 +195,7 @@ class AutoOpDialog
     end
   end
   
-  def outlineView_objectValueForTableColumn_byItem(sender, column, item)
+  def outlineView(sender, objectValueForTableColumn:column, byItem:item)
     item.label
   end
   
@@ -220,7 +220,7 @@ class AutoOpDialog
     @sel.autoop.size
   end
   
-  def tableView_objectValueForTableColumn_row(sender, column, row)
+  def tableView(sender, objectValueForTableColumn:column, row:row)
     return '' unless @sel
     s = @sel.autoop[row]
     s || ''
@@ -251,7 +251,7 @@ class AutoOpDialog
   
   # edit
   
-  def control_textView_doCommandBySelector(control, textview, selector)
+  def control(control, textView:textView, doCommandBySelector:selector)
     return false unless @sel
     case selector
     when 'moveDown:'
