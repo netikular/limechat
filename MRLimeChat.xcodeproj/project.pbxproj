@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4D68B0A40EDB6167005185DE /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D68B0A30EDB6167005185DE /* Cocoa.framework */; };
+		4D68B0A70EDB6176005185DE /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D68B0A60EDB6176005185DE /* Carbon.framework */; };
 		4DE3BE140D8651D900ECA448 /* MacRuby.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DE3BE130D8651D900ECA448 /* MacRuby.framework */; };
 		78B4B1110ED92E1000622588 /* rb_main.rb in Resources */ = {isa = PBXBuildFile; fileRef = 78B4B10F0ED92E1000622588 /* rb_main.rb */; };
 		78B4B1120ED92E1000622588 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 78B4B1100ED92E1000622588 /* main.m */; };
@@ -17,9 +19,6 @@
 		78B4B1280ED92E3400622588 /* KeyRecorderBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 78B4B11D0ED92E3400622588 /* KeyRecorderBox.m */; };
 		78B4B1290ED92E3400622588 /* KeyRecorderBoxCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 78B4B11F0ED92E3400622588 /* KeyRecorderBoxCell.m */; };
 		78B4B12A0ED92E3400622588 /* LimeChatApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = 78B4B1210ED92E3400622588 /* LimeChatApplication.m */; };
-		78B4B13F0ED92EFD00622588 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78B4B13E0ED92EFD00622588 /* Carbon.framework */; };
-		78B4B2020ED92F0500622588 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78B4B2010ED92F0500622588 /* WebKit.framework */; };
-		78B4B2DB0ED92F5500622588 /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78B4B2DA0ED92F5500622588 /* CoreServices.framework */; };
 		78B4B3B80ED932A600622588 /* ModeSheet.nib in Resources */ = {isa = PBXBuildFile; fileRef = 78B4B39E0ED932A600622588 /* ModeSheet.nib */; };
 		78B4B3B90ED932A600622588 /* NickSheet.nib in Resources */ = {isa = PBXBuildFile; fileRef = 78B4B3A00ED932A600622588 /* NickSheet.nib */; };
 		78B4B3BA0ED932A600622588 /* PasteSheet.nib in Resources */ = {isa = PBXBuildFile; fileRef = 78B4B3A20ED932A600622588 /* PasteSheet.nib */; };
@@ -108,15 +107,13 @@
 		78B4B4680ED9337E00622588 /* abstract_preferences.rb in Resources */ = {isa = PBXBuildFile; fileRef = 78B4B4670ED9337E00622588 /* abstract_preferences.rb */; };
 		8D11072A0486CEB800E47090 /* MainMenu.nib in Resources */ = {isa = PBXBuildFile; fileRef = 29B97318FDCFA39411CA2CEA /* MainMenu.nib */; };
 		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
-		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		089C165DFE840E0CC02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
 		29B97319FDCFA39411CA2CEA /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = English.lproj/MainMenu.nib; sourceTree = "<group>"; };
-		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
-		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
+		4D68B0A30EDB6167005185DE /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
+		4D68B0A60EDB6176005185DE /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = /System/Library/Frameworks/Carbon.framework; sourceTree = "<absolute>"; };
 		4DE3BE130D8651D900ECA448 /* MacRuby.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MacRuby.framework; path = /Library/Frameworks/MacRuby.framework; sourceTree = "<absolute>"; };
 		78B4B10F0ED92E1000622588 /* rb_main.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; name = rb_main.rb; path = objc/rb_main.rb; sourceTree = "<group>"; };
 		78B4B1100ED92E1000622588 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = objc/main.m; sourceTree = "<group>"; };
@@ -134,9 +131,6 @@
 		78B4B1200ED92E3400622588 /* LimeChatApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LimeChatApplication.h; path = objc/LimeChatApplication.h; sourceTree = "<group>"; };
 		78B4B1210ED92E3400622588 /* LimeChatApplication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LimeChatApplication.m; path = objc/LimeChatApplication.m; sourceTree = "<group>"; };
 		78B4B1230ED92E3400622588 /* OldEventManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OldEventManager.h; path = objc/OldEventManager.h; sourceTree = "<group>"; };
-		78B4B13E0ED92EFD00622588 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = /System/Library/Frameworks/Carbon.framework; sourceTree = "<absolute>"; };
-		78B4B2010ED92F0500622588 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = /System/Library/Frameworks/WebKit.framework; sourceTree = "<absolute>"; };
-		78B4B2DA0ED92F5500622588 /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = /System/Library/Frameworks/CoreServices.framework; sourceTree = "<absolute>"; };
 		78B4B39F0ED932A600622588 /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = English.lproj/ModeSheet.nib; sourceTree = "<group>"; };
 		78B4B3A10ED932A600622588 /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = English.lproj/NickSheet.nib; sourceTree = "<group>"; };
 		78B4B3A30ED932A600622588 /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = English.lproj/PasteSheet.nib; sourceTree = "<group>"; };
@@ -232,11 +226,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */,
 				4DE3BE140D8651D900ECA448 /* MacRuby.framework in Frameworks */,
-				78B4B13F0ED92EFD00622588 /* Carbon.framework in Frameworks */,
-				78B4B2020ED92F0500622588 /* WebKit.framework in Frameworks */,
-				78B4B2DB0ED92F5500622588 /* CoreServices.framework in Frameworks */,
+				4D68B0A40EDB6167005185DE /* Cocoa.framework in Frameworks */,
+				4D68B0A70EDB6176005185DE /* Carbon.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -328,13 +320,9 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4D68B0A60EDB6176005185DE /* Carbon.framework */,
+				4D68B0A30EDB6167005185DE /* Cocoa.framework */,
 				4DE3BE130D8651D900ECA448 /* MacRuby.framework */,
-				1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */,
-				78B4B13E0ED92EFD00622588 /* Carbon.framework */,
-				29B97324FDCFA39411CA2CEA /* AppKit.framework */,
-				78B4B2010ED92F0500622588 /* WebKit.framework */,
-				29B97325FDCFA39411CA2CEA /* Foundation.framework */,
-				78B4B2DA0ED92F5500622588 /* CoreServices.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";

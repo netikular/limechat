@@ -79,7 +79,6 @@ class MemberListView < ListView
     NSRectFill(rect)
   end
   
-  
   def draggingEntered(info)
     draggingUpdated(info)
   end

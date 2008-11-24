@@ -20,22 +20,14 @@ class PreferenceDialog
   string_array_kvc_wrapper_accessor :highlight_words, 'preferences.keyword.words'
   string_array_kvc_wrapper_accessor :dislike_words, 'preferences.keyword.dislike_words'
   string_array_kvc_wrapper_accessor :ignore_words, 'preferences.keyword.ignore_words'
-  
-  #kvc_accessor :sounds
-  #kvc_accessor :available_sounds
-  #kvc_accessor :log_font
-  #kvc_accessor :dcc_last_port
-  #kvc_accessor :max_log_lines
-  attr_writer :sounds
-  attr_writer :available_sounds
-  attr_writer :log_font
-  attr_writer :dcc_last_port
-  attr_writer :max_log_lines
-  
-  def initialize
-    @prefix = 'preferenceDialog'
-  end
-  
+
+  # KVC accessors  
+  attr_accessor :sounds
+  attr_accessor :available_sounds
+  attr_accessor :log_font
+  attr_accessor :dcc_last_port
+  attr_accessor :max_log_lines
+
   def init
     if super
       @available_sounds = preferences.sound.available_sounds
@@ -43,6 +35,7 @@ class PreferenceDialog
       @log_font = NSFont.fontWithName(preferences.theme.log_font_name, size:preferences.theme.log_font_size)
       @dcc_last_port = preferences.dcc.last_port
       @max_log_lines = preferences.general.max_log_lines
+      @prefix = 'preferenceDialog'
       self
     end
   end
@@ -56,7 +49,7 @@ class PreferenceDialog
     preferences.theme.observe(:override_log_font, self)
     
     if preferences.general.use_hotkey?
-      @hotkey.setKeyCode_modifierFlags(preferences.general.hotkey_key_code, preferences.general.hotkey_modifier_flags)
+      @hotkey.setKeyCode(preferences.general.hotkey_key_code, modifierFlags:preferences.general.hotkey_modifier_flags)
     else
       @hotkey.clearKey
     end
@@ -114,7 +107,7 @@ class PreferenceDialog
     preferences.general.max_log_lines = @max_log_lines = max.to_i
   end
   
-  def validateValue_forKeyPath_error(value, key, error)
+  def validateValue(value, forKeyPath:key, error:error)
     case key
     when 'dcc_last_port'
       value.assign(value[0].to_i < preferences.dcc.first_port.to_i ? preferences.dcc.first_port : value[0])
@@ -136,16 +129,16 @@ class PreferenceDialog
       @log_dialog.setAllowsMultipleSelection(false)
       @log_dialog.setCanCreateDirectories(true)
       path = Pathname.new(preferences.general.transcript_folder.expand_path)
-      dir = path.parent.to_s
-      @log_dialog.beginForDirectory_file_types_modelessDelegate_didEndSelector_contextInfo(dir, nil, nil, self, 'transcriptFilePanelDidEnd:returnCode:contextInfo:', nil)
+      dir = path.parent
+      @log_dialog.beginForDirectory(dir, file:nil, types:nil, modelessDelegate:self, didEndSelector:'transcriptFilePanelDidEnd:returnCode:contextInfo:', contextInfo:nil)
     end
   end
   
-  def transcriptFilePanelDidEnd_returnCode_contextInfo(panel, code, info)
+  def transcriptFilePanelDidEnd(panel, returnCode:code, contextInfo:info)
     @log_dialog = nil
     @transcript_folder.selectItem(@transcript_folder.itemAtIndex(0))
     return if code != NSOKButton
-    path = panel.filenames.to_a[0].to_s
+    path = panel.filenames[0]
     FileUtils.mkpath(path) rescue nil
     preferences.general.transcript_folder = path.collapse_path
     update_transcript_folder
@@ -153,9 +146,9 @@ class PreferenceDialog
   
   def update_transcript_folder
     path = Pathname.new(preferences.general.transcript_folder).expand_path
-    title = path.basename.to_s
+    title = path.basename
     i = @transcript_folder.itemAtIndex(0)
-    i.setTitle(title)
+    i.setTitle(title.to_s)
     icon = NSWorkspace.sharedWorkspace.iconForFile(path.to_s)
     icon.setSize(NSSize.new(16,16))
     i.setImage(icon)
@@ -194,12 +187,12 @@ class PreferenceDialog
     unless path.exist?
       path.mkpath rescue nil
     end
-    files = Dir.glob(path.to_s + '/*') rescue []
+    files = Dir.glob(path + '/*') rescue []
     if files.empty?
       # copy sample themes
       FileUtils.cp(Dir.glob(ViewTheme.RESOURCE_BASE + '/Sample.*'), ViewTheme.USER_BASE) rescue nil
     end
-    NSWorkspace.sharedWorkspace.openFile(path.to_s)
+    NSWorkspace.sharedWorkspace.openFile(path)
   end
   
   private
@@ -211,7 +204,7 @@ class PreferenceDialog
     
     [ViewTheme.RESOURCE_BASE, ViewTheme.USER_BASE].each_with_index do |base,tag|
       files = Pathname.glob(base + '/*.css') + Pathname.glob(base + '/*.yaml')
-      files.map! {|i| i.basename('.*').to_s}
+      files.map! {|i| i.basename('.*')}
       files.delete('Sample') if tag == 0
       files.uniq!
       files.sort! {|a,b| a.casecmp(b)}
@@ -219,7 +212,7 @@ class PreferenceDialog
         @theme.menu.addItem(NSMenuItem.separatorItem)
         count = @theme.numberOfItems
         files.each_with_index do |f,n|
-          item = NSMenuItem.alloc.initWithTitle_action_keyEquivalent(f, nil, '')
+          item = NSMenuItem.alloc.initWithTitle(f.to_s, action:nil, keyEquivalent:'')
           item.setTag(tag)
           @theme.menu.addItem(item)
         end
@@ -232,7 +225,7 @@ class PreferenceDialog
     count = @theme.numberOfItems
     (0...count).each do |n|
       i = @theme.itemAtIndex(n)
-      if i.tag == target_tag && i.title.to_s == name
+      if i.tag == target_tag && i.title == name
         @theme.selectItemAtIndex(n)
         break
       end
@@ -241,7 +234,7 @@ class PreferenceDialog
   
   def save_theme
     sel = @theme.selectedItem
-    fname = sel.title.to_s
+    fname = sel.title
     if sel.tag == 0
       preferences.theme.name = ViewTheme.resource_filename(fname)
     else

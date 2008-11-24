@@ -101,7 +101,7 @@ class LogController
     doc = @view.mainFrame.DOMDocument
     return true unless doc
     body = doc.body
-    viewheight = @view.frame.height.to_i rescue 0
+    viewheight = @view.frame.height rescue 0
     scrollheight = body[:scrollHeight]
     scrolltop = body[:scrollTop]
     (viewheight == 0) || (scrolltop + viewheight >= scrollheight - BOTTOM_EPSILON)
@@ -119,7 +119,7 @@ class LogController
     return nil unless @loaded
     doc = @view.mainFrame.DOMDocument
     return nil unless doc
-    doc.body.parentNode.outerHTML.to_s
+    doc.body.parentNode.outerHTML
   rescue
     nil
   end
@@ -158,7 +158,7 @@ class LogController
       klass << ' event'
     end
     attrs['class'] = klass
-    attrs['type'] = line.line_type.to_s
+    attrs['type'] = line.line_type
     attrs['highlight'] = "#{!!key}"
     attrs['nick'] = line.nick_info if line.nick_info
     if @console
@@ -227,13 +227,11 @@ class LogController
 
   # delegate
 
-  #objc_method :webView_windowScriptObjectAvailable, 'v@:@@'
   def webView(sender, windowScriptObjectAvailable:js)
     @js = js
     @js[:app] = @sink
   end
 
-  #objc_method :webView_didFinishLoadForFrame, 'v@:@@'
   def webView(sender, didFinishLoadForFrame:frame)
     @loaded = true
     setup_scroller
@@ -417,7 +415,7 @@ class LogController
     last_line_id = nil
     n.times do
       node = body.firstChild
-      if DOMHTMLElement === node && node.tagName.to_s.downcase == 'hr'
+      if DOMHTMLElement === node && node.tagName.downcase == 'hr'
         # the first node is the mark
         next_sibling = node.nextSibling
         delta += next_sibling[:offsetTop] - node[:offsetTop] if next_sibling
@@ -614,7 +612,6 @@ class LogScriptEventSink
 
   EXPORTED_METHODS = %w|onDblClick: shouldStopDoubleClick: setUrl: setAddr: setNick: setChan: print:|
 
-  #objc_class_method 'isSelectorExcludedFromWebScript:', 'c@::'
   def self.isSelectorExcludedFromWebScript(sel)
     case sel
     when *EXPORTED_METHODS
@@ -624,7 +621,6 @@ class LogScriptEventSink
     end
   end
 
-  #objc_class_method 'webScriptNameForSelector:', '@@::'
   def self.webScriptNameForSelector(sel)
     case sel
     when *EXPORTED_METHODS
@@ -635,12 +631,10 @@ class LogScriptEventSink
     end
   end
 
-  #objc_class_method :isKeyExcludedFromWebScript, 'c@:*'
   def self.isKeyExcludedFromWebScript(name)
     true
   end
 
-  #objc_class_method :webScriptNameForKey, '@@:*'
   def self.webScriptNameForKey(name)
     nil
   end
@@ -651,23 +645,21 @@ class LogScriptEventSink
     @y = -100
   end
 
-  #objc_method :onDblClick, 'v@:@'
   def onDblClick(e)
-    @owner.logView_onDoubleClick(e.to_s)
+    @owner.logView_onDoubleClick(e.stringValue)
   end
 
   DELTA = 3
 
-  #objc_method :shouldStopDoubleClick, 'c@:@'
   def shouldStopDoubleClick(e)
     d = DELTA
     cx = e.valueForKey('clientX').intValue
     cy = e.valueForKey('clientY').intValue
     res = false
 
-    now = NSDate.timeIntervalSinceReferenceDate.to_f
+    now = NSDate.timeIntervalSinceReferenceDate
     if @x-d <= cx && cx <= @x+d && @y-d <= cy && cy <= @y+d
-      res = true if now < @last + (OldEventManager.getDoubleClickTime.to_f / 60.0)
+      res = true if now < @last + (OldEventManager.getDoubleClickTime / 60.0)
     end
     @last = now
     @x = cx
@@ -675,27 +667,22 @@ class LogScriptEventSink
     res
   end
 
-  #objc_method :setUrl, 'v@:@'
   def setUrl(s)
     @policy.url = uh(s)
   end
 
-  #objc_method :setAddr, 'v@:@'
   def setAddr(s)
     @policy.addr = uh(s)
   end
 
-  #objc_method :setNick, 'v@:@'
   def setNick(s)
     @policy.nick = uh(s)
   end
 
-  #objc_method :setChan, 'v@:@'
   def setChan(s)
     @policy.chan = uh(s)
   end
 
-  #objc_method :print, 'v@:@'
   def print(s)
     NSLog("%@", s)
   end
@@ -703,7 +690,7 @@ class LogScriptEventSink
   private
 
   def uh(s)
-    s ? CGI.unescapeHTML(s.to_s) : ''
+    s ? CGI.unescapeHTML(s) : ''
   end
 end
 
@@ -712,29 +699,27 @@ class LogPolicy
   attr_accessor :owner, :menu, :url_menu, :addr_menu, :member_menu, :chan_menu
   attr_accessor :url, :addr, :nick, :chan
 
-  #objc_method :webView_dragDestinationActionMaskForDraggingInfo, 'I@:@@'
-  def webView_dragDestinationActionMaskForDraggingInfo(sender, info)
+  def webView(sender, dragDestinationActionMaskForDraggingInfo:info)
     WebDragDestinationActionNone
   end
 
-  #objc_method :webView_contextMenuItemsForElement_defaultMenuItems, '@@:@@@'
-  def webView_contextMenuItemsForElement_defaultMenuItems(sender, element, defaultMenu)
+  def webView(sender, contextMenuItemsForElement:element, defaultMenuItems:defaultMenu)
     if @url
       @owner.world.menu_controller.url = @url
       @url = nil
-      @url_menu.itemArray.to_a.map {|i| i.copy }
+      @url_menu.itemArray.map {|i| i.copy }
     elsif @addr
       @owner.world.menu_controller.addr = @addr
       @addr = nil
-      @addr_menu.itemArray.to_a.map {|i| i.copy }
+      @addr_menu.itemArray.map {|i| i.copy }
     elsif @nick
       target = @nick
       @nick = nil
       @owner.world.menu_controller.nick = target
       ary = []
-      ary << NSMenuItem.alloc.initWithTitle_action_keyEquivalent(target, nil, '')
+      ary << NSMenuItem.alloc.initWithTitle(target, action:nil, keyEquivalent:'')
       ary << NSMenuItem.separatorItem
-      ary + @member_menu.itemArray.to_a.map do |i|
+      ary + @member_menu.itemArray.map do |i|
         i = i.copy
         modify_member_menu_item(i)
         i
@@ -743,10 +728,10 @@ class LogPolicy
       target = @chan
       @chan = nil
       @owner.world.menu_controller.chan = target
-      @chan_menu.itemArray.to_a.map {|i| i.copy}
+      @chan_menu.itemArray.map {|i| i.copy}
     else
       if @menu
-        @menu.itemArray.to_a.map {|i| i.copy }
+        @menu.itemArray.map {|i| i.copy }
       else
         []
       end
@@ -754,19 +739,18 @@ class LogPolicy
   end
 
   def modify_member_menu_item(i)
-    i.setTag(i.tag.to_i + 500)
+    i.setTag(i.tag + 500)
     modify_member_menu(i.submenu) if i.hasSubmenu
   end
 
   def modify_member_menu(menu)
-    menu.itemArray.to_a.each do |i|
+    menu.itemArray.each do |i|
       modify_member_menu_item(i)
     end
   end
 
-  #objc_method :webView_decidePolicyForNavigationAction_request_frame_decisionListener, 'v@:@@@@@'
-  def webView_decidePolicyForNavigationAction_request_frame_decisionListener(sender, action, request, frame, listener)
-    case action.objectForKey(WebActionNavigationTypeKey).intValue.to_i
+  def webView(sender, decidePolicyForNavigationAction:action, request:request, frame:frame, decisionListener:listener)
+    case action.objectForKey(WebActionNavigationTypeKey).intValue
     when WebNavigationTypeLinkClicked
       listener.ignore
       UrlOpener::openUrl(action.objectForKey(WebActionOriginalURLKey).absoluteString)

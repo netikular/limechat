@@ -1,4 +1,5 @@
 framework 'Cocoa'
+framework 'WebKit'
 
 def _(s)
   #NSLocalizedString(s)
