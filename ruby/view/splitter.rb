@@ -75,19 +75,19 @@ class Splitter < NSSplitView
     if hidden?
       ;
     elsif vertical?
-      NSColor.colorWithCalibratedWhite_alpha(0.65, 1).set
+      NSColor.colorWithCalibratedWhite(0.65, alpha:1).set
       NSRectFill(rect);
     else
-      NSColor.colorWithCalibratedWhite_alpha(0.65, 1).set
+      NSColor.colorWithCalibratedWhite(0.65, alpha:1).set
       sp = rect.origin.dup
       ep = sp.dup
       ep.x += rect.width
-      NSBezierPath.strokeLineFromPoint_toPoint(sp, ep)
+      NSBezierPath.strokeLineFromPoint(sp, toPoint:ep)
       sp = rect.origin.dup
       sp.y += rect.height
       ep = sp.dup
       ep.x += rect.width
-      NSBezierPath.strokeLineFromPoint_toPoint(sp, ep)
+      NSBezierPath.strokeLineFromPoint(sp, toPoint:ep)
     end
   end
   
