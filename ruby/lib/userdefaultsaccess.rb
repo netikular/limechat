@@ -12,7 +12,7 @@ module UserDefaultsAccess
   end
 
   def write_defaults(key, value)
-    NSUserDefaults.standardUserDefaults.setObject_forKey(value, key)
+    NSUserDefaults.standardUserDefaults.setObject(value, forKey:key)
   end
   
   def convert_to_ruby_obj(v)

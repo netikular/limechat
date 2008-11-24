@@ -148,6 +148,10 @@ class NSObject
 end
 
 class NSNumber
+  def to_i
+    intValue
+  end
+  
   def integer?
     !CFNumberIsFloatType(self)
   end
