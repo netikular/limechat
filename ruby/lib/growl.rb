@@ -92,7 +92,7 @@ module Growl
       end
       dict[:NotificationClickContext] = context unless context.empty?
       
-      notification_center.postNotificationName_object_userInfo_deliverImmediately(:GrowlNotification, nil, dict, true)
+      notification_center.postNotificationName(:GrowlNotification, object:nil, userInfo:dict, deliverImmediately:true)
     end
     
     def onReady(notification)
@@ -113,7 +113,7 @@ module Growl
         user_context = nil
       end
       
-      @delegate.growlNotifier_notificationClicked(self, user_context) if @delegate && @delegate.respond_to?(:growlNotifier_notificationClicked)
+      @delegate.growlNotifier(self, notificationClicked:user_context) if @delegate && @delegate.respond_to?(:'growlNotifier:notificationClicked:')
     end
     
     def onTimeout(notification)
@@ -127,7 +127,7 @@ module Growl
         user_context = nil
       end
       
-      @delegate.growlNotifier_notificationTimedOut(self, user_context) if @delegate && @delegate.respond_to?(:growlNotifier_notificationTimedOut)
+      @delegate.growlNotifier(self, notificationTimedOut:user_context) if @delegate && @delegate.respond_to?(:'growlNotifier:notificationTimedOut:')
     end
     
     private
@@ -152,17 +152,15 @@ module Growl
         :DefaultNotifications => @default_notifications
       }
       
-      notification_center.objc_send(
-        :postNotificationName, :GrowlApplicationRegistrationNotification,
-                      :object, nil,
-                    :userInfo, dict,
-          :deliverImmediately, true
-      )
+      notification_center.postNotificationName(:GrowlApplicationRegistrationNotification,
+                                               object:nil,
+                                               userInfo:dict,
+                                               deliverImmediately:true)
     end
     
     def add_observer(selector, name, prepend_name_and_pid)
       name = "#{@application_name}-#{pid}-#{name}" if prepend_name_and_pid
-      notification_center.addObserver_selector_name_object self, selector, name, nil
+      notification_center.addObserver(self, selector:selector, name:name, object:nil)
     end
   end
 end
