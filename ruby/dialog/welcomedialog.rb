@@ -15,7 +15,7 @@ class WelcomeDialog
   end
   
   def start
-    NSBundle.loadNibNamed_owner('WelcomeDialog', self)
+    NSBundle.loadNibNamed('WelcomeDialog', owner:self)
     tableViewSelectionIsChanging(nil)
     @channelTable.text_delegate = self
     ServerDialog.servers.each {|i| @serverCombo.addItemWithObjectValue(i) }

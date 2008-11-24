@@ -39,14 +39,14 @@ class CocoaSheet
   
   def start(*args)
     c = self.class.to_s
-    NSBundle.loadNibNamed_owner(c, self)
+    NSBundle.loadNibNamed(c, owner:self)
     @sheet.makeFirstResponder(instance_variable_get("@#{self.class._first_responder}")) if self.class._first_responder
     @model = true
     startup(*args) if respond_to?(:startup)
-    NSApp.beginSheet_modalForWindow_modalDelegate_didEndSelector_contextInfo(@sheet, @window, self, 'sheetDidEnd:returnCode:contextInfo:', nil)
+    NSApp.beginSheet(@sheet, modalForWindow:@window, modalDelegate:self, didEndSelector:'sheetDidEnd:returnCode:contextInfo:', contextInfo:nil)
   end
   
-  def sheetDidEnd_returnCode_contextInfo(sender, code, info)
+  def sheetDidEnd(sender, returnCode:code, contextInfo:info)
     @modal = false
     shutdown(self.class._buttons[code].to_s.underscorize.to_sym)
     @sheet.close

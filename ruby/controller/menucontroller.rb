@@ -834,7 +834,7 @@ class MenuController
 
   def memberList_doubleClicked(sender)
     pt = @window.mouseLocationOutsideOfEventStream
-    pt = sender.convertPoint_fromView(pt, nil)
+    pt = sender.convertPoint(pt, fromView:nil)
     n = sender.rowAtPoint(pt)
     if n >= 0
       if sender.selectedRows.size > 1

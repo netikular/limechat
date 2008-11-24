@@ -17,7 +17,7 @@ class WhoisDialog
   end
   
   def start(nick, username, address, realname)
-    NSBundle.loadNibNamed_owner('WhoisDialog', self)
+    NSBundle.loadNibNamed('WhoisDialog', owner:self)
     set_basic_info(nick, username, address, realname)
     @window.makeFirstResponder(@closeButton)
     show

@@ -128,7 +128,7 @@ class MemberListView < ListView
   private
   
   def dragged_row(info)
-    pt = convertPoint_fromView(info.draggingLocation, nil)
+    pt = convertPoint(info.draggingLocation, fromView:nil)
     rowAtPoint(pt)
   end
   

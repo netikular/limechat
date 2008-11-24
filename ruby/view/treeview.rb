@@ -18,7 +18,7 @@ class TreeView < NSOutlineView
   end
   
   def menuForEvent(event)
-    p = convertPoint_fromView(event.locationInWindow, nil)
+    p = convertPoint(event.locationInWindow, fromView:nil)
     i = rowAtPoint(p)
     if i >= 0
       select(i)

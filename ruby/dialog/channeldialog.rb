@@ -21,7 +21,7 @@ class ChannelDialog
   end
   
   def loadNib
-    NSBundle.loadNibNamed_owner('ChannelDialog', self)
+    NSBundle.loadNibNamed('ChannelDialog', owner:self)
   end
   
   def start(config, uid, cid)

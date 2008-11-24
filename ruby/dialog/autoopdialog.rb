@@ -17,7 +17,7 @@ class AutoOpDialog
     @w = ModelTreeItem.config_to_item(conf)
     @c = @w.units
     @sel = @w
-    NSBundle.loadNibNamed_owner('AutoOpDialog', self)
+    NSBundle.loadNibNamed('AutoOpDialog', owner:self)
     @edit.setFocusRingType(NSFocusRingTypeNone)
     @window.key_delegate = self
     @tree.key_delegate = self

@@ -22,7 +22,7 @@ class ListView < NSTableView
   end
   
   def rightMouseDown(event)
-    p = convertPoint_fromView(event.locationInWindow, nil)
+    p = convertPoint(event.locationInWindow, fromView:nil)
     i = rowAtPoint(p)
     if i >= 0
       unless selectedRowIndexes.containsIndex(i)

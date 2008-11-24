@@ -14,7 +14,7 @@ class DccManager
   
   def loadNib
     return if @loaded
-    NSBundle.loadNibNamed_owner('DccDialog', self)
+    NSBundle.loadNibNamed('DccDialog', owner:self)
     @window.key_delegate = self
     @loaded = true
     @splitter.setFixedViewIndex(1)

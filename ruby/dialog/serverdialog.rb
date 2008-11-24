@@ -66,7 +66,7 @@ class ServerDialog
   def start(conf, uid)
     @c = conf
     @uid = uid
-    NSBundle.loadNibNamed_owner('ServerDialog', self)
+    NSBundle.loadNibNamed('ServerDialog', owner:self)
     @channelsTable.setTarget(self)
     @channelsTable.setDoubleAction('tableView_doubleClicked:')
   	@channelsTable.registerForDraggedTypes(TABLE_ROW_TYPES);

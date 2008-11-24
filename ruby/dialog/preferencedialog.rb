@@ -48,7 +48,7 @@ class PreferenceDialog
   end
   
   def start
-    NSBundle.loadNibNamed_owner('PreferenceDialog', self)
+    NSBundle.loadNibNamed('PreferenceDialog', owner:self)
     
     load_theme
     update_transcript_folder

@@ -18,7 +18,7 @@ class ListDialog
   end
   
   def start
-    NSBundle.loadNibNamed_owner('ListDialog', self)
+    NSBundle.loadNibNamed('ListDialog', owner:self)
     load_window_state
     @table.setDoubleAction(:onJoin)
     @window.makeFirstResponder(@updateButton)
