@@ -42,6 +42,7 @@ class ChatBox < NSBox
     # apply the current font to text
     e = text.currentEditor
     range = e.selectedRange if e
+    p text.class.ancestors
     s = text.stringValue
     text.setAttributedStringValue(NSAttributedString.alloc.init)
     text.setStringValue(s)

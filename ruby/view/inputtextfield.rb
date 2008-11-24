@@ -10,9 +10,5 @@ class InputTextField < TextField
     backgroundColor.set
     NSFrameRectWithWidth(bounds, 3)
   end
-  
-  def stringValue
-    super
-  end
-  
+
 end

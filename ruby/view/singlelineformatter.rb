@@ -9,17 +9,16 @@ class SingleLineFormatter < NSFormatter
     str.to_s.gsub(/\r\n|\r|\n/, ' ')
   end
   
-  def getObjectValue_forString_errorDescription(objp, str, err)
+  def getObjectValue(objp, forString:str, errorDescription:err)
     s = str.to_s.gsub(/\r\n|\r|\n/, ' ')
-    objp.assign(s.to_ns)
+    objp.assign(s)
     true
   end
   
-  def isPartialStringValid_newEditingString_errorDescription(str, strp, err)
-    s = str.to_s
-    return true unless s =~ /\r\n|\r|\n/
-    s = s.gsub(/\r\n|\r|\n/, ' ')
-    strp.assign(s.to_ns)
+  def isPartialStringValid(str, newEditingString:strp, errorDescription:err)
+    return true unless str =~ /\r\n|\r|\n/
+    s = str.gsub(/\r\n|\r|\n/, ' ')
+    strp.assign(s)
     false
   end
 end

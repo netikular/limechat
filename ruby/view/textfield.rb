@@ -9,9 +9,5 @@ class TextField < NSTextField
     e.setSelectedRange(NSRange.new(stringValue.length, 0))
     e.scrollRangeToVisible(e.selectedRange)
   end
-  
-  def stringValue
-    super
-  end
-  
+
 end

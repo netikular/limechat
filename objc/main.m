@@ -2,6 +2,7 @@
 
 int main(int argc, char *argv[])
 {
+    //setenv("MACRUBY_DEBUG", "1", 0);
     return macruby_main("rb_main.rb", argc, argv);
 }
 
