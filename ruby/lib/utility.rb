@@ -167,6 +167,21 @@ class NSSelectionArray
   end
 end
 
+class NSIndexSet
+  def to_a
+    ary = []
+    if count > 0
+      i = firstIndex
+      ary << i
+      while ary.size < count
+        i = indexGreaterThanIndex(i)
+        ary << i
+      end
+    end
+    ary
+  end
+end
+
 class NSPoint
   def in(r); NSPointInRect(self, r); end
   def +(v)
