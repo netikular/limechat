@@ -954,7 +954,7 @@ class IRCUnit
       use_fallback = false
     end
     m.apply! {|i| to_local_encoding(i, use_fallback) }
-    m.apply! {|i| StringValidator::validate_utf8(i) }
+    #m.apply! {|i| StringValidator::validate_utf8(i) }
     puts m.to_s
     
     if m.numeric_reply > 0
