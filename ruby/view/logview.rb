@@ -20,13 +20,13 @@ class LogView < WebView
   end
   
   def clearSel
-    setSelectedDOMRange_affinity(nil, NSSelectionAffinityDownstream)
+    setSelectedDOMRange(nil, affinity:NSSelectionAffinityDownstream)
   end
   
   def selection
     sel = selectedDOMRange.cloneContents
     return nil unless sel
-    iter = selectedFrame.DOMDocument.createNodeIterator_whatToShow_filter_expandEntityReferences(sel, DOM_SHOW_TEXT, nil, true)
+    iter = selectedFrame.DOMDocument.createNodeIterator(sel, whatToShow:DOM_SHOW_TEXT, filter:nil, expandEntityReferences:true)
     s = ''
     while node = iter.nextNode
       s << node.nodeValue
