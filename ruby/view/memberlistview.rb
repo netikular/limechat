@@ -112,7 +112,7 @@ class MemberListView < ListView
       row = dragged_row(info)
       if row >= 0
         # received files
-        @drop_delegate.memberListView_dropFiles(files, row)
+        @drop_delegate.memberListView(files, dropFiles:row)
         true
       else
         false
@@ -146,7 +146,7 @@ class MemberListView < ListView
   end
   
   def dragged_files(info)
-    files = info.draggingPasteboard.propertyListForType(NSFilenamesPboardType).to_ruby
+    files = info.draggingPasteboard.propertyListForType(NSFilenamesPboardType)
     files.select{|i| File.file?(i) }
   rescue
     []
@@ -174,7 +174,7 @@ class MemberListViewCell < NSCell
     def calculate_mark_width(cell)
       @mark_width = 0
       User.marks.each do |s|
-        n = s.to_ns.sizeWithAttributes(NSFontAttributeName => cell.font)
+        n = s.sizeWithAttributes(NSFontAttributeName => cell.font)
         @mark_width = n.width if n.width > @mark_width
       end
     end
@@ -207,7 +207,7 @@ class MemberListViewCell < NSCell
   LEFT_MARGIN = 2
   MARK_RIGHT_MARGIN = 2
   
-  def drawInteriorWithFrame_inView(frame, view)
+  def drawInteriorWithFrame(frame, inView:view)
     window = view.window
     if self.isHighlighted
       if window && window.isMainWindow && window.firstResponder == view
@@ -233,7 +233,7 @@ class MemberListViewCell < NSCell
     
     mark = @member.mark
     unless mark.empty?
-      mark.to_ns.drawInRect_withAttributes(rect, attrs)
+      mark.drawInRect(rect, withAttributes:attrs)
     end
     
     attrs[NSParagraphStyleAttributeName] = nick_style
@@ -243,6 +243,6 @@ class MemberListViewCell < NSCell
     rect.x += offset
     rect.width -= offset
     
-    @member.nick.to_ns.drawInRect_withAttributes(rect, attrs)
+    @member.nick.drawInRect(rect, withAttributes:attrs)
   end
 end
