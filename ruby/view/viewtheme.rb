@@ -171,18 +171,18 @@ class OtherViewTheme
     style = config['font-style']
     size = NSFont.systemFontSize unless size
     if family
-      font = NSFont.fontWithName_size(family, size)
+      font = NSFont.fontWithName(family, size:size)
     else
       font = NSFont.systemFontOfSize(size)
     end
     font = NSFont.systemFontOfSize(-1) unless font
     fm = NSFontManager.sharedFontManager
     if weight == 'bold'
-      to = fm.convertFont_toHaveTrait(font, NSBoldFontMask)
+      to = fm.convertFont(font, toHaveTrait:NSBoldFontMask)
       font = to if to
     end
     if style == 'italic'
-      to = fm.convertFont_toHaveTrait(font, NSItalicFontMask)
+      to = fm.convertFont(font, toHaveTrait:NSItalicFontMask)
       font = to if to
     end
     font

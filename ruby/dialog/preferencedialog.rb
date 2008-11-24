@@ -40,7 +40,7 @@ class PreferenceDialog
     if super
       @available_sounds = preferences.sound.available_sounds
       @sounds = preferences.sound.events_wrapped
-      @log_font = NSFont.fontWithName_size(preferences.theme.log_font_name, preferences.theme.log_font_size)
+      @log_font = NSFont.fontWithName(preferences.theme.log_font_name, size:preferences.theme.log_font_size)
       @dcc_last_port = preferences.dcc.last_port
       @max_log_lines = preferences.general.max_log_lines
       self
