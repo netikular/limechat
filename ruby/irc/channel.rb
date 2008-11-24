@@ -342,7 +342,7 @@ class IRCChannel
   end
 
   def label
-    if !@cached_label || !@cached_label.isEqualToString?(name)
+    if !@cached_label || !@cached_label.isEqualToString(name)
       @cached_label = name.to_ns
     end
     @cached_label

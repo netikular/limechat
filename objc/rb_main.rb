@@ -1,5 +1,10 @@
 framework 'Cocoa'
 
+def _(s)
+  #NSLocalizedString(s)
+  s
+end
+
 dir_path = NSBundle.mainBundle.resourcePath.fileSystemRepresentation
 Dir.entries(dir_path).each do |path|
   if path != File.basename(__FILE__) and path[-3..-1] == '.rb'
