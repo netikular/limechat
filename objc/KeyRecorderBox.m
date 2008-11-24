@@ -26,7 +26,7 @@ static NSArray* padKeyArray;
 
 + (void)load
 {
-	NSAutoreleasePool* pool = [NSAutoreleasePool new];
+	//NSAutoreleasePool* pool = [NSAutoreleasePool new];
 	
 	specialKeyMap = [NSDictionary dictionaryWithObjectsAndKeys:
 		@"↩", NUM(36),
@@ -90,7 +90,7 @@ static NSArray* padKeyArray;
 	];
 	[padKeyArray retain];
 	
-	[pool release];
+	//[pool release];
 }
 
 + (Class)cellClass

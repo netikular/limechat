@@ -53,7 +53,7 @@ class LogController
     @sink = LogScriptEventSink.alloc.init
     @sink.owner = self
     @sink.policy = @policy
-    @view.release if @view
+    #@view.release if @view
     @view = LogView.alloc.initWithFrame(NSZeroRect)
     @view.setBackgroundColor(initial_bgcolor) if @view.respondsToSelector('setBackgroundColor:') # new in Leopard
     @view.setFrameLoadDelegate(self)

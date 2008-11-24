@@ -123,8 +123,8 @@ static void MyCFWriteStreamCallback (CFWriteStreamRef stream, CFStreamEventType 
 }
 - (void)dealloc
 {
-  [buffer release];
-  [term release];
+  //[buffer release];
+  //[term release];
   [super dealloc];
 }
 @end
@@ -157,7 +157,7 @@ static void MyCFWriteStreamCallback (CFWriteStreamRef stream, CFStreamEventType 
 }
 - (void)dealloc
 {
-  [buffer release];
+  //[buffer release];
   [super dealloc];
 }
 @end
@@ -220,8 +220,8 @@ static void MyCFWriteStreamCallback (CFWriteStreamRef stream, CFStreamEventType 
 - (void) dealloc
 {
   [self close];
-  [theReadQueue release];
-  [theWriteQueue release];
+  //[theReadQueue release];
+  //[theWriteQueue release];
   [NSObject cancelPreviousPerformRequestsWithTarget: theDelegate selector: @selector(onSocketDidDisconnect:) object:self];
   [NSObject cancelPreviousPerformRequestsWithTarget: self];
   [super dealloc];
@@ -769,7 +769,7 @@ Failed:;
   [self emptyQueues];
 
   if (partialReadBuffer) {
-    [partialReadBuffer release];
+    //[partialReadBuffer release];
     partialReadBuffer = nil;
   }
   [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(disconnect) object:nil];
@@ -1188,8 +1188,8 @@ Failed:;
   [theReadQueue addObject:packet];
   [self maybeDequeueRead];
 
-  [packet release];
-  [buffer release];
+  //[packet release];
+  //[buffer release];
 }
 
 - (void) readDataToData:(NSData*)data withTimeout:(NSTimeInterval)timeout tag:(NSNumber*)aTag
@@ -1204,8 +1204,8 @@ Failed:;
   [theReadQueue addObject:packet];
   [self maybeDequeueRead];
 
-  [packet release];
-  [buffer release];
+  //[packet release];
+  //[buffer release];
 }
 
 - (void) readDataWithTimeout:(NSTimeInterval)timeout tag:(NSNumber*)aTag
@@ -1223,8 +1223,8 @@ Failed:;
   [theReadQueue addObject:packet];
   [self maybeDequeueRead];
   
-  [packet release];
-  [buffer release];
+  //[packet release];
+  //[buffer release];
 }
 
 // Puts a maybeDequeueRead on the run loop. An assumption here is that selectors will be performed consecutively within their priority.
@@ -1345,7 +1345,7 @@ Failed:;
   NSAssert (theCurrentRead, @"Trying to end current read when there is no current read.");
   [theReadTimer invalidate];
   theReadTimer = nil;
-  [theCurrentRead release];
+  //[theCurrentRead release];
   theCurrentRead = nil;
 }
 
@@ -1374,7 +1374,7 @@ Failed:;
   [theWriteQueue addObject:packet];
   [self maybeDequeueWrite];
 
-  [packet release];
+  //[packet release];
 }
 
 - (void) scheduleDequeueWrite
@@ -1463,7 +1463,7 @@ Failed:;
   NSAssert (theCurrentWrite, @"Trying to complete current write when there is no current write.");
   [theWriteTimer invalidate];
   theWriteTimer = nil;
-  [theCurrentWrite release];
+  //[theCurrentWrite release];
   theCurrentWrite = nil;
   [self maybeScheduleDisconnect];
 }
@@ -1578,7 +1578,7 @@ static void MyCFWriteStreamCallback (CFWriteStreamRef stream, CFStreamEventType 
   CFReadStreamSetProperty(theReadStream, kCFStreamPropertySSLSettings, (CFDictionaryRef)settings);
   CFWriteStreamSetProperty(theWriteStream, kCFStreamPropertySSLSettings, (CFDictionaryRef)settings);
 
-  [settings release];
+  //[settings release];
 }
 
 @end

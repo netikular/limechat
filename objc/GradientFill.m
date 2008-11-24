@@ -39,8 +39,8 @@ static void interpolate(void* info, float const* in, float* out)
 
 - (void)dealloc
 {
-  [beginColor release];
-  [endColor release];
+  //[beginColor release];
+  //[endColor release];
   [super dealloc];
 }
 

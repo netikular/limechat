@@ -22,7 +22,7 @@ class TcpServer
   def close
     return unless @sock
     @sock.disconnect
-    @sock.release
+    #@sock.release
     @sock = nil
     @active = false
   end

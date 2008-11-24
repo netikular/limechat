@@ -7,7 +7,7 @@
 
 - (void)dealloc
 {
-	[hotkey release];
+	//[hotkey release];
 	[super dealloc];
 }
 
