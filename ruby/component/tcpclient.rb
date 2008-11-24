@@ -27,8 +27,8 @@ class TcpClient
     close if @sock
     @buf = ''
     @tag += 1
-    @sock = AsyncSocket.alloc.initWithDelegate_userData(self, @tag)
-    @sock.connectToHost_onPort_error?(@host, @port, nil)
+    @sock = AsyncSocket.alloc.initWithDelegate(self, userData:@tag)
+    @sock.connectToHost(@host, onPort:@port, error:nil)
     @active = @connecting = true
     @send_queue_size = 0
   end
@@ -62,7 +62,7 @@ class TcpClient
     return unless connected?
     @send_queue_size += 1
     data = NSData.dataWithRubyString(str)
-    @sock.writeData_withTimeout_tag(data, -1.0, 0)
+    @sock.writeData(data, withTimeout:-1.0, tag:0)
     wait_read
   end
   
@@ -119,7 +119,7 @@ class TcpClient
   private
   
   def wait_read
-    @sock.readDataWithTimeout_tag(-1.0, 0)
+    @sock.readDataWithTimeout(-1.0, tag:0)
   end
   
   def check_tag(sock)

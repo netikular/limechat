@@ -10,8 +10,8 @@ class Timer
   
   def start(interval)
     stop if active?
-    @timer = NSTimer.scheduledTimerWithTimeInterval_target_selector_userInfo_repeats(interval, self, 'onTimer:', nil, true)
-    NSRunLoop.currentRunLoop.addTimer_forMode(@timer, NSEventTrackingRunLoopMode)
+    @timer = NSTimer.scheduledTimerWithTimeInterval(interval, target:self, selector:'onTimer:', userInfo:nil, repeats:true)
+    NSRunLoop.currentRunLoop.addTimer(@timer, forMode:NSEventTrackingRunLoopMode)
   end
   
   def stop
