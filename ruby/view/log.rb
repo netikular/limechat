@@ -228,13 +228,13 @@ class LogController
   # delegate
 
   #objc_method :webView_windowScriptObjectAvailable, 'v@:@@'
-  def webView_windowScriptObjectAvailable(sender, js)
+  def webView(sender, windowScriptObjectAvailable:js)
     @js = js
     @js[:app] = @sink
   end
 
   #objc_method :webView_didFinishLoadForFrame, 'v@:@@'
-  def webView_didFinishLoadForFrame(sender, frame)
+  def webView(sender, didFinishLoadForFrame:frame)
     @loaded = true
     setup_scroller
     if @html
@@ -458,8 +458,8 @@ class LogController
     body = doc.body
     div = doc.createElement('div')
     div.setInnerHTML(html)
-    attrs.each {|k,v| div.setAttribute__(k, v) } if attrs
-    div.setAttribute__('id', "line#{@line_number}")
+    attrs.each {|k,v| div.setAttribute(k, value:v) } if attrs
+    div.setAttribute('id', value:"line#{@line_number}")
     body.appendChild(div)
 
     remove_first_line if @max_lines > 0 && @count > @max_lines

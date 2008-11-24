@@ -370,7 +370,7 @@ class DOMNode
   end
   
   def []=(key, value)
-    setValue_forKey(value, key)
+    setValue(value, forKey:key)
   end
 end
 
@@ -380,7 +380,7 @@ class DOMAbstractView
   end
   
   def []=(key, value)
-    setValue_forKey(value, key)
+    setValue(value, forKey:key)
   end
 end
 
