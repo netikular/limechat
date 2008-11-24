@@ -16,7 +16,6 @@ class IRCSocket
   end
   
   def open
-    puts 'IRCSocket#open'
     @sock.host = @host
     @sock.port = @port
     @sock.ssl = @ssl

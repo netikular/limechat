@@ -26,7 +26,6 @@ class TcpClient
   end
   
   def open
-    puts 'TcpClient#open'
     close if @sock
     @buf = ''
     @tag += 1
