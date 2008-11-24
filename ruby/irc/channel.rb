@@ -354,11 +354,11 @@ class IRCChannel
     @members.size
   end
   
-  def tableView_objectValueForTableColumn_row(sender, col, row)
+  def tableView(sender, objectValueForTableColumn:col, row:row)
     ''
   end
   
-  def tableView_willDisplayCell_forTableColumn_row(sender, cell, col, row)
+  def tableView(sender, willDisplayCell:cell, forTableColumn:col, row:row)
     m = @members[row]
     #cell.setHighlighted(sender.isRowSelected(row))
     cell.member = m
