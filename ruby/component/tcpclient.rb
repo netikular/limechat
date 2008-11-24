@@ -5,12 +5,14 @@ class TcpClient
   attr_accessor :delegate, :host, :port, :ssl
   attr_reader :send_queue_size
   
-  def initialize
+  def init
+    super
     @tag = 0
     @host = ''
     @port = 0
     @ssl = false
     @send_queue_size = 0
+    self
   end
   
   def init_with_existing_connection(socket)
@@ -24,6 +26,7 @@ class TcpClient
   end
   
   def open
+    puts 'TcpClient#open'
     close if @sock
     @buf = ''
     @tag += 1
@@ -61,7 +64,7 @@ class TcpClient
   def write(str)
     return unless connected?
     @send_queue_size += 1
-    data = NSData.dataWithRubyString(str)
+    data = str.dataUsingEncoding(NSUTF8StringEncoding)
     @sock.writeData(data, withTimeout:-1.0, tag:0)
     wait_read
   end
@@ -84,14 +87,14 @@ class TcpClient
     sock.useSSL if @ssl
   end
   
-  def onSocket_didConnectToHost_port(sock, host, port)
+  def onSocket(sock, didConnectToHost:host, port:port)
     return unless check_tag(sock)
     wait_read
     @connecting = false
     @delegate.tcpclient_on_connect(self) if @delegate
   end
   
-  def onSocket_willDisconnectWithError(sock, err)
+  def onSocket(sock, willDisconnectWithError:err)
     return unless check_tag(sock)
     @delegate.tcpclient_on_error(self, err) if @delegate && err
   end
@@ -102,14 +105,15 @@ class TcpClient
     @delegate.tcpclient_on_disconnect(self) if @delegate
   end
   
-  def onSocket_didReadData_withTag(sock, data, tag)
+  def onSocket(sock, didReadData:data, withTag:tag)
     return unless check_tag(sock)
-    @buf << data.rubyString
+    s = NSString.alloc.initWithData(data, encoding:NSUTF8StringEncoding)
+    @buf << s if s
     wait_read
     @delegate.tcpclient_on_read(self) if @delegate
   end
   
-  def onSocket_didWriteDataWithTag(sock, tag)
+  def onSocket(sock, didWriteDataWithTag:tag)
     return unless check_tag(sock)
     @send_queue_size -= 1
     @delegate.tcpclient_on_write(self) if @delegate
