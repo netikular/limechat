@@ -1350,7 +1350,7 @@ class IRCUnit
       @last_selected_channel = @channels[0]
     end
     
-    ary = @channels.select {|c| c.config.auto_join }
+    ary = @channels.select {|c| c.channel? && c.config.auto_join }
     join_channels(ary)
   end
   
