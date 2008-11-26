@@ -385,7 +385,7 @@ class MenuController
       else
         # single line
         @world.select_text unless NSTextView === t
-        e = win.fieldEditor_forObject(false, @text)
+        e = win.fieldEditor(false, forObject:@text)
         e.paste(sender)
       end
     else
@@ -423,8 +423,8 @@ class MenuController
       u.send_text(c, syntax.to_sym, s)
     else
       @world.select_text
-      e = @window.fieldEditor_forObject(false, @text)
-      e.replaceCharactersInRange_withString(e.selectedRange, s)
+      e = @window.fieldEditor(false, forObject:@text)
+      e.replaceCharactersInRange(e.selectedRange, withString:s)
       e.scrollRangeToVisible(e.selectedRange)
     end
   end
@@ -481,8 +481,8 @@ class MenuController
     u = @world.selunit
     return unless u && u.myaddress
     @world.select_text unless NSTextView === t
-    e = win.fieldEditor_forObject(false, @text)
-    e.replaceCharactersInRange_withString(e.selectedRange, u.myaddress)
+    e = win.fieldEditor(false, forObject:@text)
+    e.replaceCharactersInRange(e.selectedRange, withString:u.myaddress)
     e.scrollRangeToVisible(e.selectedRange)
   end
 

@@ -436,8 +436,8 @@ class AppController
   def complete_nick(forward)
     u, c = @world.sel
     return unless u && c
-    @world.select_text if @window.firstResponder != @window.fieldEditor_forObject(true, @text)
-    fe = @window.fieldEditor_forObject(true, @text)
+    @world.select_text if @window.firstResponder != @window.fieldEditor(true, forObject:@text)
+    fe = @window.fieldEditor(true, forObject:@text)
     return unless fe
     r = fe.selectedRanges.to_a[0]
     return unless r

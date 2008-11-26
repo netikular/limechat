@@ -207,7 +207,7 @@ class PreferenceDialog
       files.map! {|i| i.basename('.*')}
       files.delete('Sample') if tag == 0
       files.uniq!
-      files.sort! {|a,b| a.casecmp(b)}
+      files.sort_by {|i| i.to_s.downcase}
       unless files.empty?
         @theme.menu.addItem(NSMenuItem.separatorItem)
         count = @theme.numberOfItems
