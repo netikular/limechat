@@ -116,9 +116,9 @@ class MenuController
     when 413  # mark all as read
       true
     when 421  # make text bigger
-      @world.console.view.canMakeTextLarger?
+      @world.console.view.canMakeTextLarger
     when 422  # make text smaller
-      @world.console.view.canMakeTextSmaller?
+      @world.console.view.canMakeTextSmaller
     when 431  # reload theme
       true
 
