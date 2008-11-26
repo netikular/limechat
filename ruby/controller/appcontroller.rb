@@ -17,7 +17,7 @@ class AppController
     #FileUtils.mkpath(preferences.general.transcript_folder.expand_path) rescue nil
 
     if preferences.general.use_hotkey
-      NSApp.registerHotKey_modifierFlags(preferences.general.hotkey_key_code, preferences.general.hotkey_modifier_flags)
+      NSApp.registerHotKey(preferences.general.hotkey_key_code, modifierFlags:preferences.general.hotkey_modifier_flags)
     end
 
     @field_editor = FieldEditorTextView.alloc.initWithFrame(NSZeroRect)

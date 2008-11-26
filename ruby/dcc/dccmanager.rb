@@ -158,7 +158,7 @@ class DccManager
     sel = sel.map {|i| @receivers[i]}
     sel = sel.select {|i| i.status == :complete || i.status == :error}
     return if sel.empty?
-    sel.each{|i| NSWorkspace.sharedWorkspace.selectFile_inFileViewerRootedAtPath(i.download_filename.to_s, nil) }
+    sel.each{|i| NSWorkspace.sharedWorkspace.selectFile(i.download_filename.to_s, inFileViewerRootedAtPath:nil) }
   end
   
   def startSender(sender)

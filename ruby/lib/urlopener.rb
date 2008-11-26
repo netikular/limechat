@@ -5,7 +5,7 @@ module UrlOpener
   
   def openUrl(str)
     urls = [NSURL.URLWithString(str)]
-    NSWorkspace.sharedWorkspace.openURLs_withAppBundleIdentifier_options_additionalEventParamDescriptor_launchIdentifiers(urls, nil, NSWorkspaceLaunchAsync, nil, nil)
+    NSWorkspace.sharedWorkspace.openURLs(urls, withAppBundleIdentifier:nil, options:NSWorkspaceLaunchAsync, additionalEventParamDescriptor:nil, launchIdentifiers:nil)
   end
   
   extend self
