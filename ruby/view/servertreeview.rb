@@ -7,13 +7,31 @@ class ServerTreeView < TreeView
   attr_accessor :responder_delegate
   attr_writer :theme
   
-  def initialize
+  def setup
     @bgcolor = NSColor.from_rgb(229, 237, 247)
     @top_line_color = NSColor.from_rgb(173, 187, 208)
     @bottom_line_color = NSColor.from_rgb(140, 152, 176)
     from = NSColor.from_rgb(173, 187, 208)
     to = NSColor.from_rgb(152, 170, 196)
     @gradient = GradientFill.gradientWithBeginColor(from, endColor:to)
+  end
+  
+  def init
+    setup
+    super
+    self
+  end
+  
+  def initWithCoder(coder)
+    setup
+    super
+    self
+  end
+  
+  def initWithFrame(frame)
+    setup
+    super
+    self
   end
   
   def acceptsFirstResponder

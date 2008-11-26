@@ -8,8 +8,26 @@ class MemberListView < ListView
   attr_accessor :key_delegate, :drop_delegate
   attr_writer :theme
   
-  def initialize
+  def setup
     @bgcolor = NSColor.controlBackgroundColor
+  end
+  
+  def init
+    setup
+    super
+    self
+  end
+  
+  def initWithCoder(coder)
+    setup
+    super
+    self
+  end
+  
+  def initWithFrame(frame)
+    setup
+    super
+    self
   end
   
   def awakeFromNib

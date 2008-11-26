@@ -872,7 +872,7 @@ class IRCWorld
   end
 
   def create_log(unit, channel=nil, console=false)
-    log = LogController.alloc.init
+    log = LogController.new
     log.menu = console ? @console_menu : @log_menu
     log.url_menu = @url_menu
     log.addr_menu = @addr_menu
