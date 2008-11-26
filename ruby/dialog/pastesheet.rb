@@ -40,7 +40,7 @@ class PasteSheet < CocoaSheet
   end
   
   def close
-    NSApp.endSheet_returnCode(@sheet, 0)
+    NSApp.endSheet(@sheet, returnCode:0)
   end
   
   def onSend(sender)

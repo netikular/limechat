@@ -24,7 +24,7 @@ class CocoaSheet
         name.gsub!(" ","")
         src = <<-end_src
           def on#{name}
-            NSApp.endSheet_returnCode(@sheet, #{index})
+            NSApp.endSheet(@sheet, returnCode:#{index})
           end
         end_src
         class_eval src, __FILE__, __LINE__

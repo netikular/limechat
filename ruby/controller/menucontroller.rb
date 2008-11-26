@@ -504,15 +504,15 @@ class MenuController
     return unless sel
     s = sel.log.content_string
     pb = NSPasteboard.generalPasteboard
-    pb.declareTypes_owner([NSStringPboardType], self)
-    pb.setString_forType(s, NSStringPboardType)
+    pb.declareTypes([NSStringPboardType], owner:self)
+    pb.setString(s, forType:NSStringPboardType)
   end
 
   def onCopyConsoleLogAsHtml(sender)
     s = @world.console.content_string
     pb = NSPasteboard.generalPasteboard
-    pb.declareTypes_owner([NSStringPboardType], self)
-    pb.setString_forType(s, NSStringPboardType)
+    pb.declareTypes([NSStringPboardType], owner:self)
+    pb.setString(s, forType:NSStringPboardType)
   end
 
 

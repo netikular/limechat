@@ -6,7 +6,7 @@ class DialogWindow < NSWindow
   
   def sendEvent(e)
     if @key_delegate
-      if e.oc_type == NSKeyDown
+      if e.type == NSKeyDown
         k = e.keyCode
         m = e.modifierFlags
         shift = m & NSShiftKeyMask > 0

@@ -57,7 +57,7 @@ class ChannelDialog
     end
     load
     update
-    NSApp.beginSheet_modalForWindow_modalDelegate_didEndSelector_contextInfo(@window, owner, self, 'sheetDidEnd:returnCode:contextInfo:', nil)
+    NSApp.beginSheet(@window, modalForWindow:owner, modalDelegate:self, didEndSelector:'sheetDidEnd:returnCode:contextInfo:', contextInfo:nil)
   end
   
   def sheetDidEnd_returnCode_contextInfo(sender, code, info)
@@ -87,7 +87,7 @@ class ChannelDialog
   
   def onOk(sender)
     if @modal
-      NSApp.endSheet_returnCode(@window, 1)
+      NSApp.endSheet(@window, returnCode:1)
     else
       save
       fire_event('onOk', @c)
@@ -97,7 +97,7 @@ class ChannelDialog
   
   def onCancel(sender)
     if @modal
-      NSApp.endSheet_returnCode(@window, 0)
+      NSApp.endSheet(@window, returnCode:0)
     else
       @window.close
     end
