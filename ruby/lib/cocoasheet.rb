@@ -23,7 +23,7 @@ class CocoaSheet
         name = name.to_s
         name.gsub!(" ","")
         src = <<-end_src
-          def on#{name}
+          def on#{name}(sender)
             NSApp.endSheet(@sheet, returnCode:#{index})
           end
         end_src
