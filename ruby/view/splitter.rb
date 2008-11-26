@@ -4,14 +4,31 @@
 class Splitter < NSSplitView
   attr_reader :fixedViewIndex, :position, :dividerThickness
   
-  def init
-    super
+  def setup
     @position = 0
     @fixedViewIndex = 0
     @dividerThickness = 1
     @inverted = false
     @hidden = false
     @fixedViewIndex = 0
+  end
+  
+  def init
+    setup
+    super
+    self
+  end
+  
+  def initWithFrame(frame)
+    setup
+    super
+    self
+  end
+  
+  def initWithCoder(coder)
+    setup
+    super
+    self
   end
   
   def awakeFromNib
@@ -107,10 +124,6 @@ class Splitter < NSSplitView
     end
     
     frame = self.frame
-    
-    @dividerThickness ||= 1
-    @fixedViewIndex ||= 0
-    @position ||= 0
     
     w = @dividerThickness
     fixedView = self.subviews.objectAtIndex(@fixedViewIndex)
