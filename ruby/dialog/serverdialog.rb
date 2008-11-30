@@ -163,9 +163,9 @@ class ServerDialog
     @c.channels.size
   end
   
-  def tableView_objectValueForTableColumn_row(sender, col, row)
+  def tableView(sender, objectValueForTableColumn:col, row:row)
     i = @c.channels[row]
-    col = col.identifier.to_s.to_sym
+    col = col.identifier.to_sym
     case col
     when :name; i.name
     when :pass; i.password
@@ -173,9 +173,9 @@ class ServerDialog
     end
   end
   
-  def tableView_setObjectValue_forTableColumn_row(sender, obj, col, row)
+  def tableView(sender, setObjectValue:obj, forTableColumn:col, row:row)
     i = @c.channels[row]
-    col = col.identifier.to_s.to_sym
+    col = col.identifier.to_sym
     case col
     when :join; i.auto_join = obj.intValue != 0
     end
@@ -189,28 +189,28 @@ class ServerDialog
     onEdit(sender)
   end
   
-  def tableView_writeRows_toPasteboard(sender, rows, pboard)
+  def tableView(sender, writeRows:rows, toPasteboard:pboard)
     pboard.declareTypes_owner(TABLE_ROW_TYPES, self)
     pboard.setPropertyList_forType(rows, TABLE_ROW_TYPE)
     true
   end
   
-  def tableView_validateDrop_proposedRow_proposedDropOperation(sender, info, row, op)
+  def tableView(sender, validateDrop:info, proposedRow:row, proposedDropOperation:op)
   	pboard = info.draggingPasteboard
   	if op == NSTableViewDropAbove && pboard.availableTypeFromArray(TABLE_ROW_TYPES)
   	  NSDragOperationGeneric
-	  else
-	    NSDragOperationNone
+    else
+      NSDragOperationNone
     end
   end
   
-  def tableView_acceptDrop_row_dropOperation(sender, info, row, op)
+  def tableView(sender, acceptDrop:info, row:row, dropOperation:op)
   	pboard = info.draggingPasteboard
   	return false unless op == NSTableViewDropAbove && pboard.availableTypeFromArray(TABLE_ROW_TYPES)
     ary = @c.channels
     sel = @channelsTable.selectedRows.map {|i| ary[i.to_i] }
     
-    targets = pboard.propertyListForType(TABLE_ROW_TYPE).to_a.map {|i| ary[i.to_i] }
+    targets = pboard.propertyListForType(TABLE_ROW_TYPE).map {|i| ary[i.to_i] }
     low = ary[0...row] || []
     high = ary[row...ary.size] || []
     targets.each do |i|

@@ -1262,7 +1262,7 @@ class IRCUnit
     end
     desc = "<#{nick}> #{text}"
     context = "#{@id}"
-    context << ";#{c.id}" if c
+    context << ";#{c.object_id}" if c
     @world.notify_on_growl(kind, title, desc, context)
   end
   
@@ -1284,7 +1284,7 @@ class IRCUnit
       return
     end
     context = "#{@id}"
-    context << ";#{c.id}" if c
+    context << ";#{c.object_id}" if c
     @world.notify_on_growl(kind, title, desc, context)
   end
   
