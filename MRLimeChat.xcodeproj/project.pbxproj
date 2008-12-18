@@ -10,6 +10,7 @@
 		4D68B0A40EDB6167005185DE /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D68B0A30EDB6167005185DE /* Cocoa.framework */; };
 		4D68B0A70EDB6176005185DE /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D68B0A60EDB6176005185DE /* Carbon.framework */; };
 		4DE3BE140D8651D900ECA448 /* MacRuby.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DE3BE130D8651D900ECA448 /* MacRuby.framework */; };
+		7824F6CF0EFA1B25004BED8C /* NSDataHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 7824F6CE0EFA1B25004BED8C /* NSDataHelper.m */; };
 		78B4B1110ED92E1000622588 /* rb_main.rb in Resources */ = {isa = PBXBuildFile; fileRef = 78B4B10F0ED92E1000622588 /* rb_main.rb */; };
 		78B4B1120ED92E1000622588 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 78B4B1100ED92E1000622588 /* main.m */; };
 		78B4B1240ED92E3400622588 /* OldEventManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 78B4B1150ED92E3400622588 /* OldEventManager.m */; };
@@ -115,6 +116,8 @@
 		4D68B0A30EDB6167005185DE /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
 		4D68B0A60EDB6176005185DE /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = /System/Library/Frameworks/Carbon.framework; sourceTree = "<absolute>"; };
 		4DE3BE130D8651D900ECA448 /* MacRuby.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MacRuby.framework; path = /Library/Frameworks/MacRuby.framework; sourceTree = "<absolute>"; };
+		7824F6CD0EFA1B25004BED8C /* NSDataHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NSDataHelper.h; path = objc/NSDataHelper.h; sourceTree = "<group>"; };
+		7824F6CE0EFA1B25004BED8C /* NSDataHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NSDataHelper.m; path = objc/NSDataHelper.m; sourceTree = "<group>"; };
 		78B4B10F0ED92E1000622588 /* rb_main.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; name = rb_main.rb; path = objc/rb_main.rb; sourceTree = "<group>"; };
 		78B4B1100ED92E1000622588 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = objc/main.m; sourceTree = "<group>"; };
 		78B4B1150ED92E3400622588 /* OldEventManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OldEventManager.m; path = objc/OldEventManager.m; sourceTree = "<group>"; };
@@ -274,6 +277,7 @@
 		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
 			isa = PBXGroup;
 			children = (
+				78B4B1230ED92E3400622588 /* OldEventManager.h */,
 				78B4B1150ED92E3400622588 /* OldEventManager.m */,
 				78B4B1160ED92E3400622588 /* AsyncSocket.h */,
 				78B4B1170ED92E3400622588 /* AsyncSocket.m */,
@@ -287,7 +291,8 @@
 				78B4B11F0ED92E3400622588 /* KeyRecorderBoxCell.m */,
 				78B4B1200ED92E3400622588 /* LimeChatApplication.h */,
 				78B4B1210ED92E3400622588 /* LimeChatApplication.m */,
-				78B4B1230ED92E3400622588 /* OldEventManager.h */,
+				7824F6CD0EFA1B25004BED8C /* NSDataHelper.h */,
+				7824F6CE0EFA1B25004BED8C /* NSDataHelper.m */,
 				78B4B10F0ED92E1000622588 /* rb_main.rb */,
 				78B4B1100ED92E1000622588 /* main.m */,
 			);
@@ -622,6 +627,7 @@
 				78B4B1280ED92E3400622588 /* KeyRecorderBox.m in Sources */,
 				78B4B1290ED92E3400622588 /* KeyRecorderBoxCell.m in Sources */,
 				78B4B12A0ED92E3400622588 /* LimeChatApplication.m in Sources */,
+				7824F6CF0EFA1B25004BED8C /* NSDataHelper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
