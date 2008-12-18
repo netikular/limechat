@@ -66,9 +66,9 @@ class ModeSheet < CocoaSheet
   
   def onChangeChecks(sender)
     if @sCheck.state == 1 && @pCheck.state == 1
-      case sender.__ocid__
-      when @sCheck.__ocid__; @pCheck.setState(0)
-      when @pCheck.__ocid__; @sCheck.setState(0)
+      case sender
+      when @sCheck; @pCheck.setState(0)
+      when @pCheck; @sCheck.setState(0)
       end
     end
     update
