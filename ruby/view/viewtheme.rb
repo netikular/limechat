@@ -43,7 +43,11 @@ class ViewTheme
       else
         fullname = "#{USER_BASE}/#{fname}"
       end
+      
+      # @@@
+      # avoid exception
       puts fullname
+      
       @log.filename = Pathname.new(fullname + '.css')
       @other.filename = Pathname.new(fullname + '.yaml')
       @js.filename = Pathname.new(fullname + '.js')

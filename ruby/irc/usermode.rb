@@ -2,17 +2,17 @@
 # You can redistribute it and/or modify it under the Ruby's license or the GPL2.
 
 class UserMode
-  attr_accessor :a, :i, :r, :s, :w, :o, :O
+  attr_accessor :a, :i, :r, :s, :w, :o
   
   def initialize
     clear
   end
   
   def clear
-    @a = @i = @r = @s = @w = @o = @O = false
+    @a = @i = @r = @s = @w = @o = false
   end
   
-  SIMPLE_MODES = [:a, :i, :r, :s, :w, :o, :O]
+  SIMPLE_MODES = [:a, :i, :r, :s, :w, :o]
   
   def update(modestr)
     str = modestr.dup

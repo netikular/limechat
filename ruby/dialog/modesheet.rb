@@ -5,7 +5,7 @@ require 'cocoasheet'
 
 class ModeSheet < CocoaSheet
   attr_accessor :mode, :uid, :cid
-  ib_mapped_outlet :sCheck, :pCheck, :nCheck, :tCheck, :tCheck, :iCheck, :mCheck, :aCheck, :rCheck
+  ib_mapped_outlet :sCheck, :pCheck, :nCheck, :tCheck, :iCheck, :mCheck, :aCheck, :rCheck
   attr_writer :kCheck, :lCheck, :password, :limit
   first_responder :sCheck
   buttons :Ok, :Cancel
