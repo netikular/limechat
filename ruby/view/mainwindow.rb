@@ -15,17 +15,17 @@ class MainWindow < NSWindow
   end
   
   def setup
-    #@key_handler = KeyEventHandler.new
+    @key_handler = KeyEventHandler.new
   end
   
   def sendEvent(e)
-    #if e.oc_type == NSKeyDown
-    #  return if @key_handler.process_key_event(e)
-    #end
+    if e.type == NSKeyDown
+      return if @key_handler.process_key_event(e)
+    end
     super(e)
   end
   
   def register_key_handler(*args, &handler)
-    #@key_handler.register_key_handler(*args, &handler)
+    @key_handler.register_key_handler(*args, &handler)
   end
 end

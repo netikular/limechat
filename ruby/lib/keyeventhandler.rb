@@ -7,7 +7,7 @@ class KeyEventHandler
   end
   
   def process_key_event(e)
-    return false if e.oc_type != NSKeyDown
+    return false if e.type != NSKeyDown
     im = NSInputManager.currentInputManager
     return false if im && !im.markedRange.empty?
     m = e.modifierFlags
