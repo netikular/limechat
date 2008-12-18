@@ -56,6 +56,22 @@ static void interpolate(void* info, float const* in, float* out)
 
 - (void)fillRect:(NSRect)rect
 {
+  [beginColor set];
+  NSRectFill(rect);
+  
+  /*
+  NSMutableArray* ary = [NSMutableArray array];
+  [ary addObject:beginColor];
+  [ary addObject:endColor];
+  CGContextRef context = [[NSGraphicsContext currentContext] graphicsPort];
+  CGColorSpaceRef space = CGColorSpaceCreateWithName(kCGColorSpaceGenericRGB);
+  CGGradientRef gradient = CGGradientCreateWithColors(space, (CFArrayRef)ary, NULL);
+  CGContextDrawLinearGradient(context, gradient, CGPointMake(rect.origin.x, rect.origin.y), CGPointMake(rect.origin.x+rect.size.width, rect.origin.y+rect.size.height), 0);
+  CGGradientRelease(gradient);
+  CGColorSpaceRelease(space);
+  */
+  
+  /*
   struct GradientColorInfo ci;
   ci.from[0] = [beginColor redComponent];
   ci.from[1] = [beginColor greenComponent];
@@ -74,6 +90,7 @@ static void interpolate(void* info, float const* in, float* out)
   CGShadingRelease(shade);
   CGColorSpaceRelease(cspace);
   CGFunctionRelease(function);
+  */
 }
 
 @end
