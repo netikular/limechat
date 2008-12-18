@@ -35,7 +35,7 @@ class IRCWorldConfig
   def to_dic
     h = {}
     instance_variables.each do |v|
-      next if v == '@units'
+      next if v == :@units
       h[v[1..-1].to_sym] = instance_variable_get(v)
     end
     h
@@ -104,8 +104,8 @@ class IRCUnitConfig
   def to_dic
     h = {}
     instance_variables.each do |v|
-      next if v == '@channels'
-      next if v == '@cached_label'
+      next if v == :@channels
+      next if v == :@cached_label
       h[v[1..-1].to_sym] = instance_variable_get(v)
     end
     h
@@ -121,7 +121,7 @@ class IRCUnitConfig
   def to_s
     s = "  =Unit\n"
     instance_variables.each do |i|
-      next if i == '@channels'
+      next if i == :@channels
       s += "    #{i} = #{instance_variable_get(i)}\n"
     end
     @channels.each {|i| s += i.to_s }
@@ -156,8 +156,8 @@ class IRCChannelConfig
   def to_dic
     h = {}
     instance_variables.each do |v|
-      next if v == '@type'
-      next if v == '@cached_label'
+      next if v == :@type
+      next if v == :@cached_label
       h[v[1..-1].to_sym] = instance_variable_get(v)
     end
     h
