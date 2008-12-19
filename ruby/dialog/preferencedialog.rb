@@ -13,6 +13,8 @@ class PreferenceDialog
   attr_writer :hotkey
   attr_writer :transcript_folder
   attr_writer :theme
+  attr_writer :highlightArrayController, :dislikeArrayController, :ignoreArrayController
+  attr_writer :highlightTable, :dislikeTable, :ignoreTable
   
   include Preferences::KVOCallbackHelper
   extend Preferences::StringArrayWrapperHelper
@@ -115,6 +117,41 @@ class PreferenceDialog
       value.assign(100) if value[0].to_i <= 100
     end
     true
+  end
+  
+  # Highligh
+  
+  def editTable(table)
+    row = table.numberOfRows - 1
+    table.scrollRowToVisible(row)
+    table.editColumn(0, row:row, withEvent:nil, select:true)
+  end
+  
+  def editHighlightWord
+    editTable(@highlightTable)
+  end
+  
+  def editDislikeWord
+    editTable(@dislikeTable)
+  end
+  
+  def editIgnoreWord
+    editTable(@ignoreTable)
+  end
+  
+  def onAddHighlightWord(sender)
+    @highlightArrayController.add(nil)
+    performSelector('editHighlightWord', withObject:nil, afterDelay:0)
+  end
+  
+  def onAddDislikeWord(sender)
+    @dislikeArrayController.add(nil)
+    performSelector('editDislikeWord', withObject:nil, afterDelay:0)
+  end
+  
+  def onAddIgnoreWord(sender)
+    @ignoreArrayController.add(nil)
+    performSelector('editIgnoreWord', withObject:nil, afterDelay:0)
   end
   
   # Transcript
