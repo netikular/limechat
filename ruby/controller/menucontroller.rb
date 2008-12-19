@@ -335,9 +335,9 @@ class MenuController
   def keyWindowChanged(mode)
     @key_window = mode
     if @key_window
-      @closeWindowItem.setTitle(_(:CloseCurrentPanelMenuTitle))
+      @closeWindowItem.setTitle(_('Close Current Panel…'))
     else
-      @closeWindowItem.setTitle(_(:CloseWindowMenuTitle))
+      @closeWindowItem.setTitle(_('Close Window'))
     end
   end
 

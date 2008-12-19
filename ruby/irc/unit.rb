@@ -1857,11 +1857,11 @@ class IRCUnit < NSObject
       when :time
         send_ctcp_reply(nick, command, Time.now.to_s)
       when :version
-        send_ctcp_reply(nick, command, _('AppVersion').to_s)
+        send_ctcp_reply(nick, command, _('LimeChat for OSX 0.20.2').to_s)
       when :userinfo
         send_ctcp_reply(nick, command, @config.userinfo)
       when :clientinfo
-        send_ctcp_reply(nick, command, _('CtcpClientInfo').to_s)
+        send_ctcp_reply(nick, command, _('DCC VERSION CLIENTINFO USERINFO PING TIME').to_s)
       else
         print_both(self, :reply, "CTCP-query unknown(#{command}) from #{nick}")
         return
