@@ -600,7 +600,7 @@ class AppController
           :h => h
         }
         f = NSRect.from_dic(win)
-        @window.setFrame_display(f, true)
+        @window.setFrame(f, display:true)
       end
       @root_split.setPosition(150)
       @log_split.setPosition(150)

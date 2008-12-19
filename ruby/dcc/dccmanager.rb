@@ -409,7 +409,7 @@ class DccManager
     win = preferences.load_window('dcc_window')
     if win
       f = NSRect.from_dic(win)
-      @window.setFrame_display(f, true)
+      @window.setFrame(f, display:true)
       @splitter.setPosition(win[:split])
     else
       scr = NSScreen.screens[0]
@@ -427,7 +427,7 @@ class DccManager
           :h => h
         }
         f = NSRect.from_dic(win)
-        @window.setFrame_display(f, true)
+        @window.setFrame(f, display:true)
       end
       @splitter.setPosition(100)
     end

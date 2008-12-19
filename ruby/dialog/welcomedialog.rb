@@ -65,7 +65,7 @@ class WelcomeDialog
     @channelTable.reloadData
     row = @channels.size - 1
     @channelTable.select(row)
-    @channelTable.editColumn_row_withEvent_select(0, row, nil, true)
+    @channelTable.editColumn(0, row:row, withEvent:nil, select:true)
   end
 
   def onDeleteChannel(sender)
@@ -80,7 +80,7 @@ class WelcomeDialog
     @channels.size
   end
   
-  def tableView_objectValueForTableColumn_row(sender, col, row)
+  def tableView(sender, objectValueForTableColumn:col, row:row)
     @channels[row]
   end
   

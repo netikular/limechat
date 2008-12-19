@@ -200,7 +200,7 @@ class ListDialog
     else
       frame = NSRect.from_center(NSScreen.screens[0].visibleFrame.center, 500, 400)
     end
-    @window.setFrame_display(frame, false)
+    @window.setFrame(frame, display:false)
   end
 
   def save_window_state
