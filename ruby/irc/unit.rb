@@ -991,8 +991,9 @@ class IRCUnit < NSObject
   
   def ResolverOnResolve(addr)
     return unless addr
-    addr = addr.to_a.map {|i| i.to_s}
-    @myaddress = addr[0]
+    addr = addr[0]
+    return unless addr
+    @myaddress = addr[3]
   end
   
   def print_error(text)
