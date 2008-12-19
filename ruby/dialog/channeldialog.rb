@@ -60,7 +60,7 @@ class ChannelDialog
     NSApp.beginSheet(@window, modalForWindow:owner, modalDelegate:self, didEndSelector:'sheetDidEnd:returnCode:contextInfo:', contextInfo:nil)
   end
   
-  def sheetDidEnd_returnCode_contextInfo(sender, code, info)
+  def sheetDidEnd(sender, returnCode:code, contextInfo:info)
     @window.close
     @modal = false
     if code != 0
