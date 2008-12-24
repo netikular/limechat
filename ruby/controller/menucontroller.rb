@@ -300,11 +300,8 @@ class MenuController
     end
   end
 
-  def preferenceDialog_onOk(sender, m)
-    preferences.save
-  end
-
   def preferenceDialog_onClose(sender)
+    preferences.save
     @pref_dialog = nil
   end
 
