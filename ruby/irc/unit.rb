@@ -1263,7 +1263,7 @@ class IRCUnit < NSObject
     end
     desc = "<#{nick}> #{text}"
     context = "#{@uid}"
-    context << ";#{c.uid}" if c
+    context << ";#{c.respond_to?(:uid) ? c.uid : c.object_id}" if c
     @world.notify_on_growl(kind, title, desc, context)
   end
   
@@ -1285,7 +1285,7 @@ class IRCUnit < NSObject
       return
     end
     context = "#{@uid}"
-    context << ";#{c.uid}" if c
+    context << ";#{c.respond_to?(:uid) ? c.uid : c.object_id}" if c
     @world.notify_on_growl(kind, title, desc, context)
   end
   
