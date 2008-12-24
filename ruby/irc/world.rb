@@ -421,6 +421,7 @@ class IRCWorld
   def notify_on_growl(kind, title, desc, context=nil)
     if preferences.general.use_growl
       return if preferences.general.stop_growl_on_active && NSApp.isActive
+      register_growl
       @growl.notify(kind, title, desc, context)
     end
   end
