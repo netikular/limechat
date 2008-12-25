@@ -536,7 +536,7 @@ class AppController
     range = r.dup
     range.location -= ps.length
     range.length += ps.length
-    fe.replaceCharactersInRange_withString(range, ns)
+    fe.replaceCharactersInRange(range, withString:ns)
     fe.scrollRangeToVisible(fe.selectedRange)
     range.location += ns.length
     range.length = 0
