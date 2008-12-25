@@ -11,7 +11,7 @@ class PasternakClient
   
   def start(content, nick, syntax='ruby')
     cancel
-    @buf = ''
+    @buf = NSMutableData.new
     @response = nil
     params_hash = {
       'paste[username]' => nick,
@@ -24,10 +24,10 @@ class PasternakClient
     
     url = NSURL.URLWithString(REQUEST_URL)
     policy = 1  # NSURLRequestReloadIgnoringLocalCacheData
-    req = NSMutableURLRequest.requestWithURL_cachePolicy_timeoutInterval(url, policy, TIMEOUT)
+    req = NSMutableURLRequest.requestWithURL(url, cachePolicy:policy, timeoutInterval:TIMEOUT)
     req.setHTTPMethod('POST')
-    req.setHTTPBody(NSData.dataWithRubyString(body))
-    @conn = NSURLConnection.alloc.initWithRequest_delegate(req, self)
+    req.setHTTPBody(body.dataUsingEncoding(NSUTF8StringEncoding))
+    @conn = NSURLConnection.alloc.initWithRequest(req, delegate:self)
   end
   
   def cancel
@@ -37,7 +37,7 @@ class PasternakClient
     end
   end
   
-  def connection_didReceiveResponse(conn, res)
+  def connection(conn, didReceiveResponse:res)
     return if @conn != conn
     @response = res
   end
@@ -46,7 +46,7 @@ class PasternakClient
     if @response
       code = @response.statusCode
       if code.to_s =~ /^20[01]$/
-        @delegate.pastie_on_success(self, @buf)
+        @delegate.pastie_on_success(self, NSString.alloc.initWithData(@buf, encoding:NSUTF8StringEncoding))
       else
         @delegate.pastie_on_error(self, "#{code} #{@response.oc_class.localizedStringForStatusCode(code)}")
       end
@@ -54,19 +54,19 @@ class PasternakClient
     @conn = nil
   end
   
-  def connection_didReceiveData(conn, data)
+  def connection(conn, didReceiveData:data)
     return if @conn != conn
-    @buf << data.rubyString
+    @buf.appendData(data)
   end
   
-  def connection_didFailWithError(conn, err)
+  def connection(conn, didFailWithError:err)
     if @conn == conn
       @delegate.pastie_on_error(self, "#{err.userInfo[:NSLocalizedDescription]}")
     end
     @conn = nil
   end
   
-  def connection_willSendRequest_redirectResponse(conn, req, res)
+  def connection(conn, willSendRequest:req, redirectResponse:res)
     return nil if @conn != conn
     if res && res.statusCode == 302
       @delegate.pastie_on_success(self, req.URL.to_s)
