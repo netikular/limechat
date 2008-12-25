@@ -127,8 +127,8 @@ class IRCReceivedMessage
     end
 
     until str.empty?
-      if /\A:/ =~ str
-        @params << $~.post_match
+      if str.hasPrefix(':')
+        @params << str[1..-1]
         break
       end
       s = str.token!
