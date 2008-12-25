@@ -20,7 +20,7 @@ class ListDialog
   def start
     NSBundle.loadNibNamed('ListDialog', owner:self)
     load_window_state
-    @table.setDoubleAction(:onJoin)
+    @table.setDoubleAction('onJoin:')
     @window.makeFirstResponder(@updateButton)
     show
   end
@@ -71,7 +71,7 @@ class ListDialog
     reload_table
   end
   
-  def tableView_didClickTableColumn(table, col)
+  def tableView(table, didClickTableColumn:col)
     i = case col.identifier
       when 'chname'; 0
       when 'count'; 1
@@ -175,7 +175,7 @@ class ListDialog
     end
   end
   
-  def tableView_objectValueForTableColumn_row(sender, col, row)
+  def tableView(sender, objectValueForTableColumn:col, row:row)
     if @filter.nil?
       list = @list
     else
