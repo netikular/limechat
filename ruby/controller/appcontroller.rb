@@ -92,8 +92,8 @@ class AppController
     register_key_handlers
 
     nc = NSWorkspace.sharedWorkspace.notificationCenter
-    nc.addObserver(self, selector:'computerWillSleep', name:NSWorkspaceWillSleepNotification, object:nil)
-    nc.addObserver(self, selector:'computerDidWake', name:NSWorkspaceDidWakeNotification, object:nil)
+    nc.addObserver(self, selector:'computerWillSleep:', name:NSWorkspaceWillSleepNotification, object:nil)
+    nc.addObserver(self, selector:'computerDidWake:', name:NSWorkspaceDidWakeNotification, object:nil)
   end
 
   def computerWillSleep(sender)
@@ -114,7 +114,7 @@ class AppController
 
     ws = NSWorkspace.sharedWorkspace
     nc = ws.notificationCenter
-    nc.addObserver(self, selector:'terminateWithoutConfirm', name:NSWorkspaceWillPowerOffNotification, object:ws)
+    nc.addObserver(self, selector:'terminateWithoutConfirm:', name:NSWorkspaceWillPowerOffNotification, object:ws)
 
     start_timer
 
