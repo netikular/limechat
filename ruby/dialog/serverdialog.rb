@@ -190,8 +190,8 @@ class ServerDialog
   end
   
   def tableView(sender, writeRows:rows, toPasteboard:pboard)
-    pboard.declareTypes_owner(TABLE_ROW_TYPES, self)
-    pboard.setPropertyList_forType(rows, TABLE_ROW_TYPE)
+    pboard.declareTypes(TABLE_ROW_TYPES, owner:self)
+    pboard.setPropertyList(rows, forType:TABLE_ROW_TYPE)
     true
   end
   

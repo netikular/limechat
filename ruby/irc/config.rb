@@ -112,7 +112,7 @@ class IRCUnitConfig
   end
   
   def label
-    if !@cached_label || !@cached_label.isEqualToString?(@name)
+    if !@cached_label || !@cached_label.isEqualToString(@name)
       @cached_label = @name.to_ns
     end
     @cached_label
@@ -164,7 +164,7 @@ class IRCChannelConfig
   end
   
   def label
-    if !@cached_label || !@cached_label.isEqualToString?(@name)
+    if !@cached_label || !@cached_label.isEqualToString(@name)
       @cached_label = @name.to_ns
     end
     @cached_label
@@ -240,7 +240,7 @@ class ModelTreeItemBase
   end
   
   def label
-    if !@cached_label || !@cached_label.isEqualToString?(name)
+    if !@cached_label || !@cached_label.isEqualToString(name)
       @cached_label = name.to_ns
     end
     @cached_label
@@ -258,7 +258,7 @@ end
 class UnitTreeItem < ModelTreeItemBase
   attr_accessor :channels
   
-  def id
+  def uid
     @config.uid
   end
 end

@@ -688,8 +688,8 @@ class IRCWorld
     else
       s = "#{i.unit.uid}-#{i.uid}"
     end
-    pboard.declareTypes_owner(TREE_DRAG_ITEM_TYPES, self)
-    pboard.setPropertyList_forType(s, TREE_DRAG_ITEM_TYPE)
+    pboard.declareTypes(TREE_DRAG_ITEM_TYPES, owner:self)
+    pboard.setPropertyList(s, forType:TREE_DRAG_ITEM_TYPE)
     true
   end
 

@@ -170,6 +170,8 @@ class MenuController
       op && count_selected_members?(i)
     when 2011  # dcc send file
       login_unit_chtalk && count_selected_members?(i) && !!u.myaddress
+    when 2021  # register to auto op
+      count_selected_members?(i)
     when 2101..2105  # ctcp
       login_unit_chtalk && count_selected_members?(i)
     when 2031  # kick
@@ -457,16 +459,16 @@ class MenuController
       while t = t.superview
         if t.is_a?(LogView)
           pb = NSPasteboard.pasteboardWithName(NSFindPboard)
-          pb.declareTypes_owner([NSStringPboardType], nil)
-          pb.setString_forType(t.selection, NSStringPboardType)
+          pb.declareTypes([NSStringPboardType], owner:nil)
+          pb.setString(t.selection, forType:NSStringPboardType)
           break
         end
       end
     else
       if t.respondsToSelector('writeSelectionToPasteboard:type:')
         pb = NSPasteboard.pasteboardWithName(NSFindPboard)
-        pb.declareTypes_owner([NSStringPboardType], nil)
-        t.writeSelectionToPasteboard_type(pb, NSStringPboardType)
+        pb.declareTypes([NSStringPboardType], owner:nil)
+        t.writeSelectionToPasteboard(pb, type:NSStringPboardType)
       end
     end
   end
@@ -993,8 +995,8 @@ class MenuController
   def onCopyUrl(sender)
     return unless @url
     pb = NSPasteboard.generalPasteboard
-    pb.declareTypes_owner([NSStringPboardType], self)
-    pb.setString_forType(@url, NSStringPboardType)
+    pb.declareTypes([NSStringPboardType], owner:self)
+    pb.setString(@url, forType:NSStringPboardType)
     @url = nil
   end
 
@@ -1008,8 +1010,8 @@ class MenuController
   def onCopyAddress(sender)
     return unless @addr
     pb = NSPasteboard.generalPasteboard
-    pb.declareTypes_owner([NSStringPboardType], self)
-    pb.setString_forType(@addr, NSStringPboardType)
+    pb.declareTypes([NSStringPboardType], owner:self)
+    pb.setString(@addr, forType:NSStringPboardType)
     @addr = nil
   end
 end
