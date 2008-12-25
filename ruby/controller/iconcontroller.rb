@@ -38,7 +38,7 @@ class IconController
     h = size.height
     x = icon_size.width - w
     y = icon_size.height - h
-    badge.compositeToPoint_operation(NSPoint.new(x, y), NSCompositeSourceOver)
+    badge.compositeToPoint(NSPoint.new(x, y), operation:NSCompositeSourceOver)
   end
   
 end

@@ -360,11 +360,11 @@ class DccManager
     end
   end
   
-  def tableView_objectValueForTableColumn_row(sender, col, row)
+  def tableView(sender, objectValueForTableColumn:col, row:row)
     ''
   end
   
-  def tableView_willDisplayCell_forTableColumn_row(sender, cell, col, row)
+  def tableView(sender, willDisplayCell:cell, forTableColumn:col, row:row)
     if sender == @receiver_table
       list = @receivers
       cell.op = :receive
@@ -479,7 +479,7 @@ class FileTransferCell < NSCell
     self.class.status_style
   end
   
-  def drawInteriorWithFrame_inView(frame, view)
+  def drawInteriorWithFrame(frame, inView:view)
     if @icon
       size = ICON_SIZE
       margin = (frame.height - size.height) / 2
@@ -488,7 +488,7 @@ class FileTransferCell < NSCell
       pt.y += margin
       pt.y += size.height if view.isFlipped
       @icon.setSize(size)
-      @icon.compositeToPoint_operation(pt, NSCompositeSourceOver)
+      @icon.compositeToPoint(pt, operation:NSCompositeSourceOver)
     end
     
     offset = @progress_bar ? 0 : PROGRESSBAR_HEIGHT / 3
@@ -504,7 +504,7 @@ class FileTransferCell < NSCell
       NSFontAttributeName => NSFont.systemFontOfSize(12),
       NSForegroundColorAttributeName => self.isHighlighted && view.window.isMainWindow && view.window.firstResponder == view ? NSColor.whiteColor : NSColor.blackColor
     }
-    fname.drawInRect_withAttributes(rect, attrs)
+    fname.drawInRect(rect, withAttributes:attrs)
 
     if @progress_bar
       bar = @progress_bar
@@ -562,7 +562,7 @@ class FileTransferCell < NSCell
       str << "#{fsize(@size)}  — Complete"
     end
     
-    str.to_ns.drawInRect_withAttributes(rect, attrs)
+    str.to_ns.drawInRect(rect, withAttributes:attrs)
   end
   
   def fsize(size)

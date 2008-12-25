@@ -129,7 +129,7 @@ class MemberListView < ListView
       row = dragged_row(info)
       if row >= 0
         # received files
-        @drop_delegate.memberListView(files, dropFiles:row)
+        @drop_delegate.memberListView_dropFiles(files, row)
         true
       else
         false

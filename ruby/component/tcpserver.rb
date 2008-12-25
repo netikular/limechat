@@ -14,7 +14,7 @@ class TcpServer
     close if @sock
     @buf = ''
     @sock = AsyncSocket.alloc.initWithDelegate(self)
-    @active = @sock.acceptOnPort_error(@port, nil) != 0
+    @active = @sock.acceptOnPort(@port, error:nil) != 0
     @sock = nil unless @active
     @active
   end
