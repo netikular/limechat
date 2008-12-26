@@ -1594,8 +1594,9 @@ class IRCUnit < NSObject
       c.add_member(User.new(nick, m.sender_username, m.sender_address, false, false, njoin))
       update_channel_title(c)
     end
-    print_both(c || chname, :join, "#{nick} has joined (#{m.sender_username}@#{m.sender_address})")
-    
+    if preferences.general.show_join_leave
+      print_both(c || chname, :join, "#{nick} has joined (#{m.sender_username}@#{m.sender_address})")
+    end
     check_autoop(c, m.sender_nick, m.sender) unless myself
   end
   
@@ -1616,7 +1617,9 @@ class IRCUnit < NSObject
       update_channel_title(c)
       check_rejoin(c) unless myself
     end
-    print_both(c || chname, :part, "#{nick} has left (#{comment})")
+    if preferences.general.show_join_leave
+      print_both(c || chname, :part, "#{nick} has left (#{comment})")
+    end
     print_system(c, "You have left the channel") if myself
   end
   
@@ -1653,13 +1656,17 @@ class IRCUnit < NSObject
     
     @channels.each do |c|
       if c.find_member(nick)
-        print_channel(c, :quit, "#{nick} has left IRC (#{comment})")
+        if preferences.general.show_join_leave
+          print_channel(c, :quit, "#{nick} has left IRC (#{comment})")
+        end
         c.remove_member(nick)
         update_channel_title(c)
         check_rejoin(c)
       end
     end
-    print_console(nil, :quit, "#{nick} has left IRC (#{comment})")
+    if preferences.general.show_join_leave
+      print_console(nil, :quit, "#{nick} has left IRC (#{comment})")
+    end
   end
   
   def receive_kill(m)
