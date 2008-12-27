@@ -210,6 +210,7 @@ class LogController
     return unless doc
     body = doc.body
     @html = nil
+    @loaded = false
     @view.mainFrame.loadHTMLString(initial_document, baseURL:@theme.log.baseurl)
     @scroller.setNeedsDisplay(true)
 	end
