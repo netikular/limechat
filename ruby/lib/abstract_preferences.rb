@@ -129,7 +129,7 @@ class Preferences
     def observe(name, observer)
       key_path = "values.#{self.class.section_defaults_key}.#{name}"
       NSUserDefaultsController.sharedUserDefaultsController.
-        addObserver_forKeyPath_options_context(observer, key_path, NSKeyValueObservingOptionNew, nil)
+        addObserver(observer, forKeyPath:key_path, options:NSKeyValueObservingOptionNew, context:nil)
     end
   end
   
