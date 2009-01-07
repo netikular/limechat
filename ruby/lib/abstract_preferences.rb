@@ -1,4 +1,5 @@
 require 'singleton'
+require 'ns_user_defaults'
 
 class Preferences
   include Singleton
@@ -43,7 +44,7 @@ class Preferences
       def inherited(klass)
         super
         method = klass.name.split('::').last.scan(/[A-Z][a-z]*/).map { |x| x.downcase }.join('_')
-        Preferences.class_eval "def #{method}; #{klass.name}.instance end"
+        Preferences.class_eval "def #{method}; #{klass.name}.instance end", __FILE__, __LINE__
       end
       
       # The key in the preferences that represents the section class.
@@ -66,7 +67,7 @@ class Preferences
         
         class_eval do
           define_method(name) do
-            Preferences.user_defaults[key_path].to_ruby
+            Preferences.user_defaults[key_path]
           end
           
           define_method("#{name}=") do |value|
@@ -98,7 +99,7 @@ class Preferences
         class_eval do
           define_method("#{name}_wrapped") do
             ary = []
-            send(name).each_with_index { |string, index| ary << wrapper.alloc.initWithString(string, index:index) }
+            send(name).each_with_index { |string, index| ary << wrapper.alloc.initWithString_index(string, index) }
             ary
           end
         end
@@ -128,16 +129,16 @@ class Preferences
     def observe(name, observer)
       key_path = "values.#{self.class.section_defaults_key}.#{name}"
       NSUserDefaultsController.sharedUserDefaultsController.
-        addObserver(observer, forKeyPath:key_path, options:NSKeyValueObservingOptionNew, context:nil)
+        addObserver_forKeyPath_options_context(observer, key_path, NSKeyValueObservingOptionNew, nil)
     end
   end
   
-  class StringArrayWrapper
+  class StringArrayWrapper < NSObject
     class << self
       attr_accessor :key_path
       
       def array
-        Preferences.user_defaults[key_path].to_ruby
+        Preferences.user_defaults[key_path]
       end
       
       def array=(array)
@@ -155,11 +156,9 @@ class Preferences
       end
     end
     
-    #kvc_accessor :string
-    attr_accessor :string
-    attr_accessor :index
+    attr_accessor :string, :index
     
-    def initWithString(string, index:index)
+    def initWithString_index(string, index)
       if init
         @string, @index = string, index
         self
@@ -197,16 +196,50 @@ class Preferences
     end
   end
   
-  module StringArrayWrapperHelper
-    def string_array_kvc_wrapper_accessor(name, path_to_eval_to_object)
-      #kvc_accessor(name)
+  # Extend your class with this module to get access to a few KVC accessor helper methods.
+  module AccessorHelpers
+    # Defines a kvc_accessor which reads and writes
+    # to the specified preferences path (<tt>path_to_eval_to_object</tt>).
+    #
+    # This is useful for binding, for instance, UI elements
+    # to an array in the NSUserDefaults which is normally immutable.
+    #
+    #   class PreferencesController < NSWindowController
+    #     defaults_kvc_accessor :an_array_of_dictionaries, 'preferences.keyword.url_mappings'
+    #   end
+    #
+    # Binding a NSArrayController to File's Owner with key path: <tt>an_array_of_dictionaries</tt>,
+    # will perform the following read/write actions on the NSUserDefaults:
+    #
+    #   preferences_controller.valueForKey('an_array_of_dictionaries') # => [{'key' => 'value 1'}, {'key' => 'value 2'}]
+    #   preferences_controller.setValueForKey([{'key' => 'value 1'}], 'an_array_of_dictionaries')
+    #   preferences_controller.valueForKey('an_array_of_dictionaries') # => [{'key' => 'value 1'}]
+    def defaults_kvc_accessor(name, path_to_eval_to_object)
       attr_accessor(name)
       
       class_eval %{
         def #{name}
-          @#{name} ||= #{path_to_eval_to_object}_wrapped
+          @#{name} ||= #{path_to_eval_to_object}
         end
         
+        def #{name}=(new_defaults)
+          #{path_to_eval_to_object} = @#{name} = new_defaults
+        end
+      }, __FILE__, __LINE__
+    end
+    
+    # Defines read and write KVC accessors like defaults_kvc_accessor does,
+    # but is used specifically for defaults defined with Namespace#string_array_defaults_accessor.
+    #
+    #   class PreferencesController < NSWindowController
+    #     defualts_string_array_kvc_accessor :an_array_of_strings, 'preferences.keyword.highlight_words'
+    #   end
+    #
+    # See Namespace#string_array_defaults_accessor for more info.
+    def defualts_string_array_kvc_accessor(name, path_to_eval_to_object)
+      defaults_kvc_accessor(name, "#{path_to_eval_to_object}_wrapped")
+      
+      class_eval %{
         def #{name}=(new_wrappers)
           if new_wrappers.length < #{name}.length
             Preferences::StringArrayWrapper.destroy(#{name}.first.class, new_wrappers)
@@ -222,10 +255,10 @@ class Preferences
     # resolved at runtime, probably a bug in RubyCocoa.
     def self.included(klass)
       klass.class_eval do
-        def observeValueForKeyPath(key_path, ofObject:observed, change:change, context:context)
+        def observeValueForKeyPath_ofObject_change_context(key_path, observed, change, context)
           value_key_path = key_path.sub(/^values\./, '')
           callback_method = "#{key_path.split('.').last}_changed"
-          send(callback_method, Preferences.user_defaults[value_key_path].to_ruby)
+          send(callback_method, Preferences.user_defaults[value_key_path])
         end
       end
     end

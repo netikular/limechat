@@ -107,6 +107,7 @@
 		78B4B45F0ED932CA00622588 /* treeview.rb in Resources */ = {isa = PBXBuildFile; fileRef = 78B4B4170ED932CA00622588 /* treeview.rb */; };
 		78B4B4600ED932CA00622588 /* viewtheme.rb in Resources */ = {isa = PBXBuildFile; fileRef = 78B4B4180ED932CA00622588 /* viewtheme.rb */; };
 		78B4B4680ED9337E00622588 /* abstract_preferences.rb in Resources */ = {isa = PBXBuildFile; fileRef = 78B4B4670ED9337E00622588 /* abstract_preferences.rb */; };
+		78F475930F15022000D05115 /* ns_user_defaults.rb in Resources */ = {isa = PBXBuildFile; fileRef = 78F475920F15022000D05115 /* ns_user_defaults.rb */; };
 		8D11072A0486CEB800E47090 /* MainMenu.nib in Resources */ = {isa = PBXBuildFile; fileRef = 29B97318FDCFA39411CA2CEA /* MainMenu.nib */; };
 		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
 /* End PBXBuildFile section */
@@ -222,6 +223,7 @@
 		78B4B4170ED932CA00622588 /* treeview.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = treeview.rb; sourceTree = "<group>"; };
 		78B4B4180ED932CA00622588 /* viewtheme.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = viewtheme.rb; sourceTree = "<group>"; };
 		78B4B4670ED9337E00622588 /* abstract_preferences.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = abstract_preferences.rb; sourceTree = "<group>"; };
+		78F475920F15022000D05115 /* ns_user_defaults.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = ns_user_defaults.rb; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* MRLimeChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MRLimeChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -412,6 +414,7 @@
 			isa = PBXGroup;
 			children = (
 				78B4B4670ED9337E00622588 /* abstract_preferences.rb */,
+				78F475920F15022000D05115 /* ns_user_defaults.rb */,
 				78B4B3EF0ED932CA00622588 /* cocoasheet.rb */,
 				78B4B3F00ED932CA00622588 /* dialoghelper.rb */,
 				78B4B3F10ED932CA00622588 /* filelogger.rb */,
@@ -613,6 +616,7 @@
 				78B4B4600ED932CA00622588 /* viewtheme.rb in Resources */,
 				78B4B4680ED9337E00622588 /* abstract_preferences.rb in Resources */,
 				7824F70F0EFA32C8004BED8C /* application.icns in Resources */,
+				78F475930F15022000D05115 /* ns_user_defaults.rb in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
