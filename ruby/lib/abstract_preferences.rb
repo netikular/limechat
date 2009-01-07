@@ -133,7 +133,7 @@ class Preferences
     end
   end
   
-  class StringArrayWrapper < NSObject
+  class StringArrayWrapper
     class << self
       attr_accessor :key_path
       
