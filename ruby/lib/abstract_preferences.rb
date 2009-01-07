@@ -257,7 +257,7 @@ class Preferences
     # resolved at runtime, probably a bug in RubyCocoa.
     def self.included(klass)
       klass.class_eval do
-        def observeValueForKeyPath_ofObject_change_context(key_path, observed, change, context)
+        def observeValueForKeyPath(key_path, ofObject:observed, change:change, context:context)
           value_key_path = key_path.sub(/^values\./, '')
           callback_method = "#{key_path.split('.').last}_changed"
           send(callback_method, Preferences.user_defaults[value_key_path].to_ruby)
