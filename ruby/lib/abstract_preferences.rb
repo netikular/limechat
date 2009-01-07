@@ -221,13 +221,15 @@ class Preferences
         def #{name}
           @#{name} ||= #{path_to_eval_to_object}
         end
-        
+
         def #{name}=(new_defaults)
+          willChangeValueForKey(#{name})
           #{path_to_eval_to_object} = @#{name} = new_defaults
+          didChangeValueForKey(#{name})
         end
       }, __FILE__, __LINE__
     end
-    
+        
     # Defines read and write KVC accessors like defaults_kvc_accessor does,
     # but is used specifically for defaults defined with Namespace#string_array_defaults_accessor.
     #
