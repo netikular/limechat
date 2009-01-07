@@ -17,11 +17,15 @@ class PreferenceDialog
   attr_writer :highlightTable, :dislikeTable, :ignoreTable
   
   include Preferences::KVOCallbackHelper
-  extend Preferences::StringArrayWrapperHelper
+  extend Preferences::AccessorHelpers
   
-  string_array_kvc_wrapper_accessor :highlight_words, 'preferences.keyword.words'
-  string_array_kvc_wrapper_accessor :dislike_words, 'preferences.keyword.dislike_words'
-  string_array_kvc_wrapper_accessor :ignore_words, 'preferences.keyword.ignore_words'
+  defaults_string_array_kvc_accessor :highlight_words, 'preferences.keyword.words'
+  defaults_string_array_kvc_accessor :dislike_words, 'preferences.keyword.dislike_words'
+  defaults_string_array_kvc_accessor :ignore_words, 'preferences.keyword.ignore_words'
+
+  #string_array_kvc_wrapper_accessor :highlight_words, 'preferences.keyword.words'
+  #string_array_kvc_wrapper_accessor :dislike_words, 'preferences.keyword.dislike_words'
+  #string_array_kvc_wrapper_accessor :ignore_words, 'preferences.keyword.ignore_words'
 
   # KVC accessors  
   attr_accessor :sounds
