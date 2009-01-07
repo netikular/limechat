@@ -99,7 +99,7 @@ class Preferences
         class_eval do
           define_method("#{name}_wrapped") do
             ary = []
-            send(name).each_with_index { |string, index| ary << wrapper.alloc.initWithString_index(string, index) }
+            send(name).each_with_index { |string, index| ary << wrapper.alloc.initWithString(string, index:index) }
             ary
           end
         end
