@@ -81,11 +81,11 @@ class PreferenceDialog
   end
   
   def hotkeyUpdated(hotkey)
-    if @hotkey.valid?
+    if @hotkey.valid
       preferences.general.use_hotkey = true
       preferences.general.hotkey_key_code = @hotkey.keyCode
       preferences.general.hotkey_modifier_flags = @hotkey.modifierFlags
-      NSApp.registerHotKey_modifierFlags(@hotkey.keyCode, @hotkey.modifierFlags)
+      NSApp.registerHotKey(@hotkey.keyCode, modifierFlags:@hotkey.modifierFlags)
     else
       preferences.general.use_hotkey = false
       NSApp.unregisterHotKey
