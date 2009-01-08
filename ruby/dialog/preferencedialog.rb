@@ -81,7 +81,7 @@ class PreferenceDialog
   end
   
   def hotkeyUpdated(hotkey)
-    if @hotkey.valid
+    if @hotkey.valid != 0
       preferences.general.use_hotkey = true
       preferences.general.hotkey_key_code = @hotkey.keyCode
       preferences.general.hotkey_modifier_flags = @hotkey.modifierFlags

@@ -5,6 +5,7 @@
 #import "KeyRecorderBoxCell.h"
 #import <Carbon/Carbon.h>
 #import <CoreServices/CoreServices.h>
+#import "KeyCodeTranslator.h"
 
 @interface KeyRecorderBox (Private)
 - (void)initKeyMap;
@@ -26,8 +27,6 @@ static NSArray* padKeyArray;
 
 + (void)load
 {
-	//NSAutoreleasePool* pool = [NSAutoreleasePool new];
-	
 	specialKeyMap = [NSDictionary dictionaryWithObjectsAndKeys:
 		@"↩", NUM(36),
 		@"⇥", NUM(48),
@@ -89,8 +88,6 @@ static NSArray* padKeyArray;
 	   nil
 	];
 	[padKeyArray retain];
-	
-	//[pool release];
 }
 
 + (Class)cellClass
@@ -165,7 +162,7 @@ static NSArray* padKeyArray;
 			return YES;
 	}
 	
-	if (!ctrl && !shift && !alt && !cmd && !func) {
+	if (!ctrl && !alt && !cmd && !func) {
 		// no mods
 		switch (k) {
 			case 36:	// return
@@ -185,13 +182,6 @@ static NSArray* padKeyArray;
 			}
 		}
 	}
-	else if (!ctrl && shift && !alt && !cmd && !func) {
-		// shift
-		switch (k) {
-			case 48:	// tab
-				return NO;
-		}
-	}
 	else if (!ctrl && !shift && !alt && cmd && !func) {
 		// cmd
 		if (![padKeyArray containsObject:NUM(k)]) {
@@ -200,8 +190,11 @@ static NSArray* padKeyArray;
 	}
 	
 	valid = YES;
-	if ([_delegate respondsToSelector:@selector(hotkeyUpdated:)])
+	
+	if ([_delegate respondsToSelector:@selector(hotkeyUpdated:)]) {
 		[_delegate performSelector:@selector(hotkeyUpdated:) withObject:self];
+	}
+	
 	[self showCurrentKey];
 	return YES;
 }
@@ -233,63 +226,16 @@ static NSArray* padKeyArray;
 
 - (NSString*)transformKeyCodeToString:(unsigned int)keyCode
 {
-	return @"x";
-	
-	/*
 	NSString* name = [specialKeyMap objectForKey:NUM(keyCode)];
 	if (name) return name;
 	
 	BOOL isPadKey = [padKeyArray containsObject:NUM(keyCode)];
 	
-	KeyboardLayoutRef currentLayoutRef;
-	KeyboardLayoutKind currentLayoutKind;
-	OSStatus err;
-	
-	err = KLGetCurrentKeyboardLayout(&currentLayoutRef);
-	if (err != noErr) return nil;
-	
-	err = KLGetKeyboardLayoutProperty(currentLayoutRef, kKLKind, (const void**)&currentLayoutKind);
-	if (err != noErr) return nil;
-	
-	UInt32 keysDown = 0;
-	
-	if (currentLayoutKind == kKLKCHRKind) {
-		Handle kchrHandle;
-		err = KLGetKeyboardLayoutProperty(currentLayoutRef, kKLKCHRData, (const void**)&kchrHandle);
-		if (err != noErr) return nil;
-		
-		UInt32 charCode = KeyTranslate(kchrHandle, keyCode, &keysDown);
-		if (keysDown != 0) charCode = KeyTranslate(kchrHandle, keyCode, &keysDown);
-		
-		unsigned char c = charCode & 0xff;
-		NSString* keyString = [[[[NSString alloc] initWithData:[NSData dataWithBytes:&c length:1] encoding:NSMacOSRomanStringEncoding] autorelease] uppercaseString];
-		return (isPadKey ? [NSString stringWithFormat:@"#%@", keyString] : keyString);
-	}
-	else {
-		UCKeyboardLayout *keyboardLayout = NULL;
-		err = KLGetKeyboardLayoutProperty(currentLayoutRef, kKLuchrData, (const void**)&keyboardLayout);
-		if (err != noErr) return nil;
-		
-		UniCharCount length = 4, realLength;
-		UniChar chars[4];
-		
-		err = UCKeyTranslate(keyboardLayout, 
-							 keyCode,
-							 kUCKeyActionDisplay,
-							 0,
-							 LMGetKbdType(),
-							 kUCKeyTranslateNoDeadKeysBit,
-							 &keysDown,
-							 length,
-							 &realLength,
-							 chars);
-		
-		if (err != noErr) return nil;
-		
-		NSString* keyString = [[NSString stringWithCharacters:chars length:1] uppercaseString];
-		return (isPadKey ? [NSString stringWithFormat:@"#%@", keyString] : keyString);
-	}
-	 */
+  NSString* s = [[KeyCodeTranslator sharedInstance] translateKeyCode:keyCode];
+  if (!s) return nil;
+  
+	NSString* keyString = [s uppercaseString];
+	return (isPadKey ? [NSString stringWithFormat:@"#%@", keyString] : keyString);
 }
 
 @end
