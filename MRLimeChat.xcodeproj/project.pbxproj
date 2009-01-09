@@ -12,6 +12,10 @@
 		4DE3BE140D8651D900ECA448 /* MacRuby.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DE3BE130D8651D900ECA448 /* MacRuby.framework */; };
 		7824F6CF0EFA1B25004BED8C /* NSDataHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 7824F6CE0EFA1B25004BED8C /* NSDataHelper.m */; };
 		7824F70F0EFA32C8004BED8C /* application.icns in Resources */ = {isa = PBXBuildFile; fileRef = 7824F70E0EFA32C8004BED8C /* application.icns */; };
+		78A376940F172039002CD1A4 /* KeyCodeTranslator.m in Sources */ = {isa = PBXBuildFile; fileRef = 78A376930F172039002CD1A4 /* KeyCodeTranslator.m */; };
+		78A376990F1720E6002CD1A4 /* abstract_preferences.rb in Resources */ = {isa = PBXBuildFile; fileRef = 78A376980F1720E6002CD1A4 /* abstract_preferences.rb */; };
+		78A376AA0F1726BF002CD1A4 /* redstar.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 78A376A80F1726BF002CD1A4 /* redstar.tiff */; };
+		78A376AB0F1726BF002CD1A4 /* bluestar.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 78A376A90F1726BF002CD1A4 /* bluestar.tiff */; };
 		78B4B1110ED92E1000622588 /* rb_main.rb in Resources */ = {isa = PBXBuildFile; fileRef = 78B4B10F0ED92E1000622588 /* rb_main.rb */; };
 		78B4B1120ED92E1000622588 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 78B4B1100ED92E1000622588 /* main.m */; };
 		78B4B1240ED92E3400622588 /* OldEventManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 78B4B1150ED92E3400622588 /* OldEventManager.m */; };
@@ -106,8 +110,6 @@
 		78B4B45E0ED932CA00622588 /* textfield.rb in Resources */ = {isa = PBXBuildFile; fileRef = 78B4B4160ED932CA00622588 /* textfield.rb */; };
 		78B4B45F0ED932CA00622588 /* treeview.rb in Resources */ = {isa = PBXBuildFile; fileRef = 78B4B4170ED932CA00622588 /* treeview.rb */; };
 		78B4B4600ED932CA00622588 /* viewtheme.rb in Resources */ = {isa = PBXBuildFile; fileRef = 78B4B4180ED932CA00622588 /* viewtheme.rb */; };
-		78B4B4680ED9337E00622588 /* abstract_preferences.rb in Resources */ = {isa = PBXBuildFile; fileRef = 78B4B4670ED9337E00622588 /* abstract_preferences.rb */; };
-		78E856930F15B4A600EAD94E /* KeyCodeTranslator.m in Sources */ = {isa = PBXBuildFile; fileRef = 78E856910F15B4A600EAD94E /* KeyCodeTranslator.m */; };
 		78F475930F15022000D05115 /* ns_user_defaults.rb in Resources */ = {isa = PBXBuildFile; fileRef = 78F475920F15022000D05115 /* ns_user_defaults.rb */; };
 		8D11072A0486CEB800E47090 /* MainMenu.nib in Resources */ = {isa = PBXBuildFile; fileRef = 29B97318FDCFA39411CA2CEA /* MainMenu.nib */; };
 		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
@@ -122,6 +124,11 @@
 		7824F6CD0EFA1B25004BED8C /* NSDataHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NSDataHelper.h; path = objc/NSDataHelper.h; sourceTree = "<group>"; };
 		7824F6CE0EFA1B25004BED8C /* NSDataHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NSDataHelper.m; path = objc/NSDataHelper.m; sourceTree = "<group>"; };
 		7824F70E0EFA32C8004BED8C /* application.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = application.icns; path = resource/icon/application.icns; sourceTree = "<group>"; };
+		78A376920F172039002CD1A4 /* KeyCodeTranslator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KeyCodeTranslator.h; path = objc/KeyCodeTranslator.h; sourceTree = "<group>"; };
+		78A376930F172039002CD1A4 /* KeyCodeTranslator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KeyCodeTranslator.m; path = objc/KeyCodeTranslator.m; sourceTree = "<group>"; };
+		78A376980F1720E6002CD1A4 /* abstract_preferences.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; name = abstract_preferences.rb; path = "vendor/rubycocoa-prefs/lib/abstract_preferences.rb"; sourceTree = SOURCE_ROOT; };
+		78A376A80F1726BF002CD1A4 /* redstar.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = redstar.tiff; path = resource/icon/redstar.tiff; sourceTree = "<group>"; };
+		78A376A90F1726BF002CD1A4 /* bluestar.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = bluestar.tiff; path = resource/icon/bluestar.tiff; sourceTree = "<group>"; };
 		78B4B10F0ED92E1000622588 /* rb_main.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; name = rb_main.rb; path = objc/rb_main.rb; sourceTree = "<group>"; };
 		78B4B1100ED92E1000622588 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = objc/main.m; sourceTree = "<group>"; };
 		78B4B1150ED92E3400622588 /* OldEventManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OldEventManager.m; path = objc/OldEventManager.m; sourceTree = "<group>"; };
@@ -223,7 +230,6 @@
 		78B4B4160ED932CA00622588 /* textfield.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = textfield.rb; sourceTree = "<group>"; };
 		78B4B4170ED932CA00622588 /* treeview.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = treeview.rb; sourceTree = "<group>"; };
 		78B4B4180ED932CA00622588 /* viewtheme.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = viewtheme.rb; sourceTree = "<group>"; };
-		78B4B4670ED9337E00622588 /* abstract_preferences.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; name = abstract_preferences.rb; path = "../../vendor/rubycocoa-prefs/lib/abstract_preferences.rb"; sourceTree = "<group>"; };
 		78F475920F15022000D05115 /* ns_user_defaults.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = ns_user_defaults.rb; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* MRLimeChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MRLimeChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -290,6 +296,8 @@
 				78B4B1190ED92E3400622588 /* GradientFill.m */,
 				78B4B11A0ED92E3400622588 /* HotKeyManager.h */,
 				78B4B11B0ED92E3400622588 /* HotKeyManager.m */,
+				78A376920F172039002CD1A4 /* KeyCodeTranslator.h */,
+				78A376930F172039002CD1A4 /* KeyCodeTranslator.m */,
 				78B4B11C0ED92E3400622588 /* KeyRecorderBox.h */,
 				78B4B11D0ED92E3400622588 /* KeyRecorderBox.m */,
 				78B4B11E0ED92E3400622588 /* KeyRecorderBoxCell.h */,
@@ -298,8 +306,6 @@
 				78B4B1210ED92E3400622588 /* LimeChatApplication.m */,
 				7824F6CD0EFA1B25004BED8C /* NSDataHelper.h */,
 				7824F6CE0EFA1B25004BED8C /* NSDataHelper.m */,
-				78E856910F15B4A600EAD94E /* KeyCodeTranslator.m */,
-				78E856920F15B4A600EAD94E /* KeyCodeTranslator.h */,
 				78B4B10F0ED92E1000622588 /* rb_main.rb */,
 				78B4B1100ED92E1000622588 /* main.m */,
 			);
@@ -310,6 +316,8 @@
 			isa = PBXGroup;
 			children = (
 				7824F70E0EFA32C8004BED8C /* application.icns */,
+				78A376A80F1726BF002CD1A4 /* redstar.tiff */,
+				78A376A90F1726BF002CD1A4 /* bluestar.tiff */,
 				8D1107310486CEB800E47090 /* Info.plist */,
 				089C165CFE840E0CC02AAC07 /* InfoPlist.strings */,
 				78B4B3AC0ED932A600622588 /* Localizable.strings */,
@@ -416,7 +424,7 @@
 		78B4B3EE0ED932CA00622588 /* lib */ = {
 			isa = PBXGroup;
 			children = (
-				78B4B4670ED9337E00622588 /* abstract_preferences.rb */,
+				78A376980F1720E6002CD1A4 /* abstract_preferences.rb */,
 				78F475920F15022000D05115 /* ns_user_defaults.rb */,
 				78B4B3EF0ED932CA00622588 /* cocoasheet.rb */,
 				78B4B3F00ED932CA00622588 /* dialoghelper.rb */,
@@ -617,9 +625,11 @@
 				78B4B45E0ED932CA00622588 /* textfield.rb in Resources */,
 				78B4B45F0ED932CA00622588 /* treeview.rb in Resources */,
 				78B4B4600ED932CA00622588 /* viewtheme.rb in Resources */,
-				78B4B4680ED9337E00622588 /* abstract_preferences.rb in Resources */,
 				7824F70F0EFA32C8004BED8C /* application.icns in Resources */,
 				78F475930F15022000D05115 /* ns_user_defaults.rb in Resources */,
+				78A376990F1720E6002CD1A4 /* abstract_preferences.rb in Resources */,
+				78A376AA0F1726BF002CD1A4 /* redstar.tiff in Resources */,
+				78A376AB0F1726BF002CD1A4 /* bluestar.tiff in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -639,7 +649,7 @@
 				78B4B1290ED92E3400622588 /* KeyRecorderBoxCell.m in Sources */,
 				78B4B12A0ED92E3400622588 /* LimeChatApplication.m in Sources */,
 				7824F6CF0EFA1B25004BED8C /* NSDataHelper.m in Sources */,
-				78E856930F15B4A600EAD94E /* KeyCodeTranslator.m in Sources */,
+				78A376940F172039002CD1A4 /* KeyCodeTranslator.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

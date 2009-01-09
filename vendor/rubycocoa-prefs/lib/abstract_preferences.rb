@@ -105,6 +105,10 @@ class Preferences
             send(name).each_with_index { |string, index| ary << wrapper.alloc.initWithString_index(string, index) }
             ary
           end
+          
+          define_method("#{name}_wrapped=") do |v|
+            p v
+          end
         end
       end
     end
