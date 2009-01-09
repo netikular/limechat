@@ -1,7 +1,9 @@
 require 'pathname'
 require 'fileutils'
 
-APP_SHORT_NAME = 'LimeChat'
+#APP_SHORT_NAME = 'LimeChat'
+APP_SHORT_NAME = 'MRLimeChat'
+
 APP_NAME = APP_SHORT_NAME + '.app'
 ROOT_PATH = Pathname.new(__FILE__).dirname
 DESKTOP_PATH = Pathname.new('~/Desktop').expand_path
@@ -14,17 +16,17 @@ task :default => :run
 
 desc "Build a release version"
 task :build do |t|
-  sh "xcodebuild -target LimeChat -configuration Release build"
+  sh "xcodebuild -project #{APP_SHORT_NAME}.xcodeproj -target #{APP_SHORT_NAME} -configuration Release build"
 end
 
 desc "Build & run a release version"
 task :run => :build do
-  sh "./build/Release/LimeChat.app/Contents/MacOS/LimeChat"
+  sh "./build/Release/#{APP_SHORT_NAME}.app/Contents/MacOS/#{APP_SHORT_NAME}"
 end
 
 desc "Install to /"
 task :install do |t|
-  sh "xcodebuild -target LimeChat -configuration Release install DSTROOT=/"
+  sh "xcodebuild -project #{APP_SHORT_NAME}.xcodeproj -target #{APP_SHORT_NAME} -configuration Release install DSTROOT=/"
 end
 
 desc "Clean all build files"

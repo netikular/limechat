@@ -23,7 +23,7 @@ class PreferenceDialog
   defaults_string_array_kvc_accessor :dislike_words, 'preferences.keyword.dislike_words'
   defaults_string_array_kvc_accessor :ignore_words, 'preferences.keyword.ignore_words'
 
-  # KVC accessors  
+  # KVC accessors
   attr_accessor :sounds
   attr_accessor :available_sounds
   attr_accessor :log_font

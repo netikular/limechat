@@ -6,7 +6,7 @@ module SoundPlayer
   def play(name)
     return if name == nil || name.empty?
     if name == 'Beep'
-      NSBeep
+      NSBeep()
     else
       s = NSSound.soundNamed(name)
       s.play if s

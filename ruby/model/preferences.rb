@@ -96,7 +96,6 @@ class Preferences
     end
     
     class SoundWrapper
-      #kvc_accessor :display_name, :sound
       attr_accessor :display_name, :sound
       
       def initWithName_displayName_sound(name, display_name, sound)
@@ -114,6 +113,8 @@ class Preferences
         @sound = sound
         preferences.sound.send("#{@name}=", (@sound == Preferences::Sound::EMPTY_SOUND ? '' : @sound))
       end
+      # FIXME: http://www.macruby.org/trac/ticket/201
+      alias_method :setSound, :sound=
     end
   end
   
