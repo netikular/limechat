@@ -427,7 +427,7 @@ class IRCWorld < NSObject
   end
 
   def update_icon
-    highlight = newtalk = false
+    highlight = newtalk = textchange = false
 
     @units.each do |u|
       if u.keyword
@@ -440,11 +440,14 @@ class IRCWorld < NSObject
           highlight = true
           break
         end
-        newtalk = true if c.newtalk
+        if c.newtalk
+          newtalk = true
+        end   
+        textchange = true if c.unread
       end
     end
 
-    @icon.update(highlight, newtalk)
+    @icon.update(highlight, newtalk, textchange)
   end
 
   def reload_theme

@@ -6,13 +6,14 @@ class IconController
     @highlight = @newTalk = false
   end
   
-  def update(highlight, newTalk)
-    return if highlight == @highlight && newTalk == @newTalk
+  def update(highlight, newTalk, textChange = false)
+    return if highlight == @highlight && newTalk == @newTalk && textChange == @textChange
     @highlight = highlight
     @newTalk = newTalk
-    
+    @textChange = textChange
     icon =  NSImage.imageNamed(:NSApplicationIcon)
-    if highlight || newTalk
+    puts textChange
+    if highlight || newTalk || textChange
       icon = icon.copy
       begin
         icon.lockFocus
@@ -22,6 +23,10 @@ class IconController
         elsif newTalk
           @newTalkBadge ||= NSImage.imageNamed(:bluestar)
           draw_badge(@newTalkBadge, icon.size)
+        elsif textChange
+          puts textChange
+          @textChangeBadge ||= NSImage.imageNamed(:yellowstar)
+          draw_badge(@textChangeBadge, icon.size)
         end
       ensure
         icon.unlockFocus

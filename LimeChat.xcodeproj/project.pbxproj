@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0A86C5A60F6940FE00E9B9F7 /* yellowstar.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A86C5A50F6940FE00E9B9F7 /* yellowstar.png */; };
 		510D9F6D0EC4FE9900D3BEFB /* abstract_preferences.rb in Resources */ = {isa = PBXBuildFile; fileRef = 510D9F6C0EC4FE9900D3BEFB /* abstract_preferences.rb */; };
 		51F0A51E0EBCF70A00B2C878 /* controls_with_disabled_state.rb in Resources */ = {isa = PBXBuildFile; fileRef = 51F0A51D0EBCF70A00B2C878 /* controls_with_disabled_state.rb */; };
 		7801DD2E0D1AF75F00D8691D /* isupportinfo.rb in Resources */ = {isa = PBXBuildFile; fileRef = 7801DD2D0D1AF75F00D8691D /* isupportinfo.rb */; };
@@ -129,6 +130,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0A86C5A50F6940FE00E9B9F7 /* yellowstar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = yellowstar.png; path = resource/icon/yellowstar.png; sourceTree = "<group>"; };
 		1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
 		29B97319FDCFA39411CA2CEA /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = English.lproj/MainMenu.nib; sourceTree = "<group>"; };
 		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
@@ -493,6 +495,7 @@
 		78A55F040E810DBC00339EBC /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				0A86C5A50F6940FE00E9B9F7 /* yellowstar.png */,
 				78B2DF1F0D0417160092EBDA /* application.icns */,
 				7870BA3E0E1116DC004B30B4 /* redstar.tiff */,
 				7870BA430E111952004B30B4 /* bluestar.tiff */,
@@ -659,6 +662,7 @@
 				78B418B30E4EF5A60065F111 /* inputtextfield.rb in Resources */,
 				51F0A51E0EBCF70A00B2C878 /* controls_with_disabled_state.rb in Resources */,
 				510D9F6D0EC4FE9900D3BEFB /* abstract_preferences.rb in Resources */,
+				0A86C5A60F6940FE00E9B9F7 /* yellowstar.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
