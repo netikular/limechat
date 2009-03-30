@@ -13,7 +13,7 @@ class IRCUnit < NSObject
   
   RECONNECT_TIME = 20
   RETRY_TIME = 240
-  PONG_TIME = 300
+  PONG_TIME = 130
   QUIT_TIME = 5
   WHO_TIME = 10
   
@@ -970,16 +970,17 @@ class IRCUnit < NSObject
     change_state_to_off
   end
   
-  def ircsocket_on_receive(m)
+  def ircsocket_on_receive(s)
     if @encoding == NSUTF8StringEncoding &&
         @config.fallback_encoding != NSUTF8StringEncoding &&
-        !StringValidator::valid_utf8?(m.to_s)
+        !StringValidator::valid_utf8?(s)
       use_fallback = true
     else
       use_fallback = false
     end
-    m.apply! {|i| to_local_encoding(i, use_fallback) }
-    m.apply! {|i| StringValidator::validate_utf8(i) }
+    s = to_local_encoding(s, use_fallback)
+    s = StringValidator::validate_utf8(s)
+    m = IRCReceivedMessage.new(s)
     #puts m.to_s
     
     if m.numeric_reply > 0
@@ -1270,6 +1271,7 @@ class IRCUnit < NSObject
   end
   
   def notify_text(kind, c, nick, text)
+    return if c && !c.is_a?(String) && !c.config.growl
     title = if c
       if c.is_a?(String)
         c
@@ -1294,6 +1296,7 @@ class IRCUnit < NSObject
       title = "#{name}"
       desc = ''
     when :kicked
+      return unless c.config.growl
       title = "#{c.name}"
       desc = "#{nick} has kicked out you from the channel: #{text}"
     when :invited
@@ -2201,6 +2204,10 @@ class IRCUnit < NSObject
       address = m[3]
       nick = m[5]
       mode = m[6]
+      
+      puts m.to_s
+      puts "  nick = #{nick}"
+      
       c = find_channel(chname)
       if c && c.active? && !c.who_init
         q = mode.include?('~')

@@ -112,7 +112,9 @@ class Preferences
       
       def sound=(sound)
         @sound = sound
-        preferences.sound.send("#{@name}=", (@sound == Preferences::Sound::EMPTY_SOUND ? '' : @sound))
+        sound_name = @sound == Preferences::Sound::EMPTY_SOUND ? '' : @sound
+        preferences.sound.send("#{@name}=", sound_name)
+        SoundPlayer.play(sound_name)
       end
     end
   end
@@ -126,6 +128,7 @@ class Preferences
     defaults_accessor :nick_format, '%n: '
     defaults_accessor :override_timestamp_format, false
     defaults_accessor :timestamp_format, '%H:%M'
+    defaults_accessor :transparency, 1.0
   end
   
   include UserDefaultsAccess
