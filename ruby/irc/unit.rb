@@ -448,6 +448,17 @@ class IRCUnit < NSObject
         @world.select(c)
       end
       return true
+    when :close
+      target = s.token!
+      if target.empty?
+        c = @world.selchannel
+      else
+        c = find_channel(target)
+      end
+      if c && c.talk?
+        @world.destroy_channel(c)
+      end
+      return true
     when :timer
       interval = s.token!
       if interval =~ /^\d+$/
@@ -2204,9 +2215,6 @@ class IRCUnit < NSObject
       address = m[3]
       nick = m[5]
       mode = m[6]
-      
-      puts m.to_s
-      puts "  nick = #{nick}"
       
       c = find_channel(chname)
       if c && c.active? && !c.who_init
