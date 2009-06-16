@@ -60,7 +60,7 @@ class Preferences
     defaults_accessor :show_join_leave, true
     defaults_accessor :max_log_lines, 300
     
-    defaults_accessor :paste_syntax, 'plain_text'
+    defaults_accessor :paste_syntax, 'text'
     defaults_accessor :paste_command, (LanguageSupport.primary_language == 'ja' ? 'notice' : 'privmsg')
   end
   

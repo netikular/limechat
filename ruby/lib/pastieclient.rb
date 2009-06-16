@@ -7,24 +7,22 @@ class PastieClient < NSObject
   attr_accessor :delegate
   
   TIMEOUT = 10
-  REQUEST_URL = 'http://pastie.org/pastes/'
+  REQUEST_URL = 'http://enigma.dev:8088/pastes/create'
   
   def start(content, nick, syntax='ruby', is_private=true)
     cancel
     @buf = ''
     @response = nil
     body = hash_to_query_string({ :paste => {
-      :body => CGI.escape(content),
-      :display_name => CGI.escape(nick),
-      :parser => syntax,
-      :restricted => is_private ? 1 : 0,
-      :authorization => 'burger',
+      :content => CGI.escape(content),
+      :paste_format => syntax
     }})
     
     url = NSURL.URLWithString(REQUEST_URL)
     policy = 1  # NSURLRequestReloadIgnoringLocalCacheData
     req = NSMutableURLRequest.requestWithURL_cachePolicy_timeoutInterval(url, policy, TIMEOUT)
     req.setHTTPMethod('POST')
+    puts 'posting'
     req.setHTTPBody(NSData.dataWithRubyString(body))
     @conn = NSURLConnection.alloc.initWithRequest_delegate(req, self)
   end
