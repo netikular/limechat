@@ -107,7 +107,7 @@ img
 
 strong
 {
-	font-weight: bold;
+	font-weight: normal;
 	color: red;
 }
 
@@ -225,25 +225,38 @@ table#shortcutkeys td
 <h2>Requirements</h2>
 <div class="section">
 	<ul>
-		<li>Mac OS X 10.4 or 10.5</li>
-		<li><a href="http://rubycocoa.sourceforge.net/">RubyCocoa</a> 0.13.2</li>
+		<li>Mac OS X 10.4 and over</li>
+		<li><a href="http://rubycocoa.sourceforge.net/">RubyCocoa</a> 1.0.0</li>
 	</ul>
 </div>
 
 <h2>Install</h2>
 <div class="section">
-	<h3>OS X 10.5</h3>
+	<h3>OS X 10.6 Snow Leopard</h3>
 	<div class="section">
 		<ol>
-			<li>Download <a href="http://downloads.sourceforge.net/limechat/LimeChat_1.0.dmg">LimeChat 1.0 executable dmg</a>.</li>
+			<li>Download <a href="http://downloads.sourceforge.net/limechat/LimeChat_1.1.dmg">LimeChat 1.1 executable dmg</a>.</li>
+			<li>Open the downloaded dmg, and copy LimeChat.app to your Application folder.</li>
+		</ol>
+		<p>
+			<strong>
+				If you would upgrade from Leopard, remove old RubyCocoa.framework (/Library/Frameworks/RubyCocoa.framework).
+			</strong>
+		</p>
+	</div>
+	
+	<h3>OS X 10.5 Leopard</h3>
+	<div class="section">
+		<ol>
+			<li>Download <a href="http://downloads.sourceforge.net/limechat/LimeChat_1.1_standalone.dmg">LimeChat 1.1 standalone executable dmg</a>.</li>
 			<li>Open the downloaded dmg, and copy LimeChat.app to your Application folder.</li>
 		</ol>
 	</div>
 
-	<h3>OS X 10.4</h3>
+	<h3>OS X 10.4 Tiger</h3>
 	<div class="section">
 		<ol>
-			<li>Download <a href="http://sourceforge.net/project/showfiles.php?group_id=44114">RubyCocoa-0.13.2.1-OSX10.4universal.dmg</a>, and install it.</li>
+			<li>Download <a href="http://sourceforge.net/project/showfiles.php?group_id=44114">RubyCocoa-1.0.0-OSX10.4universal.dmg</a>, and install it.</li>
 			<li>Download <a href="http://downloads.sourceforge.net/limechat/LimeChat_0.20.dmg">LimeChat 0.20 executable dmg</a>.</li>
 			<li>Open the downloaded dmg, and copy LimeChat.app to your Application folder.</li>
 		</ol>
@@ -253,7 +266,7 @@ table#shortcutkeys td
 <h2>Source code</h2>
 <div class="section">
 	<ul>
-		<li><a href="http://downloads.sourceforge.net/limechat/LimeChat_1.0.zip">LimeChat 1.0 source zip</a></li>
+		<li><a href="http://downloads.sourceforge.net/limechat/LimeChat_1.1.zip">LimeChat 1.1 source zip</a></li>
 		<li><a href="http://github.com/psychs/limechat/tree/master">http://github.com/psychs/limechat/tree/master</a></li>
 	</ul>
 </div>
@@ -341,6 +354,14 @@ table#shortcutkeys td
 		This change log is also available in <a href="rss.xml">RSS</a>.
 	</p>
 	<dl>
+		
+		<dt id="v1.1">1.1 (2009.08.26)</dt>
+		<dd>
+			<ul>
+				<li>Switched paste service to gist.</li>
+				<li>Use threaded hostname resolver for Snow Leopard.</li>
+      </ul>
+		</dd>
 		
 		<dt id="v1.0">1.0 (2009.06.03)</dt>
 		<dd>

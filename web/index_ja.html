@@ -107,7 +107,7 @@ img
 
 strong
 {
-	font-weight: bold;
+	font-weight: normal;
 	color: red;
 }
 
@@ -215,22 +215,35 @@ table#shortcutkeys td
 <h2>動作環境</h2>
 <div class="section">
 	<ul>
-		<li>Mac OS X 10.4 or 10.5</li>
-		<li><a href="http://rubycocoa.sourceforge.net/">RubyCocoa</a> 0.13.2</li>
+		<li>Mac OS X 10.4 以降</li>
+		<li><a href="http://rubycocoa.sourceforge.net/">RubyCocoa</a> 1.0.0</li>
 	</ul>
 </div>
 
 <h2>インストール手順</h2>
 <div class="section">
-	<h3>OS X 10.5</h3>
+	<h3>OS X 10.6 Snow Leopard</h3>
 	<div class="section">
 		<ol>
-			<li><a href="http://downloads.sourceforge.net/limechat/LimeChat_1.0.dmg?use_mirror=jaist">LimeChat_1.0.dmg</a> をダウンロードする。</li>
+			<li><a href="http://downloads.sourceforge.net/limechat/LimeChat_1.1.dmg?use_mirror=jaist">LimeChat_1.1.dmg</a> をダウンロードする。</li>
+			<li>ダウンロードした dmg をダブルクリックして開き、LimeChat.app をアプリケーションフォルダにコピーする。</li>
+		</ol>
+		<p>
+			<strong>
+				Leopard からアップグレードした場合には、古い RubyCocoa.framework を削除してください。 (/Library/Frameworks/RubyCocoa.framework)
+			</strong>
+		</p>
+	</div>
+	
+	<h3>OS X 10.5 Leopard</h3>
+	<div class="section">
+		<ol>
+			<li><a href="http://downloads.sourceforge.net/limechat/LimeChat_1.1_standalone.dmg?use_mirror=jaist">LimeChat_1.1_standalone.dmg</a> をダウンロードする。</li>
 			<li>ダウンロードした dmg をダブルクリックして開き、LimeChat.app をアプリケーションフォルダにコピーする。</li>
 		</ol>
 	</div>
 	
-	<h3>OS X 10.4</h3>
+	<h3>OS X 10.4 Tiger</h3>
 	<div class="section">
 		<ol>
 			<li><a href="http://sourceforge.net/project/showfiles.php?group_id=44114">RubyCocoa-0.13.2.1-OSX10.4universal.dmg</a> をダウンロードしてインストールする。</li>
@@ -243,7 +256,7 @@ table#shortcutkeys td
 <h2>ソースの入手方法</h2>
 <div class="section">
 	<ul>
-		<li><a href="http://downloads.sourceforge.net/limechat/LimeChat_1.0.zip?use_mirror=jaist">LimeChat 1.0 source zip</a></li>
+		<li><a href="http://downloads.sourceforge.net/limechat/LimeChat_1.1.zip?use_mirror=jaist">LimeChat 1.1 source zip</a></li>
 		<li><a href="http://github.com/psychs/limechat/tree/master">http://github.com/psychs/limechat/tree/master</a></li>
 	</ul>
 </div>
@@ -332,6 +345,14 @@ table#shortcutkeys td
 		更新履歴は <a href="rss_ja.xml">RSS</a> でも配信しています。
 	</p>
 	<dl>
+		
+		<dt id="v1.1">1.1 (2009.08.26)</dt>
+		<dd>
+			<ul>
+				<li>ペーストサービスを gist に変更した。</li>
+				<li>Snow Leopard 対応のため、DNS を別スレッドで引くようにした。</li>
+      </ul>
+		</dd>
 		
 		<dt id="v1.0">1.0 (2009.06.03)</dt>
 		<dd>

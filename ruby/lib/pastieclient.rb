@@ -9,7 +9,7 @@ class PastieClient < NSObject
   TIMEOUT = 10
   REQUEST_URL = 'http://enigma.dev:8088/pastes/create'
   
-  def start(content, nick, syntax='ruby', is_private=true)
+  def start(content, syntax='ruby', is_private=true)
     cancel
     @buf = ''
     @response = nil
@@ -23,6 +23,7 @@ class PastieClient < NSObject
     req = NSMutableURLRequest.requestWithURL_cachePolicy_timeoutInterval(url, policy, TIMEOUT)
     req.setHTTPMethod('POST')
     puts 'posting'
+    puts body
     req.setHTTPBody(NSData.dataWithRubyString(body))
     @conn = NSURLConnection.alloc.initWithRequest_delegate(req, self)
   end

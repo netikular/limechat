@@ -2,6 +2,7 @@
 # You can redistribute it and/or modify it under the Ruby's license or the GPL2.
 
 require 'cocoasheet'
+require 'cocoa_gist'
 
 class PasteSheet < CocoaSheet
   attr_accessor :uid, :cid, :nick
@@ -58,16 +59,15 @@ class PasteSheet < CocoaSheet
     set_requesting
     syntax = tag_to_syntax(@syntaxPopup.selectedItem.tag)
     @result = nil
-    #@conn = PasternakClient.alloc.init
     @conn = PastieClient.alloc.init
     @conn.delegate = self
-    @conn.start(@text.textStorage.string.to_s, @nick, syntax)
+    @conn.start(@text.textStorage.string.to_s, syntax, true)
   end
   
   def pastie_on_success(sender, s)
     @conn = nil
     if s.empty?
-      @errorLabel.setStringValue("Could not get an URL from Pastie")
+      @errorLabel.setStringValue("Could not get an URL from Gist")
       set_waiting
     else
       @errorLabel.setStringValue('')
@@ -78,7 +78,7 @@ class PasteSheet < CocoaSheet
   
   def pastie_on_error(sender, e)
     @conn = nil
-    @errorLabel.setStringValue("Pastie failed: #{e}")
+    @errorLabel.setStringValue("Gist failed: #{e}")
     set_waiting
   end
   
@@ -88,7 +88,7 @@ class PasteSheet < CocoaSheet
       if @interval <= 0
         @conn.cancel
         @conn = nil
-        @errorLabel.setStringValue("Unable to reach Pastie at this moment")
+        @errorLabel.setStringValue("Unable to reach Gist at this moment")
         set_waiting
       end
     end
